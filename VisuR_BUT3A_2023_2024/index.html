@@ -815,7 +815,7 @@ ou
 <section id="écrire-un-script-23" class="slide level4 smaller">
 <h4>Écrire un script (2/3)</h4>
 <div class="columns">
-<div class="column" style="width:74.5%;">
+<div class="column" style="width:70%;">
 <ul>
 <li>Faire des retours à la ligne régulièrement : <strong>longueur max 80 caractères</strong><br>
 </li>
@@ -832,7 +832,7 @@ ou
 <li>Insérer un espace après la virgule mais pas avant, comme en français !<br>
 </li>
 </ul>
-</div><div class="column" style="width:25.5%;">
+</div><div class="column" style="width:30%;">
 <div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># On écrit </span></span>
 <span id="cb3-2"><a href="#cb3-2"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span> <span class="ot">=</span> <span class="dv">2</span></span>
 <span id="cb3-3"><a href="#cb3-3"></a>dataframe<span class="sc">$</span>variable</span>
@@ -1097,8 +1097,14 @@ ou
 <section id="exm-delim" class="slide level4 smaller">
 <h4>Exemples pour les fichiers délimités <a href="#/import"><i class="fa-solid fa-square-caret-left" aria-label="square-caret-left"></i></a></h4>
 <p><strong>Fichier csv</strong></p>
-<p><code>read.csv(file, header = TRUE, sep = ",", dec = ".")</code></p>
-<p><code>readr::read_csv(file, col_names = TRUE)</code></p>
+<div class="cell" data-code-copy="true">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># En langage R de base</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="fu">read.csv</span>(file, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">","</span>, <span class="at">dec =</span> <span class="st">"."</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-code-copy="true">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># En "tidyverse"</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(file, <span class="at">col_names =</span> <span class="cn">TRUE</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <div class="callout callout-note callout-style-simple">
 <div class="callout-body">
 <div class="callout-icon-container">
@@ -1110,16 +1116,34 @@ ou
 </div>
 </div>
 <p><strong>Fichier txt</strong></p>
-<p><code>read.table(file, header = TRUE, sep = "", dec = ".")</code></p>
-<p><code>readr::read_table(file, col_names = TRUE)</code></p>
+<div class="cell" data-code-copy="true">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># En langage R de base</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="fu">read.table</span>(file, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">""</span>, <span class="at">dec =</span> <span class="st">"."</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-code-copy="true">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># En "tidyverse"</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a>readr<span class="sc">::</span><span class="fu">read_table</span>(file, <span class="at">col_names =</span> <span class="cn">TRUE</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p><span style="color:#ffffff"><strong>Fichier txt</strong></span></p>
-<p><code>read.delim(file, header = TRUE, sep = "\t", dec = ".")</code></p>
-<p><code>readr::read_delim(file, delim = "\t", col_names = TRUE)</code></p>
+<div class="cell" data-code-copy="true">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># En langage R de base</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="fu">read.delim</span>(file, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">"</span><span class="sc">\t</span><span class="st">"</span>, <span class="at">dec =</span> <span class="st">"."</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-code-copy="true">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># En "tidyverse"</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a>readr<span class="sc">::</span><span class="fu">read_delim</span>(file, <span class="at">delim =</span> <span class="st">"</span><span class="sc">\t</span><span class="st">"</span>, <span class="at">col_names =</span> <span class="cn">TRUE</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="exm-excel" class="slide level4 smaller">
 <h4>Exemples pour les fichiers Excel <a href="#/import"><i class="fa-solid fa-square-caret-left" aria-label="square-caret-left"></i></a></h4>
-<p><code>xlsx::read.xlsx(file, sheetIndex, sheetName = NULL, startRow = NULL,  endRow = NULL, as.data.frame = TRUE, header = TRUE)</code></p>
-<p><code>readxl::read_excel(file, sheet = NULL, skip = 0, col_names = TRUE)</code></p>
+<div class="cell" data-code-copy="true">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="co"># En langage R de base</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a>xlsx<span class="sc">::</span><span class="fu">read.xlsx</span>(file, sheetIndex, <span class="at">sheetName =</span> <span class="cn">NULL</span>, <span class="at">startRow =</span> <span class="cn">NULL</span>, <span class="at">endRow =</span> <span class="cn">NULL</span>, <span class="at">as.data.frame =</span> <span class="cn">TRUE</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-code-copy="true">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="co"># En "tidyverse"</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a>readxl<span class="sc">::</span><span class="fu">read_excel</span>(file, <span class="at">sheet =</span> <span class="cn">NULL</span>, <span class="at">skip =</span> <span class="dv">0</span>, <span class="at">col_names =</span> <span class="cn">TRUE</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="export" class="slide level4 smaller">
 <h4>Export de données</h4>
@@ -1194,9 +1218,9 @@ Source : <span class="citation" data-cites="Wickham2018">Wickham et Grolemund (<
 <li>Filtrer des lignes avec <code>filter()</code></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># sélection des lignes pour lesquelles Sepal.Length est supérieure à 7.5  </span></span>
-<span id="cb4-2"><a href="#cb4-2"></a>iris <span class="sc">%&gt;%</span> </span>
-<span id="cb4-3"><a href="#cb4-3"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(Sepal.Length <span class="sc">&gt;</span> <span class="fl">7.5</span>) </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="co"># Sélection des lignes pour lesquelles Sepal.Length est supérieure à 7.5  </span></span>
+<span id="cb12-2"><a href="#cb12-2"></a>iris <span class="sc">%&gt;%</span> </span>
+<span id="cb12-3"><a href="#cb12-3"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(Sepal.Length <span class="sc">&gt;</span> <span class="fl">7.5</span>) </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
 1          7.6         3.0          6.6         2.1 virginica
@@ -1209,9 +1233,9 @@ Source : <span class="citation" data-cites="Wickham2018">Wickham et Grolemund (<
 </div>
 <p>On peut passer plusieurs arguments à <code>filter()</code>, avec les <a href="#/exm-operateurs">opérateurs</a> <code>&amp;</code> (ET) et <code>|</code> (OU)</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># sélection des lignes pour lesquelles Sepal.Length est supérieure à 5 et Petal.Length inférieure à 1.5</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a>iris <span class="sc">%&gt;%</span> </span>
-<span id="cb6-3"><a href="#cb6-3"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(Sepal.Length <span class="sc">&gt;</span> <span class="dv">5</span> <span class="sc">&amp;</span> Petal.Length <span class="sc">&lt;</span> <span class="fl">1.5</span>) </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="co"># Sélection des lignes pour lesquelles Sepal.Length est supérieure à 5 et Petal.Length inférieure à 1.5</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a>iris <span class="sc">%&gt;%</span> </span>
+<span id="cb14-3"><a href="#cb14-3"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(Sepal.Length <span class="sc">&gt;</span> <span class="dv">5</span> <span class="sc">&amp;</span> Petal.Length <span class="sc">&lt;</span> <span class="fl">1.5</span>) </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  Sepal.Length Sepal.Width Petal.Length Petal.Width Species
 1          5.1         3.5          1.4         0.2  setosa
@@ -1283,20 +1307,22 @@ Source : <span class="citation" data-cites="Wickham2018">Wickham et Grolemund (<
 <li>Sélectionner <strong>une</strong> colonne (variable) avec <code>pull()</code> ou <code>select()</code></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># sélection de la variable Species</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a>iris <span class="sc">%&gt;%</span> </span>
-<span id="cb8-3"><a href="#cb8-3"></a>  dplyr<span class="sc">::</span><span class="fu">pull</span>(Species) <span class="sc">%&gt;%</span> </span>
-<span id="cb8-4"><a href="#cb8-4"></a>  <span class="fu">head</span>(<span class="dv">5</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="co"># Sélection de la variable Species</span></span>
+<span id="cb16-2"><a href="#cb16-2"></a>iris <span class="sc">%&gt;%</span> </span>
+<span id="cb16-3"><a href="#cb16-3"></a>  dplyr<span class="sc">::</span><span class="fu">pull</span>(Species) </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] setosa setosa setosa setosa setosa
 Levels: setosa versicolor virginica</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="co"># sélection de la variable Species</span></span>
-<span id="cb10-2"><a href="#cb10-2"></a>iris <span class="sc">%&gt;%</span> </span>
-<span id="cb10-3"><a href="#cb10-3"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(Species) <span class="sc">%&gt;%</span> </span>
-<span id="cb10-4"><a href="#cb10-4"></a>  <span class="fu">head</span>(<span class="dv">5</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="co"># Sélection de la variable Species</span></span>
+<span id="cb18-2"><a href="#cb18-2"></a>iris <span class="sc">%&gt;%</span></span>
+<span id="cb18-3"><a href="#cb18-3"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(Species)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>  Species
 1  setosa
@@ -1331,19 +1357,33 @@ Levels: setosa versicolor virginica</code></pre>
 <li>Sélectionner <strong>plusieurs</strong> colonnes (variables) avec <code>select()</code></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="co"># sélection des variables sauf Species </span></span>
-<span id="cb12-2"><a href="#cb12-2"></a>iris <span class="sc">%&gt;%</span> </span>
-<span id="cb12-3"><a href="#cb12-3"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>Species) <span class="sc">%&gt;%</span> </span>
-<span id="cb12-4"><a href="#cb12-4"></a>  <span class="fu">names</span>()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "Sepal.Length" "Sepal.Width"  "Petal.Length" "Petal.Width" </code></pre>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="co"># Sélection des variables sauf Species </span></span>
+<span id="cb20-2"><a href="#cb20-2"></a>iris <span class="sc">%&gt;%</span> </span>
+<span id="cb20-3"><a href="#cb20-3"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>Species)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="co"># sélection des variables dont le nom contient la chaîne de caractères "Length"</span></span>
-<span id="cb14-2"><a href="#cb14-2"></a>iris <span class="sc">%&gt;%</span> </span>
-<span id="cb14-3"><a href="#cb14-3"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="fu">contains</span>(<span class="st">"Length"</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb14-4"><a href="#cb14-4"></a>  <span class="fu">names</span>()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "Sepal.Length" "Petal.Length"</code></pre>
+<pre><code>  Sepal.Length Sepal.Width Petal.Length Petal.Width
+1          5.1         3.5          1.4         0.2
+2          4.9         3.0          1.4         0.2
+3          4.7         3.2          1.3         0.2
+4          4.6         3.1          1.5         0.2
+5          5.0         3.6          1.4         0.2</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="co"># Sélection des variables dont le nom contient la chaîne de caractères "Length"</span></span>
+<span id="cb22-2"><a href="#cb22-2"></a>iris <span class="sc">%&gt;%</span> </span>
+<span id="cb22-3"><a href="#cb22-3"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="fu">c</span>(<span class="st">"Petal.Length"</span>, <span class="st">"Sepal.Length"</span>))</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>  Petal.Length Sepal.Length
+1          1.4          5.1
+2          1.4          4.9
+3          1.3          4.7
+4          1.5          4.6
+5          1.4          5.0</code></pre>
 </div>
 </div>
 <div class="callout callout-tip callout-style-simple">
@@ -1352,16 +1392,12 @@ Levels: setosa versicolor virginica</code></pre>
 <i class="callout-icon"></i>
 </div>
 <div class="callout-content">
-<p>On peut faire les tests sur les noms de variables avec les fonctions :</p>
-<ul>
-<li><code>contains()</code><br>
-</li>
-<li><code>starts_with()</code><br>
-</li>
-<li><code>ends_with()</code><br>
-</li>
-<li><code>matches()</code></li>
-</ul>
+<p>On peut faire les tests sur les noms de variables avec les fonctions <code>contains()</code>, <code>starts_with()</code>, <code>ends_with()</code> ou encore <code>matches()</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="co"># Sélection des variables dont le nom contient la chaîne de caractères "Length"</span></span>
+<span id="cb24-2"><a href="#cb24-2"></a>iris <span class="sc">%&gt;%</span> </span>
+<span id="cb24-3"><a href="#cb24-3"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="fu">contains</span>(<span class="st">"Length"</span>))</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>Plus d’infos sur ces fonctions et les autres fonctions disponibles sur la page d’aide de la fonction <code>select()</code> du package <span class="pkg">dplyr</span></p>
 </div>
 </div>
@@ -1373,22 +1409,29 @@ Levels: setosa versicolor virginica</code></pre>
 <li>Renommer des colonnes avec <code>rename()</code></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="co"># on renomme la colonne 'Species' en 'Especes'  </span></span>
-<span id="cb16-2"><a href="#cb16-2"></a>iris <span class="sc">%&gt;%</span></span>
-<span id="cb16-3"><a href="#cb16-3"></a>  dplyr<span class="sc">::</span><span class="fu">rename</span>(<span class="at">Especes =</span> Species) <span class="sc">%&gt;%</span> </span>
-<span id="cb16-4"><a href="#cb16-4"></a>  <span class="fu">names</span>()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="co"># On renomme la colonne 'Species' en 'Especes'  </span></span>
+<span id="cb25-2"><a href="#cb25-2"></a>iris <span class="sc">%&gt;%</span></span>
+<span id="cb25-3"><a href="#cb25-3"></a>  dplyr<span class="sc">::</span><span class="fu">rename</span>(<span class="at">Especes =</span> Species)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "Sepal.Length" "Sepal.Width"  "Petal.Length" "Petal.Width"  "Especes"     </code></pre>
+<pre><code>  Sepal.Length Sepal.Width Petal.Length Petal.Width Especes
+1          5.1         3.5          1.4         0.2  setosa
+2          4.9         3.0          1.4         0.2  setosa
+3          4.7         3.2          1.3         0.2  setosa
+4          4.6         3.1          1.5         0.2  setosa
+5          5.0         3.6          1.4         0.2  setosa</code></pre>
 </div>
 </div>
 <ul>
 <li>Trier les observations selon une ou plusieurs colonnes avec <code>arrange()</code></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="co"># on trie les observations par ordre décroissant des valeurs de Sepal.Length</span></span>
-<span id="cb18-2"><a href="#cb18-2"></a>iris <span class="sc">%&gt;%</span></span>
-<span id="cb18-3"><a href="#cb18-3"></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(<span class="fu">desc</span>(Sepal.Length)) <span class="sc">%&gt;%</span></span>
-<span id="cb18-4"><a href="#cb18-4"></a>  <span class="fu">head</span>(<span class="dv">5</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="co"># On trie les observations par ordre décroissant des valeurs de Sepal.Length</span></span>
+<span id="cb27-2"><a href="#cb27-2"></a>iris <span class="sc">%&gt;%</span></span>
+<span id="cb27-3"><a href="#cb27-3"></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(<span class="fu">desc</span>(Sepal.Length))</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>  Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
 1          7.9         3.8          6.4         2.0 virginica
@@ -1405,12 +1448,14 @@ Levels: setosa versicolor virginica</code></pre>
 <li>Créer de nouvelles variables avec <code>mutate()</code></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="co"># création de la variable Length : somme des deux variables Length</span></span>
-<span id="cb20-2"><a href="#cb20-2"></a><span class="co"># et de la variable Width : somme des deux variables Width</span></span>
-<span id="cb20-3"><a href="#cb20-3"></a>iris <span class="sc">%&gt;%</span></span>
-<span id="cb20-4"><a href="#cb20-4"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">Length =</span> Sepal.Length <span class="sc">+</span> Petal.Length</span>
-<span id="cb20-5"><a href="#cb20-5"></a>                , <span class="at">Width =</span> Sepal.Width <span class="sc">+</span> Petal.Width) <span class="sc">%&gt;%</span> </span>
-<span id="cb20-6"><a href="#cb20-6"></a>  <span class="fu">head</span>(<span class="dv">5</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="co"># Création de 2 variables : </span></span>
+<span id="cb29-2"><a href="#cb29-2"></a><span class="co"># - Length : somme des deux variables Length</span></span>
+<span id="cb29-3"><a href="#cb29-3"></a><span class="co"># - Width : somme des deux variables Width</span></span>
+<span id="cb29-4"><a href="#cb29-4"></a>iris <span class="sc">%&gt;%</span></span>
+<span id="cb29-5"><a href="#cb29-5"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">Length =</span> Sepal.Length <span class="sc">+</span> Petal.Length</span>
+<span id="cb29-6"><a href="#cb29-6"></a>                , <span class="at">Width =</span> Sepal.Width <span class="sc">+</span> Petal.Width) </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>  Sepal.Length Sepal.Width Petal.Length Petal.Width Species Length Width
 1          5.1         3.5          1.4         0.2  setosa    6.5   3.7
@@ -1427,25 +1472,25 @@ Levels: setosa versicolor virginica</code></pre>
 <li>Résumer (ou agréger) les données sur une ou plusieurs variables avec <code>summarise()</code> à l’aide d’<a href="#/exm-indicateurs">indicateurs</a></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="co"># résumé selon une seule variable : calcul de la moyenne de Sepal.Lenth</span></span>
-<span id="cb22-2"><a href="#cb22-2"></a>iris <span class="sc">%&gt;%</span></span>
-<span id="cb22-3"><a href="#cb22-3"></a>  <span class="fu">summarise</span>(<span class="fu">mean</span>(Sepal.Length, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="co"># résumé selon une seule variable : calcul de la moyenne de Sepal.Lenth</span></span>
+<span id="cb31-2"><a href="#cb31-2"></a>iris <span class="sc">%&gt;%</span></span>
+<span id="cb31-3"><a href="#cb31-3"></a>  <span class="fu">summarise</span>(<span class="fu">mean</span>(Sepal.Length, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  mean(Sepal.Length, na.rm = TRUE)
 1                         5.843333</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="co"># résumé selon plusieurs variables : </span></span>
-<span id="cb24-2"><a href="#cb24-2"></a><span class="co"># calcul des moyennes de toutes les variables du tableau qui contiennent la chaîne de caractères 'Width'</span></span>
-<span id="cb24-3"><a href="#cb24-3"></a>iris <span class="sc">%&gt;%</span></span>
-<span id="cb24-4"><a href="#cb24-4"></a>  <span class="fu">select</span>(<span class="fu">contains</span>(<span class="st">'Width'</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb24-5"><a href="#cb24-5"></a>  <span class="fu">summarise_all</span>(mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="co"># Résumé selon plusieurs variables : </span></span>
+<span id="cb33-2"><a href="#cb33-2"></a><span class="co"># Calcul des moyennes de toutes les variables du tableau qui contiennent la chaîne de caractères 'Width'</span></span>
+<span id="cb33-3"><a href="#cb33-3"></a>iris <span class="sc">%&gt;%</span></span>
+<span id="cb33-4"><a href="#cb33-4"></a>  <span class="fu">select</span>(<span class="fu">contains</span>(<span class="st">'Width'</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb33-5"><a href="#cb33-5"></a>  <span class="fu">summarise_all</span>(mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  Sepal.Width Petal.Width
 1    3.057333    1.199333</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="co"># résumé selon plusieurs variables : calcul des moyennes de toutes les variables numériques du tableau</span></span>
-<span id="cb26-2"><a href="#cb26-2"></a>iris <span class="sc">%&gt;%</span></span>
-<span id="cb26-3"><a href="#cb26-3"></a>  <span class="fu">summarise_if</span>(is.numeric, mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a><span class="co"># Résumé selon plusieurs variables : calcul des moyennes de toutes les variables numériques du tableau</span></span>
+<span id="cb35-2"><a href="#cb35-2"></a>iris <span class="sc">%&gt;%</span></span>
+<span id="cb35-3"><a href="#cb35-3"></a>  <span class="fu">summarise_if</span>(is.numeric, mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  Sepal.Length Sepal.Width Petal.Length Petal.Width
 1     5.843333    3.057333        3.758    1.199333</code></pre>
@@ -1473,10 +1518,10 @@ Levels: setosa versicolor virginica</code></pre>
 <li>Regrouper les données et faire des calculs sur des groupes d’observations avec <code>group_by()</code></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="co"># calcul de la moyenne de Sepal.Length en fonction de la variable Species</span></span>
-<span id="cb28-2"><a href="#cb28-2"></a>iris <span class="sc">%&gt;%</span>                                        <span class="co"># On sélectionne le jeu de données *iris*</span></span>
-<span id="cb28-3"><a href="#cb28-3"></a>  <span class="fu">group_by</span>(Species) <span class="sc">%&gt;%</span>                         <span class="co"># On groupe les données selon 'Species'</span></span>
-<span id="cb28-4"><a href="#cb28-4"></a>  <span class="fu">summarise</span>(<span class="fu">mean</span>(Sepal.Length, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))   <span class="co"># On calcule la moyenne de 'Sepal.Length' </span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a><span class="co"># Calcul de la moyenne de Sepal.Length en fonction de la variable Species</span></span>
+<span id="cb37-2"><a href="#cb37-2"></a>iris <span class="sc">%&gt;%</span>                                        <span class="co"># On sélectionne le jeu de données *iris*</span></span>
+<span id="cb37-3"><a href="#cb37-3"></a>  <span class="fu">group_by</span>(Species) <span class="sc">%&gt;%</span>                         <span class="co"># On groupe les données selon 'Species'</span></span>
+<span id="cb37-4"><a href="#cb37-4"></a>  <span class="fu">summarise</span>(<span class="fu">mean</span>(Sepal.Length, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))   <span class="co"># On calcule la moyenne de 'Sepal.Length' </span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 2
   Species    `mean(Sepal.Length, na.rm = TRUE)`
@@ -1508,26 +1553,34 @@ Levels: setosa versicolor virginica</code></pre>
 <li>Changer le niveau d’un facteur <code>fct_recode()</code></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="co"># on renomme les niveau de Species</span></span>
-<span id="cb30-2"><a href="#cb30-2"></a>iris <span class="sc">%&gt;%</span></span>
-<span id="cb30-3"><a href="#cb30-3"></a>  <span class="fu">pull</span>(Species) <span class="sc">%&gt;%</span> </span>
-<span id="cb30-4"><a href="#cb30-4"></a>  forcats<span class="sc">::</span><span class="fu">fct_recode</span>(<span class="at">seto =</span> <span class="st">"setosa"</span>, <span class="at">vers =</span> <span class="st">"versicolor"</span>, <span class="at">virg =</span> <span class="st">"virginica"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb30-5"><a href="#cb30-5"></a>  <span class="fu">levels</span>()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a><span class="co"># On renomme les niveau de Species</span></span>
+<span id="cb39-2"><a href="#cb39-2"></a>iris <span class="sc">%&gt;%</span></span>
+<span id="cb39-3"><a href="#cb39-3"></a>  <span class="fu">mutate</span>(<span class="at">Species =</span> forcats<span class="sc">::</span><span class="fu">fct_recode</span>(Species</span>
+<span id="cb39-4"><a href="#cb39-4"></a>                                       , <span class="at">seto =</span> <span class="st">"setosa"</span></span>
+<span id="cb39-5"><a href="#cb39-5"></a>                                       , <span class="at">vers =</span> <span class="st">"versicolor"</span></span>
+<span id="cb39-6"><a href="#cb39-6"></a>                                       , <span class="at">virg =</span> <span class="st">"virginica"</span>)) </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "seto" "vers" "virg"</code></pre>
+<pre><code>  Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+1          5.1         3.5          1.4         0.2    seto
+2          4.9         3.0          1.4         0.2    seto
+3          4.7         3.2          1.3         0.2    seto
+4          4.6         3.1          1.5         0.2    seto
+5          5.0         3.6          1.4         0.2    seto</code></pre>
 </div>
 </div>
 <ul>
 <li>Renommer ou regrouper les niveaux avec <code>fct_collapse()</code></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="co"># on regroupe dans 'autre' les niveaux 'setosa' et 'versicolor'</span></span>
-<span id="cb32-2"><a href="#cb32-2"></a>iris <span class="sc">%&gt;%</span></span>
-<span id="cb32-3"><a href="#cb32-3"></a>  <span class="fu">mutate</span>(<span class="at">r_Species =</span> <span class="fu">fct_collapse</span>(Species</span>
-<span id="cb32-4"><a href="#cb32-4"></a>                                        , <span class="st">"virginica"</span> <span class="ot">=</span> <span class="st">"virginica"</span></span>
-<span id="cb32-5"><a href="#cb32-5"></a>                                        , <span class="st">"autre"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"setosa"</span>, <span class="st">"versicolor"</span>)</span>
-<span id="cb32-6"><a href="#cb32-6"></a>  )) <span class="sc">%&gt;%</span> </span>
-<span id="cb32-7"><a href="#cb32-7"></a>  <span class="fu">head</span>(<span class="dv">5</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a><span class="co"># On regroupe dans 'autre' les niveaux 'setosa' et 'versicolor' dans une nouvelle variable nommée 'r_Species'</span></span>
+<span id="cb41-2"><a href="#cb41-2"></a>iris <span class="sc">%&gt;%</span></span>
+<span id="cb41-3"><a href="#cb41-3"></a>  <span class="fu">mutate</span>(<span class="at">r_Species =</span> <span class="fu">fct_collapse</span>(Species</span>
+<span id="cb41-4"><a href="#cb41-4"></a>                                        , <span class="st">"virginica"</span> <span class="ot">=</span> <span class="st">"virginica"</span></span>
+<span id="cb41-5"><a href="#cb41-5"></a>                                        , <span class="st">"autre"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"setosa"</span>, <span class="st">"versicolor"</span>))) </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>  Sepal.Length Sepal.Width Petal.Length Petal.Width Species r_Species
 1          5.1         3.5          1.4         0.2  setosa     autre
@@ -1544,11 +1597,14 @@ Levels: setosa versicolor virginica</code></pre>
 <li>Trier les facteurs à la main, plutôt que par ordre ou fréquence avec <code>fct_relevel()</code></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="co"># viriginica devient le niveau 1</span></span>
-<span id="cb34-2"><a href="#cb34-2"></a>iris <span class="sc">%&gt;%</span></span>
-<span id="cb34-3"><a href="#cb34-3"></a>  <span class="fu">pull</span>(Species) <span class="sc">%&gt;%</span> </span>
-<span id="cb34-4"><a href="#cb34-4"></a>  forcats<span class="sc">::</span><span class="fu">fct_relevel</span>(<span class="fu">c</span>(<span class="st">"virginica"</span>, <span class="st">"setosa"</span>, <span class="st">"versicolor"</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb34-5"><a href="#cb34-5"></a>  <span class="fu">levels</span>()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a><span class="co"># Par défaut, les niveaux sont triés par ordre alphabétique</span></span>
+<span id="cb43-2"><a href="#cb43-2"></a><span class="co"># On modifie pour que virginica devienne le niveau 1</span></span>
+<span id="cb43-3"><a href="#cb43-3"></a>iris <span class="sc">%&gt;%</span></span>
+<span id="cb43-4"><a href="#cb43-4"></a>  <span class="fu">mutate</span>(<span class="at">Species =</span> forcats<span class="sc">::</span><span class="fu">fct_relevel</span>(Species</span>
+<span id="cb43-5"><a href="#cb43-5"></a>                                        , <span class="fu">c</span>(<span class="st">"virginica"</span>, <span class="st">"setosa"</span>,<span class="st">"versicolor"</span>))) </span>
+<span id="cb43-6"><a href="#cb43-6"></a><span class="co"># Si on vérifie les niveaux de la variable Species après modification, cela donne :</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "virginica"  "setosa"     "versicolor"</code></pre>
 </div>
@@ -1560,12 +1616,12 @@ Levels: setosa versicolor virginica</code></pre>
 <li>Grouper les facteurs les plus communs ou les plus rares avec <code>fct_lump()</code></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a><span class="co"># on conserve le niveau le plus courant de Species</span></span>
-<span id="cb36-2"><a href="#cb36-2"></a>iris <span class="sc">%&gt;%</span></span>
-<span id="cb36-3"><a href="#cb36-3"></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">75</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb36-4"><a href="#cb36-4"></a>  <span class="fu">pull</span>(Species) <span class="sc">%&gt;%</span></span>
-<span id="cb36-5"><a href="#cb36-5"></a>  forcats<span class="sc">::</span><span class="fu">fct_lump</span>(<span class="at">n =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb36-6"><a href="#cb36-6"></a>  <span class="fu">levels</span>()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1"></a><span class="co"># Si on veut conserver le niveau le plus courant de Species dans une nouvelle variable nommée 'r2niv_Species'</span></span>
+<span id="cb45-2"><a href="#cb45-2"></a>iris <span class="sc">%&gt;%</span></span>
+<span id="cb45-3"><a href="#cb45-3"></a>  <span class="fu">mutate</span>(<span class="at">r2niv_Species =</span> forcats<span class="sc">::</span><span class="fu">fct_lump</span>(<span class="at">f =</span> Species, <span class="at">n =</span> <span class="dv">1</span>))</span>
+<span id="cb45-4"><a href="#cb45-4"></a><span class="co"># Si on vérifie les niveaux de la variable r2niv_Species après modification, cela donne :</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "setosa" "Other" </code></pre>
 </div>
@@ -1596,24 +1652,30 @@ Levels: setosa versicolor virginica</code></pre>
 <li>Modifier le nom des niveaux de manière globale avec <code>fct_relabel()</code></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a><span class="co"># on passe les niveaux en lettres majuscules</span></span>
-<span id="cb38-2"><a href="#cb38-2"></a>iris <span class="sc">%&gt;%</span></span>
-<span id="cb38-3"><a href="#cb38-3"></a>  <span class="fu">pull</span>(Species) <span class="sc">%&gt;%</span> </span>
-<span id="cb38-4"><a href="#cb38-4"></a>  forcats<span class="sc">::</span><span class="fu">fct_relabel</span>(toupper) <span class="sc">%&gt;%</span> </span>
-<span id="cb38-5"><a href="#cb38-5"></a>  <span class="fu">levels</span>()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1"></a><span class="co"># On passe les niveaux de Species en lettres majuscules</span></span>
+<span id="cb47-2"><a href="#cb47-2"></a>iris <span class="sc">%&gt;%</span></span>
+<span id="cb47-3"><a href="#cb47-3"></a>  <span class="fu">mutate</span>(<span class="at">Species =</span> forcats<span class="sc">::</span><span class="fu">fct_relabel</span>(Species, toupper))</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "SETOSA"     "VERSICOLOR" "VIRGINICA" </code></pre>
+<pre><code>  Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+1          5.1         3.5          1.4         0.2  SETOSA
+2          4.9         3.0          1.4         0.2  SETOSA
+3          4.7         3.2          1.3         0.2  SETOSA
+4          4.6         3.1          1.5         0.2  SETOSA
+5          5.0         3.6          1.4         0.2  SETOSA</code></pre>
 </div>
 </div>
 <ul>
 <li>Ajouter de nouveaux niveaux à un facteur avec <code>fct_expand()</code></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a><span class="co"># on ajoute le niveau 'graminea'</span></span>
-<span id="cb40-2"><a href="#cb40-2"></a>iris <span class="sc">%&gt;%</span></span>
-<span id="cb40-3"><a href="#cb40-3"></a>  <span class="fu">pull</span>(Species) <span class="sc">%&gt;%</span> </span>
-<span id="cb40-4"><a href="#cb40-4"></a>  forcats<span class="sc">::</span><span class="fu">fct_expand</span>(<span class="st">"graminea"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb40-5"><a href="#cb40-5"></a>  <span class="fu">fct_count</span>()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1"></a><span class="co"># On ajoute le niveau 'graminea' à la variable Species</span></span>
+<span id="cb49-2"><a href="#cb49-2"></a>iris <span class="sc">%&gt;%</span></span>
+<span id="cb49-3"><a href="#cb49-3"></a>  <span class="fu">mutate</span>(<span class="at">Species =</span> forcats<span class="sc">::</span><span class="fu">fct_expand</span>(<span class="at">f =</span> Species, <span class="st">"graminea"</span>)) <span class="ot">-&gt;</span> iris</span>
+<span id="cb49-4"><a href="#cb49-4"></a><span class="co"># Si on vérifie la distribution de la variable Species après modification, cela donne :</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 2
   f              n
@@ -1631,12 +1693,13 @@ Levels: setosa versicolor virginica</code></pre>
 <li>Supprimer les niveaux de facteurs inutilisés avec <code>fct_drop()</code></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a><span class="co"># on supprime les niveaux inutilisés </span></span>
-<span id="cb42-2"><a href="#cb42-2"></a>iris <span class="sc">%&gt;%</span></span>
-<span id="cb42-3"><a href="#cb42-3"></a>  <span class="fu">pull</span>(Species) <span class="sc">%&gt;%</span> </span>
-<span id="cb42-4"><a href="#cb42-4"></a>  forcats<span class="sc">::</span><span class="fu">fct_expand</span>(<span class="st">"graminea"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb42-5"><a href="#cb42-5"></a>  forcats<span class="sc">::</span><span class="fu">fct_drop</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb42-6"><a href="#cb42-6"></a>  <span class="fu">fct_count</span>()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1"></a><span class="co"># Aucune observation n'a la modalité "graminea"</span></span>
+<span id="cb51-2"><a href="#cb51-2"></a><span class="co"># On va supprimer ce niveau inutilisé</span></span>
+<span id="cb51-3"><a href="#cb51-3"></a>iris <span class="sc">%&gt;%</span></span>
+<span id="cb51-4"><a href="#cb51-4"></a>  <span class="fu">mutate</span>(<span class="at">Species =</span> forcats<span class="sc">::</span><span class="fu">fct_drop</span>(<span class="at">f =</span> Species, <span class="at">only =</span> <span class="cn">NULL</span>)) <span class="ot">-&gt;</span> iris</span>
+<span id="cb51-5"><a href="#cb51-5"></a><span class="co"># Si on vérifie la distribution de la variable Species après modification, cela donne :</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 2
   f              n
@@ -1652,7 +1715,11 @@ Levels: setosa versicolor virginica</code></pre>
 <i class="callout-icon"></i>
 </div>
 <div class="callout-content">
-<p>Avec <code>fct_drop(only = "...")</code>, on précise les niveaux à supprimer</p>
+<ul>
+<li>Lorsque la valeur de l’argument “only” est NULL, ce sont les niveaux qui n’ont aucune observation qui sont supprimés<br>
+</li>
+<li>Si on souhaite supprimer d’autres niveaux, il faut les préciser dans l’argument “only”</li>
+</ul>
 </div>
 </div>
 </div>
@@ -1680,7 +1747,7 @@ Levels: setosa versicolor virginica</code></pre>
 </ul></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a>viewxl<span class="sc">::</span><span class="fu">view_in_xl</span>(iris)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1"></a>viewxl<span class="sc">::</span><span class="fu">view_in_xl</span>(iris)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 
@@ -1699,7 +1766,7 @@ Levels: setosa versicolor virginica</code></pre>
 <li><code>str()</code> <strong>donne la structure d’un objet, présentée de manière très basique</strong></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1"></a><span class="fu">str</span>(iris)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1"></a><span class="fu">str</span>(iris)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>'data.frame':   150 obs. of  5 variables:
  $ Sepal.Length: num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...
@@ -1714,22 +1781,17 @@ Levels: setosa versicolor virginica</code></pre>
 S’applique à tout type d’objet, y compris un <em>data.frame</em> entier, et s’adapte à celui-ci</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1"></a><span class="fu">summary</span>(iris)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1"></a><span class="fu">summary</span>(iris)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>  Sepal.Length    Sepal.Width     Petal.Length    Petal.Width   
- Min.   :4.300   Min.   :2.000   Min.   :1.000   Min.   :0.100  
- 1st Qu.:5.100   1st Qu.:2.800   1st Qu.:1.600   1st Qu.:0.300  
- Median :5.800   Median :3.000   Median :4.350   Median :1.300  
- Mean   :5.843   Mean   :3.057   Mean   :3.758   Mean   :1.199  
- 3rd Qu.:6.400   3rd Qu.:3.300   3rd Qu.:5.100   3rd Qu.:1.800  
- Max.   :7.900   Max.   :4.400   Max.   :6.900   Max.   :2.500  
-       Species  
- setosa    :50  
- versicolor:50  
- virginica :50  
-                
-                
-                </code></pre>
+<pre><code>  Sepal.Length    Sepal.Width     Petal.Length    Petal.Width          Species  
+ Min.   :4.300   Min.   :2.000   Min.   :1.000   Min.   :0.100   setosa    :50  
+ 1st Qu.:5.100   1st Qu.:2.800   1st Qu.:1.600   1st Qu.:0.300   versicolor:50  
+ Median :5.800   Median :3.000   Median :4.350   Median :1.300   virginica :50  
+ Mean   :5.843   Mean   :3.057   Mean   :3.758   Mean   :1.199                  
+ 3rd Qu.:6.400   3rd Qu.:3.300   3rd Qu.:5.100   3rd Qu.:1.800                  
+ Max.   :7.900   Max.   :4.400   Max.   :6.900   Max.   :2.500                  </code></pre>
 </div>
 </div>
 </section>
@@ -1737,15 +1799,15 @@ S’applique à tout type d’objet, y compris un <em>data.frame</em> entier, et
 <h4>Fonction <code>glimpse()</code> du package <span class="pkg">dplyr</span></h4>
 <p><strong>Permet de visualiser de manière condensée le contenu d’un tableau de données</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1"></a>dplyr<span class="sc">::</span><span class="fu">glimpse</span>(iris)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1"></a>dplyr<span class="sc">::</span><span class="fu">glimpse</span>(iris)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 150
 Columns: 5
-$ Sepal.Length &lt;dbl&gt; 5.1, 4.9, 4.7, 4.6, 5.0, 5.4, 4.6, 5.0, 4.4, 4.9, 5.4, 4.…
-$ Sepal.Width  &lt;dbl&gt; 3.5, 3.0, 3.2, 3.1, 3.6, 3.9, 3.4, 3.4, 2.9, 3.1, 3.7, 3.…
-$ Petal.Length &lt;dbl&gt; 1.4, 1.4, 1.3, 1.5, 1.4, 1.7, 1.4, 1.5, 1.4, 1.5, 1.5, 1.…
-$ Petal.Width  &lt;dbl&gt; 0.2, 0.2, 0.2, 0.2, 0.2, 0.4, 0.3, 0.2, 0.2, 0.1, 0.2, 0.…
-$ Species      &lt;fct&gt; setosa, setosa, setosa, setosa, setosa, setosa, setosa, s…</code></pre>
+$ Sepal.Length &lt;dbl&gt; 5.1, 4.9, 4.7, 4.6, 5.0, 5.4, 4.6, 5.0, 4.4, 4.9, 5.4, 4.8, 4.8, 4.3, 5.8, 5.7, 5.4, 5.1, 5.7, 5.1, 5.4, 5.1, 4.6, 5.1, 4.8, 5.0, 5.0, 5.2, 5.2, 4.7, 4.8, 5.4, 5.2, 5.5, 4.9, 5.…
+$ Sepal.Width  &lt;dbl&gt; 3.5, 3.0, 3.2, 3.1, 3.6, 3.9, 3.4, 3.4, 2.9, 3.1, 3.7, 3.4, 3.0, 3.0, 4.0, 4.4, 3.9, 3.5, 3.8, 3.8, 3.4, 3.7, 3.6, 3.3, 3.4, 3.0, 3.4, 3.5, 3.4, 3.2, 3.1, 3.4, 4.1, 4.2, 3.1, 3.…
+$ Petal.Length &lt;dbl&gt; 1.4, 1.4, 1.3, 1.5, 1.4, 1.7, 1.4, 1.5, 1.4, 1.5, 1.5, 1.6, 1.4, 1.1, 1.2, 1.5, 1.3, 1.4, 1.7, 1.5, 1.7, 1.5, 1.0, 1.7, 1.9, 1.6, 1.6, 1.5, 1.4, 1.6, 1.6, 1.5, 1.5, 1.4, 1.5, 1.…
+$ Petal.Width  &lt;dbl&gt; 0.2, 0.2, 0.2, 0.2, 0.2, 0.4, 0.3, 0.2, 0.2, 0.1, 0.2, 0.2, 0.1, 0.1, 0.2, 0.4, 0.4, 0.3, 0.3, 0.3, 0.2, 0.4, 0.2, 0.5, 0.2, 0.2, 0.4, 0.2, 0.2, 0.2, 0.2, 0.4, 0.1, 0.2, 0.2, 0.…
+$ Species      &lt;fct&gt; setosa, setosa, setosa, setosa, setosa, setosa, setosa, setosa, setosa, setosa, setosa, setosa, setosa, setosa, setosa, setosa, setosa, setosa, setosa, setosa, setosa, setosa, s…</code></pre>
 </div>
 </div>
 </section>
@@ -1753,7 +1815,7 @@ $ Species      &lt;fct&gt; setosa, setosa, setosa, setosa, setosa, setosa, setos
 <h4>Fonction <code>describe()</code> du package <span class="pkg">questionr</span></h4>
 <p><strong>Décrit également les différentes variables d’un tableau de données</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1"></a>questionr<span class="sc">::</span><span class="fu">describe</span>(iris)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1"></a>questionr<span class="sc">::</span><span class="fu">describe</span>(iris)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[150 obs. x 5 variables] tbl_df tbl data.frame
 
@@ -1784,26 +1846,26 @@ NAs: 0 (0%)</code></pre>
 <h4>Fonction <code>tbl_summary()</code> du package <span class="pkg">gtsummary</span></h4>
 <p><strong>Calcule des statistiques descriptives pour les variables quantitatives et qualitatives, qui sont visibles dans l’onglet ‘Viewer’</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1"></a>gtsummary<span class="sc">::</span><span class="fu">tbl_summary</span>(iris)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1"></a>gtsummary<span class="sc">::</span><span class="fu">tbl_summary</span>(iris)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
-<div id="dwjxhyijuy" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#dwjxhyijuy table {
+<div id="zbbshraxzc" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#zbbshraxzc table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#dwjxhyijuy thead, #dwjxhyijuy tbody, #dwjxhyijuy tfoot, #dwjxhyijuy tr, #dwjxhyijuy td, #dwjxhyijuy th {
+#zbbshraxzc thead, #zbbshraxzc tbody, #zbbshraxzc tfoot, #zbbshraxzc tr, #zbbshraxzc td, #zbbshraxzc th {
   border-style: none;
 }
 
-#dwjxhyijuy p {
+#zbbshraxzc p {
   margin: 0;
   padding: 0;
 }
 
-#dwjxhyijuy .gt_table {
+#zbbshraxzc .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1829,12 +1891,12 @@ NAs: 0 (0%)</code></pre>
   border-left-color: #D3D3D3;
 }
 
-#dwjxhyijuy .gt_caption {
+#zbbshraxzc .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#dwjxhyijuy .gt_title {
+#zbbshraxzc .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1846,7 +1908,7 @@ NAs: 0 (0%)</code></pre>
   border-bottom-width: 0;
 }
 
-#dwjxhyijuy .gt_subtitle {
+#zbbshraxzc .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1858,7 +1920,7 @@ NAs: 0 (0%)</code></pre>
   border-top-width: 0;
 }
 
-#dwjxhyijuy .gt_heading {
+#zbbshraxzc .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1870,13 +1932,13 @@ NAs: 0 (0%)</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#dwjxhyijuy .gt_bottom_border {
+#zbbshraxzc .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#dwjxhyijuy .gt_col_headings {
+#zbbshraxzc .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1891,7 +1953,7 @@ NAs: 0 (0%)</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#dwjxhyijuy .gt_col_heading {
+#zbbshraxzc .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1911,7 +1973,7 @@ NAs: 0 (0%)</code></pre>
   overflow-x: hidden;
 }
 
-#dwjxhyijuy .gt_column_spanner_outer {
+#zbbshraxzc .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1923,15 +1985,15 @@ NAs: 0 (0%)</code></pre>
   padding-right: 4px;
 }
 
-#dwjxhyijuy .gt_column_spanner_outer:first-child {
+#zbbshraxzc .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#dwjxhyijuy .gt_column_spanner_outer:last-child {
+#zbbshraxzc .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#dwjxhyijuy .gt_column_spanner {
+#zbbshraxzc .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1943,11 +2005,11 @@ NAs: 0 (0%)</code></pre>
   width: 100%;
 }
 
-#dwjxhyijuy .gt_spanner_row {
+#zbbshraxzc .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#dwjxhyijuy .gt_group_heading {
+#zbbshraxzc .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1973,7 +2035,7 @@ NAs: 0 (0%)</code></pre>
   text-align: left;
 }
 
-#dwjxhyijuy .gt_empty_group_heading {
+#zbbshraxzc .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1988,15 +2050,15 @@ NAs: 0 (0%)</code></pre>
   vertical-align: middle;
 }
 
-#dwjxhyijuy .gt_from_md > :first-child {
+#zbbshraxzc .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#dwjxhyijuy .gt_from_md > :last-child {
+#zbbshraxzc .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#dwjxhyijuy .gt_row {
+#zbbshraxzc .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2015,7 +2077,7 @@ NAs: 0 (0%)</code></pre>
   overflow-x: hidden;
 }
 
-#dwjxhyijuy .gt_stub {
+#zbbshraxzc .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2028,7 +2090,7 @@ NAs: 0 (0%)</code></pre>
   padding-right: 5px;
 }
 
-#dwjxhyijuy .gt_stub_row_group {
+#zbbshraxzc .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2042,15 +2104,15 @@ NAs: 0 (0%)</code></pre>
   vertical-align: top;
 }
 
-#dwjxhyijuy .gt_row_group_first td {
+#zbbshraxzc .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#dwjxhyijuy .gt_row_group_first th {
+#zbbshraxzc .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#dwjxhyijuy .gt_summary_row {
+#zbbshraxzc .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2060,16 +2122,16 @@ NAs: 0 (0%)</code></pre>
   padding-right: 5px;
 }
 
-#dwjxhyijuy .gt_first_summary_row {
+#zbbshraxzc .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#dwjxhyijuy .gt_first_summary_row.thick {
+#zbbshraxzc .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#dwjxhyijuy .gt_last_summary_row {
+#zbbshraxzc .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2079,7 +2141,7 @@ NAs: 0 (0%)</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#dwjxhyijuy .gt_grand_summary_row {
+#zbbshraxzc .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2089,7 +2151,7 @@ NAs: 0 (0%)</code></pre>
   padding-right: 5px;
 }
 
-#dwjxhyijuy .gt_first_grand_summary_row {
+#zbbshraxzc .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2099,7 +2161,7 @@ NAs: 0 (0%)</code></pre>
   border-top-color: #D3D3D3;
 }
 
-#dwjxhyijuy .gt_last_grand_summary_row_top {
+#zbbshraxzc .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2109,11 +2171,11 @@ NAs: 0 (0%)</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#dwjxhyijuy .gt_striped {
+#zbbshraxzc .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#dwjxhyijuy .gt_table_body {
+#zbbshraxzc .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2122,7 +2184,7 @@ NAs: 0 (0%)</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#dwjxhyijuy .gt_footnotes {
+#zbbshraxzc .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2136,7 +2198,7 @@ NAs: 0 (0%)</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#dwjxhyijuy .gt_footnote {
+#zbbshraxzc .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2145,7 +2207,7 @@ NAs: 0 (0%)</code></pre>
   padding-right: 5px;
 }
 
-#dwjxhyijuy .gt_sourcenotes {
+#zbbshraxzc .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2159,7 +2221,7 @@ NAs: 0 (0%)</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#dwjxhyijuy .gt_sourcenote {
+#zbbshraxzc .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2167,63 +2229,63 @@ NAs: 0 (0%)</code></pre>
   padding-right: 5px;
 }
 
-#dwjxhyijuy .gt_left {
+#zbbshraxzc .gt_left {
   text-align: left;
 }
 
-#dwjxhyijuy .gt_center {
+#zbbshraxzc .gt_center {
   text-align: center;
 }
 
-#dwjxhyijuy .gt_right {
+#zbbshraxzc .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#dwjxhyijuy .gt_font_normal {
+#zbbshraxzc .gt_font_normal {
   font-weight: normal;
 }
 
-#dwjxhyijuy .gt_font_bold {
+#zbbshraxzc .gt_font_bold {
   font-weight: bold;
 }
 
-#dwjxhyijuy .gt_font_italic {
+#zbbshraxzc .gt_font_italic {
   font-style: italic;
 }
 
-#dwjxhyijuy .gt_super {
+#zbbshraxzc .gt_super {
   font-size: 65%;
 }
 
-#dwjxhyijuy .gt_footnote_marks {
+#zbbshraxzc .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#dwjxhyijuy .gt_asterisk {
+#zbbshraxzc .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#dwjxhyijuy .gt_indent_1 {
+#zbbshraxzc .gt_indent_1 {
   text-indent: 5px;
 }
 
-#dwjxhyijuy .gt_indent_2 {
+#zbbshraxzc .gt_indent_2 {
   text-indent: 10px;
 }
 
-#dwjxhyijuy .gt_indent_3 {
+#zbbshraxzc .gt_indent_3 {
   text-indent: 15px;
 }
 
-#dwjxhyijuy .gt_indent_4 {
+#zbbshraxzc .gt_indent_4 {
   text-indent: 20px;
 }
 
-#dwjxhyijuy .gt_indent_5 {
+#zbbshraxzc .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -2268,7 +2330,7 @@ NAs: 0 (0%)</code></pre>
 <h4>Fonction <code>dfSummary()</code>du package <span class="pkg">summarytools</span></h4>
 <p><strong>Analyse descriptive pour variables QN &amp; QL, avec une présentation des résultats dans un tableau</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1"></a>summarytools<span class="sc">::</span><span class="fu">dfSummary</span>(iris, <span class="at">graph.col =</span> <span class="cn">TRUE</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1"></a>summarytools<span class="sc">::</span><span class="fu">dfSummary</span>(iris, <span class="at">graph.col =</span> <span class="cn">TRUE</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Data Frame Summary  
 iris  
@@ -2313,7 +2375,7 @@ No   Variable       Stats / Values          Freqs (% of Valid)   Graph          
 <h4>Fonction <code>skim()</code> du package <span class="pkg">skimr</span></h4>
 <p><strong>Alternative à la fonction <code>summary()</code> qui fournit une vue d’ensemble assez complète d’un jeu de données <em>tidy</em></strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1"></a>skimr<span class="sc">::</span><span class="fu">skim</span>(iris)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1"></a>skimr<span class="sc">::</span><span class="fu">skim</span>(iris)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table>
 <caption>Data summary</caption>
@@ -2490,7 +2552,7 @@ No   Variable       Stats / Values          Freqs (% of Valid)   Graph          
 <li>État des lieux du jeu de données, concernant notamment le type des variables ou les données manquantes</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1"></a>DataExplorer<span class="sc">::</span><span class="fu">create_report</span>(iris)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1"></a>DataExplorer<span class="sc">::</span><span class="fu">create_report</span>(iris)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="fonctions-makecodebook-et-makedatareport-du-package-datamaid" class="slide level4 smaller">
@@ -2507,10 +2569,10 @@ No   Variable       Stats / Values          Freqs (% of Valid)   Graph          
 <li>Avec une différence : <code>makeDataReport()</code> propose un diagnostic automatique du jeu de données, avec des contrôles adaptés au type de chaque variable</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1"></a>dataMaid<span class="sc">::</span><span class="fu">makeCodebook</span>(iris)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1"></a>dataMaid<span class="sc">::</span><span class="fu">makeCodebook</span>(iris)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1"></a>dataMaid<span class="sc">::</span><span class="fu">makeDataReport</span>(iris)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1"></a>dataMaid<span class="sc">::</span><span class="fu">makeDataReport</span>(iris)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="fonctions-codebook_browser-du-package-codebook-et-codebook-du-package-codebookr" class="slide level4 smaller">
@@ -2520,13 +2582,13 @@ No   Variable       Stats / Values          Freqs (% of Valid)   Graph          
 <li><code>codebook_browser()</code> crée un pdf de la visualisation de chaque variable</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1"></a>codebook<span class="sc">::</span><span class="fu">codebook_browser</span>(iris)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1"></a>codebook<span class="sc">::</span><span class="fu">codebook_browser</span>(iris)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li><code>codebook()</code>, associée à la fonction <code>print()</code>, permet d’enregistrer le document au format Word</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1"></a><span class="fu">print</span>(codebookr<span class="sc">::</span><span class="fu">codebook</span>(iris), <span class="st">"iris_codebook.docx"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1"></a><span class="fu">print</span>(codebookr<span class="sc">::</span><span class="fu">codebook</span>(iris), <span class="st">"iris_codebook.docx"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-caution callout-style-simple">
 <div class="callout-body">
@@ -2652,9 +2714,9 @@ No   Variable       Stats / Values          Freqs (% of Valid)   Graph          
 </ul></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1"></a><span class="fu">png</span>(<span class="at">filename =</span> <span class="st">"fichier.png"</span>)</span>
-<span id="cb62-2"><a href="#cb62-2"></a>  <span class="fu">plot</span>(...)</span>
-<span id="cb62-3"><a href="#cb62-3"></a><span class="fu">dev.off</span>()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1"></a><span class="fu">png</span>(<span class="at">filename =</span> <span class="st">"fichier.png"</span>)</span>
+<span id="cb71-2"><a href="#cb71-2"></a>  <span class="fu">plot</span>(...)</span>
+<span id="cb71-3"><a href="#cb71-3"></a><span class="fu">dev.off</span>()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 
@@ -2731,11 +2793,10 @@ Source : ThinkR (2016)<br>
 <li>Exemple de code de construction d’un graphique</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> iris</span>
-<span id="cb63-2"><a href="#cb63-2"></a>       , <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length</span>
-<span id="cb63-3"><a href="#cb63-3"></a>           , <span class="at">y =</span> Petal.Length))</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> iris) <span class="sc">+</span></span>
+<span id="cb72-2"><a href="#cb72-2"></a>  <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length, <span class="at">y =</span> Petal.Length)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-33-1.png" width="960"></p>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-58-1.png" width="960"></p>
 </div>
 </div>
 </section>
@@ -2842,11 +2903,26 @@ Source : ThinkR (2016)<br>
 <h4>Couche <em>geom</em> (1/2)</h4>
 <p>On détermine le type de graphique souhaité, en utilisant les fonctions préfixées par <code>geom_</code></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> iris</span>
-<span id="cb64-2"><a href="#cb64-2"></a>       , <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length, <span class="at">y =</span> Petal.Length)) <span class="sc">+</span></span>
-<span id="cb64-3"><a href="#cb64-3"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> iris) <span class="sc">+</span></span>
+<span id="cb73-2"><a href="#cb73-2"></a>  <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length, <span class="at">y =</span> Petal.Length) <span class="sc">+</span></span>
+<span id="cb73-3"><a href="#cb73-3"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-34-1.png" width="960"></p>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-59-1.png" width="960"></p>
+</div>
+</div>
+<div class="callout callout-note callout-style-simple">
+<div class="callout-body">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-content">
+<p>L’ensemble des géométries est détaillé dans la partie “Geoms” de la <em>cheatsheet</em> du package <span class="pkg">ggplot</span></p>
+<ul>
+<li>version anglaise : <a href="https://rstudio.github.io/cheatsheets/data-visualization.pdf" class="uri">https://rstudio.github.io/cheatsheets/data-visualization.pdf</a><br>
+</li>
+<li>version française : <a href="https://rstudio.github.io/cheatsheets/translations/french/data-visualization_fr.pdf" class="uri">https://rstudio.github.io/cheatsheets/translations/french/data-visualization_fr.pdf</a></li>
+</ul>
+</div>
 </div>
 </div>
 </section>
@@ -2930,21 +3006,6 @@ Source : ThinkR (2016)<br>
 </tr>
 </tbody>
 </table>
-<div class="callout callout-note callout-style-simple">
-<div class="callout-body">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-content">
-<p>L’ensemble des géométries est détaillé dans la partie “Geoms” de la <em>cheatsheet</em> du package <span class="pkg">ggplot</span></p>
-<ul>
-<li>version anglaise : <a href="https://rstudio.github.io/cheatsheets/data-visualization.pdf" class="uri">https://rstudio.github.io/cheatsheets/data-visualization.pdf</a><br>
-</li>
-<li>version française : <a href="https://rstudio.github.io/cheatsheets/translations/french/data-visualization_fr.pdf" class="uri">https://rstudio.github.io/cheatsheets/translations/french/data-visualization_fr.pdf</a></li>
-</ul>
-</div>
-</div>
-</div>
 </section>
 <section id="couche-facet-14" class="slide level4 smaller">
 <h4>Couche <em>facet</em> (1/4)</h4>
@@ -2958,13 +3019,13 @@ Source : ThinkR (2016)<br>
 <h4>Couche <em>facet</em> (2/4)</h4>
 <p>Avec <code>facet_wrap()</code></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1"></a><span class="co"># On représente les données en fonction de la variable "Species"   </span></span>
-<span id="cb65-2"><a href="#cb65-2"></a><span class="fu">ggplot</span>(<span class="at">data =</span> iris</span>
-<span id="cb65-3"><a href="#cb65-3"></a>       , <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length, <span class="at">y =</span> Petal.Length)) <span class="sc">+</span></span>
-<span id="cb65-4"><a href="#cb65-4"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb65-5"><a href="#cb65-5"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(Species))</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1"></a><span class="co"># On représente les données en fonction de la variable "Species"   </span></span>
+<span id="cb74-2"><a href="#cb74-2"></a><span class="fu">ggplot</span>(<span class="at">data =</span> iris) <span class="sc">+</span></span>
+<span id="cb74-3"><a href="#cb74-3"></a>  <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length, <span class="at">y =</span> Petal.Length) <span class="sc">+</span></span>
+<span id="cb74-4"><a href="#cb74-4"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb74-5"><a href="#cb74-5"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(Species))</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-35-1.png" width="960"></p>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-60-1.png" width="960"></p>
 </div>
 </div>
 </section>
@@ -2972,13 +3033,13 @@ Source : ThinkR (2016)<br>
 <h4>Couche <em>facet</em> (3/4)</h4>
 <p>Avec <code>facet_grid()</code>, répartition en colonne</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1"></a><span class="co"># On représente les données en fonction de la variable "Species"   </span></span>
-<span id="cb66-2"><a href="#cb66-2"></a><span class="fu">ggplot</span>(<span class="at">data =</span> iris</span>
-<span id="cb66-3"><a href="#cb66-3"></a>       , <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length, <span class="at">y =</span> Petal.Length)) <span class="sc">+</span></span>
-<span id="cb66-4"><a href="#cb66-4"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb66-5"><a href="#cb66-5"></a>  <span class="fu">facet_grid</span>(<span class="at">cols =</span> <span class="fu">vars</span>(Species))</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1"></a><span class="co"># On représente les données en fonction de la variable "Species"   </span></span>
+<span id="cb75-2"><a href="#cb75-2"></a><span class="fu">ggplot</span>(<span class="at">data =</span> iris) <span class="sc">+</span></span>
+<span id="cb75-3"><a href="#cb75-3"></a>  <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length, <span class="at">y =</span> Petal.Length) <span class="sc">+</span></span>
+<span id="cb75-4"><a href="#cb75-4"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb75-5"><a href="#cb75-5"></a>  <span class="fu">facet_grid</span>(<span class="at">cols =</span> <span class="fu">vars</span>(Species))</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-36-1.png" width="960"></p>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-61-1.png" width="960"></p>
 </div>
 </div>
 </section>
@@ -2986,13 +3047,13 @@ Source : ThinkR (2016)<br>
 <h4>Couche <em>facet</em> (4/4)</h4>
 <p>Avec <code>facet_grid()</code>, répartition en ligne</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1"></a><span class="co"># On représente les données en fonction de la variable "Species"   </span></span>
-<span id="cb67-2"><a href="#cb67-2"></a><span class="fu">ggplot</span>(<span class="at">data =</span> iris</span>
-<span id="cb67-3"><a href="#cb67-3"></a>       , <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length, <span class="at">y =</span> Petal.Length)) <span class="sc">+</span></span>
-<span id="cb67-4"><a href="#cb67-4"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb67-5"><a href="#cb67-5"></a>  <span class="fu">facet_grid</span>(<span class="at">rows =</span> <span class="fu">vars</span>(Species))</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1"></a><span class="co"># On représente les données en fonction de la variable "Species"   </span></span>
+<span id="cb76-2"><a href="#cb76-2"></a><span class="fu">ggplot</span>(<span class="at">data =</span> iris) <span class="sc">+</span></span>
+<span id="cb76-3"><a href="#cb76-3"></a>  <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length, <span class="at">y =</span> Petal.Length) <span class="sc">+</span></span>
+<span id="cb76-4"><a href="#cb76-4"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb76-5"><a href="#cb76-5"></a>  <span class="fu">facet_grid</span>(<span class="at">rows =</span> <span class="fu">vars</span>(Species))</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-37-1.png" width="960"></p>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-62-1.png" width="960"></p>
 </div>
 </div>
 </section>
@@ -3000,13 +3061,13 @@ Source : ThinkR (2016)<br>
 <h4>Couche <em>stat</em></h4>
 <p>Ajouter des indicateurs statistiques avec les fonctions <code>stat_()</code></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1"></a><span class="co"># Sur les boxplot de "Petal.Length" pour chaque modalité de "Species", on ajoute la valeur moyenne</span></span>
-<span id="cb68-2"><a href="#cb68-2"></a><span class="fu">ggplot</span>(<span class="at">data =</span> iris</span>
-<span id="cb68-3"><a href="#cb68-3"></a>       , <span class="fu">aes</span>(<span class="at">x =</span> Species, <span class="at">y =</span> Petal.Length)) <span class="sc">+</span></span>
-<span id="cb68-4"><a href="#cb68-4"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb68-5"><a href="#cb68-5"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> <span class="st">"mean"</span>, <span class="at">color =</span> <span class="st">"green"</span>, <span class="at">shape =</span> <span class="dv">2</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1"></a><span class="co"># Sur les boxplot de "Petal.Length" pour chaque modalité de "Species", on ajoute la valeur moyenne</span></span>
+<span id="cb77-2"><a href="#cb77-2"></a><span class="fu">ggplot</span>(<span class="at">data =</span> iris) <span class="sc">+</span></span>
+<span id="cb77-3"><a href="#cb77-3"></a>  <span class="fu">aes</span>(<span class="at">x =</span> Species, <span class="at">y =</span> Petal.Length) <span class="sc">+</span></span>
+<span id="cb77-4"><a href="#cb77-4"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb77-5"><a href="#cb77-5"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> <span class="st">"mean"</span>, <span class="at">color =</span> <span class="st">"green"</span>, <span class="at">shape =</span> <span class="dv">2</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-38-1.png" width="960"></p>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-63-1.png" width="960"></p>
 </div>
 </div>
 </section>
@@ -3027,12 +3088,12 @@ Source : ThinkR (2016)<br>
 <section id="couche-coord-22" class="slide level4 smaller">
 <h4>Couche <em>coord</em> (2/2)</h4>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> iris</span>
-<span id="cb69-2"><a href="#cb69-2"></a>       , <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length, <span class="at">y =</span> Petal.Length)) <span class="sc">+</span></span>
-<span id="cb69-3"><a href="#cb69-3"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb69-4"><a href="#cb69-4"></a>  <span class="fu">coord_flip</span>()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> iris) <span class="sc">+</span></span>
+<span id="cb78-2"><a href="#cb78-2"></a>  <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length, <span class="at">y =</span> Petal.Length) <span class="sc">+</span></span>
+<span id="cb78-3"><a href="#cb78-3"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb78-4"><a href="#cb78-4"></a>  <span class="fu">coord_flip</span>()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-39-1.png" width="960"></p>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-64-1.png" width="960"></p>
 </div>
 </div>
 </section>
@@ -3059,16 +3120,17 @@ Source : ThinkR (2016)<br>
 <section id="couches-additionnelles-22" class="title-slide slide level3 smaller center">
 <h3>Couches additionnelles (2/2)</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1"></a><span class="co"># On modifie les limites des axes des abscisses et des ordonnées et les titres</span></span>
-<span id="cb70-2"><a href="#cb70-2"></a><span class="fu">ggplot</span>(<span class="at">data =</span> iris, <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length, <span class="at">y =</span> Petal.Length)) <span class="sc">+</span></span>
-<span id="cb70-3"><a href="#cb70-3"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb70-4"><a href="#cb70-4"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">8</span>)) <span class="sc">+</span></span>
-<span id="cb70-5"><a href="#cb70-5"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">8</span>), <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="dv">8</span>, <span class="at">by =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb70-6"><a href="#cb70-6"></a>  <span class="fu">ggtitle</span>(<span class="st">"Exemple de création d'un graphique `ggplot`"</span>) <span class="sc">+</span></span>
-<span id="cb70-7"><a href="#cb70-7"></a>  <span class="fu">xlab</span>(<span class="st">"Longueur des sépales"</span>) <span class="sc">+</span></span>
-<span id="cb70-8"><a href="#cb70-8"></a>  <span class="fu">ylab</span>(<span class="st">"Longueur des pétales"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1"></a><span class="co"># On modifie les limites des axes des abscisses et des ordonnées et les titres</span></span>
+<span id="cb79-2"><a href="#cb79-2"></a><span class="fu">ggplot</span>(<span class="at">data =</span> iris) <span class="sc">+</span></span>
+<span id="cb79-3"><a href="#cb79-3"></a>  <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length, <span class="at">y =</span> Petal.Length) <span class="sc">+</span></span>
+<span id="cb79-4"><a href="#cb79-4"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb79-5"><a href="#cb79-5"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">8</span>)) <span class="sc">+</span></span>
+<span id="cb79-6"><a href="#cb79-6"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">8</span>), <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="dv">8</span>, <span class="at">by =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb79-7"><a href="#cb79-7"></a>  <span class="fu">ggtitle</span>(<span class="st">"Exemple de création d'un graphique `ggplot`"</span>) <span class="sc">+</span></span>
+<span id="cb79-8"><a href="#cb79-8"></a>  <span class="fu">xlab</span>(<span class="st">"Longueur des sépales"</span>) <span class="sc">+</span></span>
+<span id="cb79-9"><a href="#cb79-9"></a>  <span class="fu">ylab</span>(<span class="st">"Longueur des pétales"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-40-1.png" width="960"></p>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-65-1.png" width="960"></p>
 </div>
 </div>
 </section>
@@ -3080,9 +3142,9 @@ Source : ThinkR (2016)<br>
 <li>On préfèrera utiliser la fonction <code>ggsave()</code> du package <code>ggplot2</code> à la fin de la création du graphique</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1"></a><span class="fu">ggplot</span>(...) <span class="sc">+</span></span>
-<span id="cb71-2"><a href="#cb71-2"></a>  ...</span>
-<span id="cb71-3"><a href="#cb71-3"></a><span class="fu">ggsave</span>(<span class="at">filename =</span> name.extension)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1"></a><span class="fu">ggplot</span>(...) <span class="sc">+</span></span>
+<span id="cb80-2"><a href="#cb80-2"></a>  ...</span>
+<span id="cb80-3"><a href="#cb80-3"></a><span class="fu">ggsave</span>(<span class="at">filename =</span> name.extension)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 
@@ -3131,69 +3193,77 @@ Source : ThinkR (2016)<br>
 <section id="avec-le-package-plotly" class="slide level4 smaller">
 <h4>Avec le package <span class="pkg">plotly</span></h4>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1"></a><span class="fu">ggplot</span>(iris) <span class="sc">+</span></span>
-<span id="cb72-2"><a href="#cb72-2"></a>  <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length, <span class="at">y =</span> Petal.Length, <span class="at">color =</span> Species) <span class="sc">+</span></span>
-<span id="cb72-3"><a href="#cb72-3"></a>    <span class="fu">geom_point</span>() <span class="ot">-&gt;</span> p</span>
-<span id="cb72-4"><a href="#cb72-4"></a><span class="co"># Afficher une infobulle pour afficher les valeurs de Species, Sepal.Length et Petal.Length  au survol d'un point</span></span>
-<span id="cb72-5"><a href="#cb72-5"></a>plotly<span class="sc">::</span><span class="fu">ggplotly</span>(p)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1"></a><span class="fu">ggplot</span>(iris) <span class="sc">+</span></span>
+<span id="cb81-2"><a href="#cb81-2"></a>  <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length, <span class="at">y =</span> Petal.Length, <span class="at">color =</span> Species) <span class="sc">+</span></span>
+<span id="cb81-3"><a href="#cb81-3"></a>  <span class="fu">geom_point</span>() <span class="ot">-&gt;</span> p</span>
+<span id="cb81-4"><a href="#cb81-4"></a><span class="co"># Afficher une infobulle pour afficher les valeurs de Species, Sepal.Length et Petal.Length  au survol d'un point</span></span>
+<span id="cb81-5"><a href="#cb81-5"></a>plotly<span class="sc">::</span><span class="fu">ggplotly</span>(p)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="plotly html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-864e164085003650ddb2" style="width:960px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-864e164085003650ddb2">{"x":{"data":[{"x":[5.0999999999999996,4.9000000000000004,4.7000000000000002,4.5999999999999996,5,5.4000000000000004,4.5999999999999996,5,4.4000000000000004,4.9000000000000004,5.4000000000000004,4.7999999999999998,4.7999999999999998,4.2999999999999998,5.7999999999999998,5.7000000000000002,5.4000000000000004,5.0999999999999996,5.7000000000000002,5.0999999999999996,5.4000000000000004,5.0999999999999996,4.5999999999999996,5.0999999999999996,4.7999999999999998,5,5,5.2000000000000002,5.2000000000000002,4.7000000000000002,4.7999999999999998,5.4000000000000004,5.2000000000000002,5.5,4.9000000000000004,5,5.5,4.9000000000000004,4.4000000000000004,5.0999999999999996,5,4.5,4.4000000000000004,5,5.0999999999999996,4.7999999999999998,5.0999999999999996,4.5999999999999996,5.2999999999999998,5],"y":[1.3999999999999999,1.3999999999999999,1.3,1.5,1.3999999999999999,1.7,1.3999999999999999,1.5,1.3999999999999999,1.5,1.5,1.6000000000000001,1.3999999999999999,1.1000000000000001,1.2,1.5,1.3,1.3999999999999999,1.7,1.5,1.7,1.5,1,1.7,1.8999999999999999,1.6000000000000001,1.6000000000000001,1.5,1.3999999999999999,1.6000000000000001,1.6000000000000001,1.5,1.5,1.3999999999999999,1.5,1.2,1.3,1.3999999999999999,1.3,1.5,1.3,1.3,1.3,1.6000000000000001,1.8999999999999999,1.3999999999999999,1.6000000000000001,1.3999999999999999,1.5,1.3999999999999999],"text":["Sepal.Length: 5.1<br />Petal.Length: 1.4<br />Species: setosa","Sepal.Length: 4.9<br />Petal.Length: 1.4<br />Species: setosa","Sepal.Length: 4.7<br />Petal.Length: 1.3<br />Species: setosa","Sepal.Length: 4.6<br />Petal.Length: 1.5<br />Species: setosa","Sepal.Length: 5.0<br />Petal.Length: 1.4<br />Species: setosa","Sepal.Length: 5.4<br />Petal.Length: 1.7<br />Species: setosa","Sepal.Length: 4.6<br />Petal.Length: 1.4<br />Species: setosa","Sepal.Length: 5.0<br />Petal.Length: 1.5<br />Species: setosa","Sepal.Length: 4.4<br />Petal.Length: 1.4<br />Species: setosa","Sepal.Length: 4.9<br />Petal.Length: 1.5<br />Species: setosa","Sepal.Length: 5.4<br />Petal.Length: 1.5<br />Species: setosa","Sepal.Length: 4.8<br />Petal.Length: 1.6<br />Species: setosa","Sepal.Length: 4.8<br />Petal.Length: 1.4<br />Species: setosa","Sepal.Length: 4.3<br />Petal.Length: 1.1<br />Species: setosa","Sepal.Length: 5.8<br />Petal.Length: 1.2<br />Species: setosa","Sepal.Length: 5.7<br />Petal.Length: 1.5<br />Species: setosa","Sepal.Length: 5.4<br />Petal.Length: 1.3<br />Species: setosa","Sepal.Length: 5.1<br />Petal.Length: 1.4<br />Species: setosa","Sepal.Length: 5.7<br />Petal.Length: 1.7<br />Species: setosa","Sepal.Length: 5.1<br />Petal.Length: 1.5<br />Species: setosa","Sepal.Length: 5.4<br />Petal.Length: 1.7<br />Species: setosa","Sepal.Length: 5.1<br />Petal.Length: 1.5<br />Species: setosa","Sepal.Length: 4.6<br />Petal.Length: 1.0<br />Species: setosa","Sepal.Length: 5.1<br />Petal.Length: 1.7<br />Species: setosa","Sepal.Length: 4.8<br />Petal.Length: 1.9<br />Species: setosa","Sepal.Length: 5.0<br />Petal.Length: 1.6<br />Species: setosa","Sepal.Length: 5.0<br />Petal.Length: 1.6<br />Species: setosa","Sepal.Length: 5.2<br />Petal.Length: 1.5<br />Species: setosa","Sepal.Length: 5.2<br />Petal.Length: 1.4<br />Species: setosa","Sepal.Length: 4.7<br />Petal.Length: 1.6<br />Species: setosa","Sepal.Length: 4.8<br />Petal.Length: 1.6<br />Species: setosa","Sepal.Length: 5.4<br />Petal.Length: 1.5<br />Species: setosa","Sepal.Length: 5.2<br />Petal.Length: 1.5<br />Species: setosa","Sepal.Length: 5.5<br />Petal.Length: 1.4<br />Species: setosa","Sepal.Length: 4.9<br />Petal.Length: 1.5<br />Species: setosa","Sepal.Length: 5.0<br />Petal.Length: 1.2<br />Species: setosa","Sepal.Length: 5.5<br />Petal.Length: 1.3<br />Species: setosa","Sepal.Length: 4.9<br />Petal.Length: 1.4<br />Species: setosa","Sepal.Length: 4.4<br />Petal.Length: 1.3<br />Species: setosa","Sepal.Length: 5.1<br />Petal.Length: 1.5<br />Species: setosa","Sepal.Length: 5.0<br />Petal.Length: 1.3<br />Species: setosa","Sepal.Length: 4.5<br />Petal.Length: 1.3<br />Species: setosa","Sepal.Length: 4.4<br />Petal.Length: 1.3<br />Species: setosa","Sepal.Length: 5.0<br />Petal.Length: 1.6<br />Species: setosa","Sepal.Length: 5.1<br />Petal.Length: 1.9<br />Species: setosa","Sepal.Length: 4.8<br />Petal.Length: 1.4<br />Species: setosa","Sepal.Length: 5.1<br />Petal.Length: 1.6<br />Species: setosa","Sepal.Length: 4.6<br />Petal.Length: 1.4<br />Species: setosa","Sepal.Length: 5.3<br />Petal.Length: 1.5<br />Species: setosa","Sepal.Length: 5.0<br />Petal.Length: 1.4<br />Species: setosa"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(248,118,109,1)"}},"hoveron":"points","name":"setosa","legendgroup":"setosa","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[7,6.4000000000000004,6.9000000000000004,5.5,6.5,5.7000000000000002,6.2999999999999998,4.9000000000000004,6.5999999999999996,5.2000000000000002,5,5.9000000000000004,6,6.0999999999999996,5.5999999999999996,6.7000000000000002,5.5999999999999996,5.7999999999999998,6.2000000000000002,5.5999999999999996,5.9000000000000004,6.0999999999999996,6.2999999999999998,6.0999999999999996,6.4000000000000004,6.5999999999999996,6.7999999999999998,6.7000000000000002,6,5.7000000000000002,5.5,5.5,5.7999999999999998,6,5.4000000000000004,6,6.7000000000000002,6.2999999999999998,5.5999999999999996,5.5,5.5,6.0999999999999996,5.7999999999999998,5,5.5999999999999996,5.7000000000000002,5.7000000000000002,6.2000000000000002,5.0999999999999996,5.7000000000000002],"y":[4.7000000000000002,4.5,4.9000000000000004,4,4.5999999999999996,4.5,4.7000000000000002,3.2999999999999998,4.5999999999999996,3.8999999999999999,3.5,4.2000000000000002,4,4.7000000000000002,3.6000000000000001,4.4000000000000004,4.5,4.0999999999999996,4.5,3.8999999999999999,4.7999999999999998,4,4.9000000000000004,4.7000000000000002,4.2999999999999998,4.4000000000000004,4.7999999999999998,5,4.5,3.5,3.7999999999999998,3.7000000000000002,3.8999999999999999,5.0999999999999996,4.5,4.5,4.7000000000000002,4.4000000000000004,4.0999999999999996,4,4.4000000000000004,4.5999999999999996,4,3.2999999999999998,4.2000000000000002,4.2000000000000002,4.2000000000000002,4.2999999999999998,3,4.0999999999999996],"text":["Sepal.Length: 7.0<br />Petal.Length: 4.7<br />Species: versicolor","Sepal.Length: 6.4<br />Petal.Length: 4.5<br />Species: versicolor","Sepal.Length: 6.9<br />Petal.Length: 4.9<br />Species: versicolor","Sepal.Length: 5.5<br />Petal.Length: 4.0<br />Species: versicolor","Sepal.Length: 6.5<br />Petal.Length: 4.6<br />Species: versicolor","Sepal.Length: 5.7<br />Petal.Length: 4.5<br />Species: versicolor","Sepal.Length: 6.3<br />Petal.Length: 4.7<br />Species: versicolor","Sepal.Length: 4.9<br />Petal.Length: 3.3<br />Species: versicolor","Sepal.Length: 6.6<br />Petal.Length: 4.6<br />Species: versicolor","Sepal.Length: 5.2<br />Petal.Length: 3.9<br />Species: versicolor","Sepal.Length: 5.0<br />Petal.Length: 3.5<br />Species: versicolor","Sepal.Length: 5.9<br />Petal.Length: 4.2<br />Species: versicolor","Sepal.Length: 6.0<br />Petal.Length: 4.0<br />Species: versicolor","Sepal.Length: 6.1<br />Petal.Length: 4.7<br />Species: versicolor","Sepal.Length: 5.6<br />Petal.Length: 3.6<br />Species: versicolor","Sepal.Length: 6.7<br />Petal.Length: 4.4<br />Species: versicolor","Sepal.Length: 5.6<br />Petal.Length: 4.5<br />Species: versicolor","Sepal.Length: 5.8<br />Petal.Length: 4.1<br />Species: versicolor","Sepal.Length: 6.2<br />Petal.Length: 4.5<br />Species: versicolor","Sepal.Length: 5.6<br />Petal.Length: 3.9<br />Species: versicolor","Sepal.Length: 5.9<br />Petal.Length: 4.8<br />Species: versicolor","Sepal.Length: 6.1<br />Petal.Length: 4.0<br />Species: versicolor","Sepal.Length: 6.3<br />Petal.Length: 4.9<br />Species: versicolor","Sepal.Length: 6.1<br />Petal.Length: 4.7<br />Species: versicolor","Sepal.Length: 6.4<br />Petal.Length: 4.3<br />Species: versicolor","Sepal.Length: 6.6<br />Petal.Length: 4.4<br />Species: versicolor","Sepal.Length: 6.8<br />Petal.Length: 4.8<br />Species: versicolor","Sepal.Length: 6.7<br />Petal.Length: 5.0<br />Species: versicolor","Sepal.Length: 6.0<br />Petal.Length: 4.5<br />Species: versicolor","Sepal.Length: 5.7<br />Petal.Length: 3.5<br />Species: versicolor","Sepal.Length: 5.5<br />Petal.Length: 3.8<br />Species: versicolor","Sepal.Length: 5.5<br />Petal.Length: 3.7<br />Species: versicolor","Sepal.Length: 5.8<br />Petal.Length: 3.9<br />Species: versicolor","Sepal.Length: 6.0<br />Petal.Length: 5.1<br />Species: versicolor","Sepal.Length: 5.4<br />Petal.Length: 4.5<br />Species: versicolor","Sepal.Length: 6.0<br />Petal.Length: 4.5<br />Species: versicolor","Sepal.Length: 6.7<br />Petal.Length: 4.7<br />Species: versicolor","Sepal.Length: 6.3<br />Petal.Length: 4.4<br />Species: versicolor","Sepal.Length: 5.6<br />Petal.Length: 4.1<br />Species: versicolor","Sepal.Length: 5.5<br />Petal.Length: 4.0<br />Species: versicolor","Sepal.Length: 5.5<br />Petal.Length: 4.4<br />Species: versicolor","Sepal.Length: 6.1<br />Petal.Length: 4.6<br />Species: versicolor","Sepal.Length: 5.8<br />Petal.Length: 4.0<br />Species: versicolor","Sepal.Length: 5.0<br />Petal.Length: 3.3<br />Species: versicolor","Sepal.Length: 5.6<br />Petal.Length: 4.2<br />Species: versicolor","Sepal.Length: 5.7<br />Petal.Length: 4.2<br />Species: versicolor","Sepal.Length: 5.7<br />Petal.Length: 4.2<br />Species: versicolor","Sepal.Length: 6.2<br />Petal.Length: 4.3<br />Species: versicolor","Sepal.Length: 5.1<br />Petal.Length: 3.0<br />Species: versicolor","Sepal.Length: 5.7<br />Petal.Length: 4.1<br />Species: versicolor"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,186,56,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,186,56,1)"}},"hoveron":"points","name":"versicolor","legendgroup":"versicolor","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[6.2999999999999998,5.7999999999999998,7.0999999999999996,6.2999999999999998,6.5,7.5999999999999996,4.9000000000000004,7.2999999999999998,6.7000000000000002,7.2000000000000002,6.5,6.4000000000000004,6.7999999999999998,5.7000000000000002,5.7999999999999998,6.4000000000000004,6.5,7.7000000000000002,7.7000000000000002,6,6.9000000000000004,5.5999999999999996,7.7000000000000002,6.2999999999999998,6.7000000000000002,7.2000000000000002,6.2000000000000002,6.0999999999999996,6.4000000000000004,7.2000000000000002,7.4000000000000004,7.9000000000000004,6.4000000000000004,6.2999999999999998,6.0999999999999996,7.7000000000000002,6.2999999999999998,6.4000000000000004,6,6.9000000000000004,6.7000000000000002,6.9000000000000004,5.7999999999999998,6.7999999999999998,6.7000000000000002,6.7000000000000002,6.2999999999999998,6.5,6.2000000000000002,5.9000000000000004],"y":[6,5.0999999999999996,5.9000000000000004,5.5999999999999996,5.7999999999999998,6.5999999999999996,4.5,6.2999999999999998,5.7999999999999998,6.0999999999999996,5.0999999999999996,5.2999999999999998,5.5,5,5.0999999999999996,5.2999999999999998,5.5,6.7000000000000002,6.9000000000000004,5,5.7000000000000002,4.9000000000000004,6.7000000000000002,4.9000000000000004,5.7000000000000002,6,4.7999999999999998,4.9000000000000004,5.5999999999999996,5.7999999999999998,6.0999999999999996,6.4000000000000004,5.5999999999999996,5.0999999999999996,5.5999999999999996,6.0999999999999996,5.5999999999999996,5.5,4.7999999999999998,5.4000000000000004,5.5999999999999996,5.0999999999999996,5.0999999999999996,5.9000000000000004,5.7000000000000002,5.2000000000000002,5,5.2000000000000002,5.4000000000000004,5.0999999999999996],"text":["Sepal.Length: 6.3<br />Petal.Length: 6.0<br />Species: virginica","Sepal.Length: 5.8<br />Petal.Length: 5.1<br />Species: virginica","Sepal.Length: 7.1<br />Petal.Length: 5.9<br />Species: virginica","Sepal.Length: 6.3<br />Petal.Length: 5.6<br />Species: virginica","Sepal.Length: 6.5<br />Petal.Length: 5.8<br />Species: virginica","Sepal.Length: 7.6<br />Petal.Length: 6.6<br />Species: virginica","Sepal.Length: 4.9<br />Petal.Length: 4.5<br />Species: virginica","Sepal.Length: 7.3<br />Petal.Length: 6.3<br />Species: virginica","Sepal.Length: 6.7<br />Petal.Length: 5.8<br />Species: virginica","Sepal.Length: 7.2<br />Petal.Length: 6.1<br />Species: virginica","Sepal.Length: 6.5<br />Petal.Length: 5.1<br />Species: virginica","Sepal.Length: 6.4<br />Petal.Length: 5.3<br />Species: virginica","Sepal.Length: 6.8<br />Petal.Length: 5.5<br />Species: virginica","Sepal.Length: 5.7<br />Petal.Length: 5.0<br />Species: virginica","Sepal.Length: 5.8<br />Petal.Length: 5.1<br />Species: virginica","Sepal.Length: 6.4<br />Petal.Length: 5.3<br />Species: virginica","Sepal.Length: 6.5<br />Petal.Length: 5.5<br />Species: virginica","Sepal.Length: 7.7<br />Petal.Length: 6.7<br />Species: virginica","Sepal.Length: 7.7<br />Petal.Length: 6.9<br />Species: virginica","Sepal.Length: 6.0<br />Petal.Length: 5.0<br />Species: virginica","Sepal.Length: 6.9<br />Petal.Length: 5.7<br />Species: virginica","Sepal.Length: 5.6<br />Petal.Length: 4.9<br />Species: virginica","Sepal.Length: 7.7<br />Petal.Length: 6.7<br />Species: virginica","Sepal.Length: 6.3<br />Petal.Length: 4.9<br />Species: virginica","Sepal.Length: 6.7<br />Petal.Length: 5.7<br />Species: virginica","Sepal.Length: 7.2<br />Petal.Length: 6.0<br />Species: virginica","Sepal.Length: 6.2<br />Petal.Length: 4.8<br />Species: virginica","Sepal.Length: 6.1<br />Petal.Length: 4.9<br />Species: virginica","Sepal.Length: 6.4<br />Petal.Length: 5.6<br />Species: virginica","Sepal.Length: 7.2<br />Petal.Length: 5.8<br />Species: virginica","Sepal.Length: 7.4<br />Petal.Length: 6.1<br />Species: virginica","Sepal.Length: 7.9<br />Petal.Length: 6.4<br />Species: virginica","Sepal.Length: 6.4<br />Petal.Length: 5.6<br />Species: virginica","Sepal.Length: 6.3<br />Petal.Length: 5.1<br />Species: virginica","Sepal.Length: 6.1<br />Petal.Length: 5.6<br />Species: virginica","Sepal.Length: 7.7<br />Petal.Length: 6.1<br />Species: virginica","Sepal.Length: 6.3<br />Petal.Length: 5.6<br />Species: virginica","Sepal.Length: 6.4<br />Petal.Length: 5.5<br />Species: virginica","Sepal.Length: 6.0<br />Petal.Length: 4.8<br />Species: virginica","Sepal.Length: 6.9<br />Petal.Length: 5.4<br />Species: virginica","Sepal.Length: 6.7<br />Petal.Length: 5.6<br />Species: virginica","Sepal.Length: 6.9<br />Petal.Length: 5.1<br />Species: virginica","Sepal.Length: 5.8<br />Petal.Length: 5.1<br />Species: virginica","Sepal.Length: 6.8<br />Petal.Length: 5.9<br />Species: virginica","Sepal.Length: 6.7<br />Petal.Length: 5.7<br />Species: virginica","Sepal.Length: 6.7<br />Petal.Length: 5.2<br />Species: virginica","Sepal.Length: 6.3<br />Petal.Length: 5.0<br />Species: virginica","Sepal.Length: 6.5<br />Petal.Length: 5.2<br />Species: virginica","Sepal.Length: 6.2<br />Petal.Length: 5.4<br />Species: virginica","Sepal.Length: 5.9<br />Petal.Length: 5.1<br />Species: virginica"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(97,156,255,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(97,156,255,1)"}},"hoveron":"points","name":"virginica","legendgroup":"virginica","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":30.611872146118724,"r":7.3059360730593621,"b":44.56621004566211,"l":31.415525114155255},"plot_bgcolor":"rgba(235,235,235,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[4.1200000000000001,8.0800000000000001],"tickmode":"array","ticktext":["5","6","7","8"],"tickvals":[5,6,7,8],"categoryorder":"array","categoryarray":["5","6","7","8"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0,"zeroline":false,"anchor":"y","title":{"text":"Sepal.Length","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.70499999999999996,7.1950000000000003],"tickmode":"array","ticktext":["2","4","6"],"tickvals":[2,4,6],"categoryorder":"array","categoryarray":["2","4","6"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0,"zeroline":false,"anchor":"x","title":{"text":"Petal.Length","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"title":{"text":"Species","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"a984aa774dd":{"x":{},"y":{},"colour":{},"type":"scatter"}},"cur_data":"a984aa774dd","visdat":{"a984aa774dd":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div class="plotly html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-97efd273db97e56a5a5d" style="width:960px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-97efd273db97e56a5a5d">{"x":{"data":[{"x":[5.0999999999999996,4.9000000000000004,4.7000000000000002,4.5999999999999996,5,5.4000000000000004,4.5999999999999996,5,4.4000000000000004,4.9000000000000004,5.4000000000000004,4.7999999999999998,4.7999999999999998,4.2999999999999998,5.7999999999999998,5.7000000000000002,5.4000000000000004,5.0999999999999996,5.7000000000000002,5.0999999999999996,5.4000000000000004,5.0999999999999996,4.5999999999999996,5.0999999999999996,4.7999999999999998,5,5,5.2000000000000002,5.2000000000000002,4.7000000000000002,4.7999999999999998,5.4000000000000004,5.2000000000000002,5.5,4.9000000000000004,5,5.5,4.9000000000000004,4.4000000000000004,5.0999999999999996,5,4.5,4.4000000000000004,5,5.0999999999999996,4.7999999999999998,5.0999999999999996,4.5999999999999996,5.2999999999999998,5],"y":[1.3999999999999999,1.3999999999999999,1.3,1.5,1.3999999999999999,1.7,1.3999999999999999,1.5,1.3999999999999999,1.5,1.5,1.6000000000000001,1.3999999999999999,1.1000000000000001,1.2,1.5,1.3,1.3999999999999999,1.7,1.5,1.7,1.5,1,1.7,1.8999999999999999,1.6000000000000001,1.6000000000000001,1.5,1.3999999999999999,1.6000000000000001,1.6000000000000001,1.5,1.5,1.3999999999999999,1.5,1.2,1.3,1.3999999999999999,1.3,1.5,1.3,1.3,1.3,1.6000000000000001,1.8999999999999999,1.3999999999999999,1.6000000000000001,1.3999999999999999,1.5,1.3999999999999999],"text":["Sepal.Length: 5.1<br />Petal.Length: 1.4<br />Species: setosa","Sepal.Length: 4.9<br />Petal.Length: 1.4<br />Species: setosa","Sepal.Length: 4.7<br />Petal.Length: 1.3<br />Species: setosa","Sepal.Length: 4.6<br />Petal.Length: 1.5<br />Species: setosa","Sepal.Length: 5.0<br />Petal.Length: 1.4<br />Species: setosa","Sepal.Length: 5.4<br />Petal.Length: 1.7<br />Species: setosa","Sepal.Length: 4.6<br />Petal.Length: 1.4<br />Species: setosa","Sepal.Length: 5.0<br />Petal.Length: 1.5<br />Species: setosa","Sepal.Length: 4.4<br />Petal.Length: 1.4<br />Species: setosa","Sepal.Length: 4.9<br />Petal.Length: 1.5<br />Species: setosa","Sepal.Length: 5.4<br />Petal.Length: 1.5<br />Species: setosa","Sepal.Length: 4.8<br />Petal.Length: 1.6<br />Species: setosa","Sepal.Length: 4.8<br />Petal.Length: 1.4<br />Species: setosa","Sepal.Length: 4.3<br />Petal.Length: 1.1<br />Species: setosa","Sepal.Length: 5.8<br />Petal.Length: 1.2<br />Species: setosa","Sepal.Length: 5.7<br />Petal.Length: 1.5<br />Species: setosa","Sepal.Length: 5.4<br />Petal.Length: 1.3<br />Species: setosa","Sepal.Length: 5.1<br />Petal.Length: 1.4<br />Species: setosa","Sepal.Length: 5.7<br />Petal.Length: 1.7<br />Species: setosa","Sepal.Length: 5.1<br />Petal.Length: 1.5<br />Species: setosa","Sepal.Length: 5.4<br />Petal.Length: 1.7<br />Species: setosa","Sepal.Length: 5.1<br />Petal.Length: 1.5<br />Species: setosa","Sepal.Length: 4.6<br />Petal.Length: 1.0<br />Species: setosa","Sepal.Length: 5.1<br />Petal.Length: 1.7<br />Species: setosa","Sepal.Length: 4.8<br />Petal.Length: 1.9<br />Species: setosa","Sepal.Length: 5.0<br />Petal.Length: 1.6<br />Species: setosa","Sepal.Length: 5.0<br />Petal.Length: 1.6<br />Species: setosa","Sepal.Length: 5.2<br />Petal.Length: 1.5<br />Species: setosa","Sepal.Length: 5.2<br />Petal.Length: 1.4<br />Species: setosa","Sepal.Length: 4.7<br />Petal.Length: 1.6<br />Species: setosa","Sepal.Length: 4.8<br />Petal.Length: 1.6<br />Species: setosa","Sepal.Length: 5.4<br />Petal.Length: 1.5<br />Species: setosa","Sepal.Length: 5.2<br />Petal.Length: 1.5<br />Species: setosa","Sepal.Length: 5.5<br />Petal.Length: 1.4<br />Species: setosa","Sepal.Length: 4.9<br />Petal.Length: 1.5<br />Species: setosa","Sepal.Length: 5.0<br />Petal.Length: 1.2<br />Species: setosa","Sepal.Length: 5.5<br />Petal.Length: 1.3<br />Species: setosa","Sepal.Length: 4.9<br />Petal.Length: 1.4<br />Species: setosa","Sepal.Length: 4.4<br />Petal.Length: 1.3<br />Species: setosa","Sepal.Length: 5.1<br />Petal.Length: 1.5<br />Species: setosa","Sepal.Length: 5.0<br />Petal.Length: 1.3<br />Species: setosa","Sepal.Length: 4.5<br />Petal.Length: 1.3<br />Species: setosa","Sepal.Length: 4.4<br />Petal.Length: 1.3<br />Species: setosa","Sepal.Length: 5.0<br />Petal.Length: 1.6<br />Species: setosa","Sepal.Length: 5.1<br />Petal.Length: 1.9<br />Species: setosa","Sepal.Length: 4.8<br />Petal.Length: 1.4<br />Species: setosa","Sepal.Length: 5.1<br />Petal.Length: 1.6<br />Species: setosa","Sepal.Length: 4.6<br />Petal.Length: 1.4<br />Species: setosa","Sepal.Length: 5.3<br />Petal.Length: 1.5<br />Species: setosa","Sepal.Length: 5.0<br />Petal.Length: 1.4<br />Species: setosa"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(248,118,109,1)"}},"hoveron":"points","name":"setosa","legendgroup":"setosa","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[7,6.4000000000000004,6.9000000000000004,5.5,6.5,5.7000000000000002,6.2999999999999998,4.9000000000000004,6.5999999999999996,5.2000000000000002,5,5.9000000000000004,6,6.0999999999999996,5.5999999999999996,6.7000000000000002,5.5999999999999996,5.7999999999999998,6.2000000000000002,5.5999999999999996,5.9000000000000004,6.0999999999999996,6.2999999999999998,6.0999999999999996,6.4000000000000004,6.5999999999999996,6.7999999999999998,6.7000000000000002,6,5.7000000000000002,5.5,5.5,5.7999999999999998,6,5.4000000000000004,6,6.7000000000000002,6.2999999999999998,5.5999999999999996,5.5,5.5,6.0999999999999996,5.7999999999999998,5,5.5999999999999996,5.7000000000000002,5.7000000000000002,6.2000000000000002,5.0999999999999996,5.7000000000000002],"y":[4.7000000000000002,4.5,4.9000000000000004,4,4.5999999999999996,4.5,4.7000000000000002,3.2999999999999998,4.5999999999999996,3.8999999999999999,3.5,4.2000000000000002,4,4.7000000000000002,3.6000000000000001,4.4000000000000004,4.5,4.0999999999999996,4.5,3.8999999999999999,4.7999999999999998,4,4.9000000000000004,4.7000000000000002,4.2999999999999998,4.4000000000000004,4.7999999999999998,5,4.5,3.5,3.7999999999999998,3.7000000000000002,3.8999999999999999,5.0999999999999996,4.5,4.5,4.7000000000000002,4.4000000000000004,4.0999999999999996,4,4.4000000000000004,4.5999999999999996,4,3.2999999999999998,4.2000000000000002,4.2000000000000002,4.2000000000000002,4.2999999999999998,3,4.0999999999999996],"text":["Sepal.Length: 7.0<br />Petal.Length: 4.7<br />Species: versicolor","Sepal.Length: 6.4<br />Petal.Length: 4.5<br />Species: versicolor","Sepal.Length: 6.9<br />Petal.Length: 4.9<br />Species: versicolor","Sepal.Length: 5.5<br />Petal.Length: 4.0<br />Species: versicolor","Sepal.Length: 6.5<br />Petal.Length: 4.6<br />Species: versicolor","Sepal.Length: 5.7<br />Petal.Length: 4.5<br />Species: versicolor","Sepal.Length: 6.3<br />Petal.Length: 4.7<br />Species: versicolor","Sepal.Length: 4.9<br />Petal.Length: 3.3<br />Species: versicolor","Sepal.Length: 6.6<br />Petal.Length: 4.6<br />Species: versicolor","Sepal.Length: 5.2<br />Petal.Length: 3.9<br />Species: versicolor","Sepal.Length: 5.0<br />Petal.Length: 3.5<br />Species: versicolor","Sepal.Length: 5.9<br />Petal.Length: 4.2<br />Species: versicolor","Sepal.Length: 6.0<br />Petal.Length: 4.0<br />Species: versicolor","Sepal.Length: 6.1<br />Petal.Length: 4.7<br />Species: versicolor","Sepal.Length: 5.6<br />Petal.Length: 3.6<br />Species: versicolor","Sepal.Length: 6.7<br />Petal.Length: 4.4<br />Species: versicolor","Sepal.Length: 5.6<br />Petal.Length: 4.5<br />Species: versicolor","Sepal.Length: 5.8<br />Petal.Length: 4.1<br />Species: versicolor","Sepal.Length: 6.2<br />Petal.Length: 4.5<br />Species: versicolor","Sepal.Length: 5.6<br />Petal.Length: 3.9<br />Species: versicolor","Sepal.Length: 5.9<br />Petal.Length: 4.8<br />Species: versicolor","Sepal.Length: 6.1<br />Petal.Length: 4.0<br />Species: versicolor","Sepal.Length: 6.3<br />Petal.Length: 4.9<br />Species: versicolor","Sepal.Length: 6.1<br />Petal.Length: 4.7<br />Species: versicolor","Sepal.Length: 6.4<br />Petal.Length: 4.3<br />Species: versicolor","Sepal.Length: 6.6<br />Petal.Length: 4.4<br />Species: versicolor","Sepal.Length: 6.8<br />Petal.Length: 4.8<br />Species: versicolor","Sepal.Length: 6.7<br />Petal.Length: 5.0<br />Species: versicolor","Sepal.Length: 6.0<br />Petal.Length: 4.5<br />Species: versicolor","Sepal.Length: 5.7<br />Petal.Length: 3.5<br />Species: versicolor","Sepal.Length: 5.5<br />Petal.Length: 3.8<br />Species: versicolor","Sepal.Length: 5.5<br />Petal.Length: 3.7<br />Species: versicolor","Sepal.Length: 5.8<br />Petal.Length: 3.9<br />Species: versicolor","Sepal.Length: 6.0<br />Petal.Length: 5.1<br />Species: versicolor","Sepal.Length: 5.4<br />Petal.Length: 4.5<br />Species: versicolor","Sepal.Length: 6.0<br />Petal.Length: 4.5<br />Species: versicolor","Sepal.Length: 6.7<br />Petal.Length: 4.7<br />Species: versicolor","Sepal.Length: 6.3<br />Petal.Length: 4.4<br />Species: versicolor","Sepal.Length: 5.6<br />Petal.Length: 4.1<br />Species: versicolor","Sepal.Length: 5.5<br />Petal.Length: 4.0<br />Species: versicolor","Sepal.Length: 5.5<br />Petal.Length: 4.4<br />Species: versicolor","Sepal.Length: 6.1<br />Petal.Length: 4.6<br />Species: versicolor","Sepal.Length: 5.8<br />Petal.Length: 4.0<br />Species: versicolor","Sepal.Length: 5.0<br />Petal.Length: 3.3<br />Species: versicolor","Sepal.Length: 5.6<br />Petal.Length: 4.2<br />Species: versicolor","Sepal.Length: 5.7<br />Petal.Length: 4.2<br />Species: versicolor","Sepal.Length: 5.7<br />Petal.Length: 4.2<br />Species: versicolor","Sepal.Length: 6.2<br />Petal.Length: 4.3<br />Species: versicolor","Sepal.Length: 5.1<br />Petal.Length: 3.0<br />Species: versicolor","Sepal.Length: 5.7<br />Petal.Length: 4.1<br />Species: versicolor"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,186,56,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,186,56,1)"}},"hoveron":"points","name":"versicolor","legendgroup":"versicolor","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[6.2999999999999998,5.7999999999999998,7.0999999999999996,6.2999999999999998,6.5,7.5999999999999996,4.9000000000000004,7.2999999999999998,6.7000000000000002,7.2000000000000002,6.5,6.4000000000000004,6.7999999999999998,5.7000000000000002,5.7999999999999998,6.4000000000000004,6.5,7.7000000000000002,7.7000000000000002,6,6.9000000000000004,5.5999999999999996,7.7000000000000002,6.2999999999999998,6.7000000000000002,7.2000000000000002,6.2000000000000002,6.0999999999999996,6.4000000000000004,7.2000000000000002,7.4000000000000004,7.9000000000000004,6.4000000000000004,6.2999999999999998,6.0999999999999996,7.7000000000000002,6.2999999999999998,6.4000000000000004,6,6.9000000000000004,6.7000000000000002,6.9000000000000004,5.7999999999999998,6.7999999999999998,6.7000000000000002,6.7000000000000002,6.2999999999999998,6.5,6.2000000000000002,5.9000000000000004],"y":[6,5.0999999999999996,5.9000000000000004,5.5999999999999996,5.7999999999999998,6.5999999999999996,4.5,6.2999999999999998,5.7999999999999998,6.0999999999999996,5.0999999999999996,5.2999999999999998,5.5,5,5.0999999999999996,5.2999999999999998,5.5,6.7000000000000002,6.9000000000000004,5,5.7000000000000002,4.9000000000000004,6.7000000000000002,4.9000000000000004,5.7000000000000002,6,4.7999999999999998,4.9000000000000004,5.5999999999999996,5.7999999999999998,6.0999999999999996,6.4000000000000004,5.5999999999999996,5.0999999999999996,5.5999999999999996,6.0999999999999996,5.5999999999999996,5.5,4.7999999999999998,5.4000000000000004,5.5999999999999996,5.0999999999999996,5.0999999999999996,5.9000000000000004,5.7000000000000002,5.2000000000000002,5,5.2000000000000002,5.4000000000000004,5.0999999999999996],"text":["Sepal.Length: 6.3<br />Petal.Length: 6.0<br />Species: virginica","Sepal.Length: 5.8<br />Petal.Length: 5.1<br />Species: virginica","Sepal.Length: 7.1<br />Petal.Length: 5.9<br />Species: virginica","Sepal.Length: 6.3<br />Petal.Length: 5.6<br />Species: virginica","Sepal.Length: 6.5<br />Petal.Length: 5.8<br />Species: virginica","Sepal.Length: 7.6<br />Petal.Length: 6.6<br />Species: virginica","Sepal.Length: 4.9<br />Petal.Length: 4.5<br />Species: virginica","Sepal.Length: 7.3<br />Petal.Length: 6.3<br />Species: virginica","Sepal.Length: 6.7<br />Petal.Length: 5.8<br />Species: virginica","Sepal.Length: 7.2<br />Petal.Length: 6.1<br />Species: virginica","Sepal.Length: 6.5<br />Petal.Length: 5.1<br />Species: virginica","Sepal.Length: 6.4<br />Petal.Length: 5.3<br />Species: virginica","Sepal.Length: 6.8<br />Petal.Length: 5.5<br />Species: virginica","Sepal.Length: 5.7<br />Petal.Length: 5.0<br />Species: virginica","Sepal.Length: 5.8<br />Petal.Length: 5.1<br />Species: virginica","Sepal.Length: 6.4<br />Petal.Length: 5.3<br />Species: virginica","Sepal.Length: 6.5<br />Petal.Length: 5.5<br />Species: virginica","Sepal.Length: 7.7<br />Petal.Length: 6.7<br />Species: virginica","Sepal.Length: 7.7<br />Petal.Length: 6.9<br />Species: virginica","Sepal.Length: 6.0<br />Petal.Length: 5.0<br />Species: virginica","Sepal.Length: 6.9<br />Petal.Length: 5.7<br />Species: virginica","Sepal.Length: 5.6<br />Petal.Length: 4.9<br />Species: virginica","Sepal.Length: 7.7<br />Petal.Length: 6.7<br />Species: virginica","Sepal.Length: 6.3<br />Petal.Length: 4.9<br />Species: virginica","Sepal.Length: 6.7<br />Petal.Length: 5.7<br />Species: virginica","Sepal.Length: 7.2<br />Petal.Length: 6.0<br />Species: virginica","Sepal.Length: 6.2<br />Petal.Length: 4.8<br />Species: virginica","Sepal.Length: 6.1<br />Petal.Length: 4.9<br />Species: virginica","Sepal.Length: 6.4<br />Petal.Length: 5.6<br />Species: virginica","Sepal.Length: 7.2<br />Petal.Length: 5.8<br />Species: virginica","Sepal.Length: 7.4<br />Petal.Length: 6.1<br />Species: virginica","Sepal.Length: 7.9<br />Petal.Length: 6.4<br />Species: virginica","Sepal.Length: 6.4<br />Petal.Length: 5.6<br />Species: virginica","Sepal.Length: 6.3<br />Petal.Length: 5.1<br />Species: virginica","Sepal.Length: 6.1<br />Petal.Length: 5.6<br />Species: virginica","Sepal.Length: 7.7<br />Petal.Length: 6.1<br />Species: virginica","Sepal.Length: 6.3<br />Petal.Length: 5.6<br />Species: virginica","Sepal.Length: 6.4<br />Petal.Length: 5.5<br />Species: virginica","Sepal.Length: 6.0<br />Petal.Length: 4.8<br />Species: virginica","Sepal.Length: 6.9<br />Petal.Length: 5.4<br />Species: virginica","Sepal.Length: 6.7<br />Petal.Length: 5.6<br />Species: virginica","Sepal.Length: 6.9<br />Petal.Length: 5.1<br />Species: virginica","Sepal.Length: 5.8<br />Petal.Length: 5.1<br />Species: virginica","Sepal.Length: 6.8<br />Petal.Length: 5.9<br />Species: virginica","Sepal.Length: 6.7<br />Petal.Length: 5.7<br />Species: virginica","Sepal.Length: 6.7<br />Petal.Length: 5.2<br />Species: virginica","Sepal.Length: 6.3<br />Petal.Length: 5.0<br />Species: virginica","Sepal.Length: 6.5<br />Petal.Length: 5.2<br />Species: virginica","Sepal.Length: 6.2<br />Petal.Length: 5.4<br />Species: virginica","Sepal.Length: 5.9<br />Petal.Length: 5.1<br />Species: virginica"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(97,156,255,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(97,156,255,1)"}},"hoveron":"points","name":"virginica","legendgroup":"virginica","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":30.611872146118724,"r":7.3059360730593621,"b":44.56621004566211,"l":31.415525114155255},"plot_bgcolor":"rgba(235,235,235,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[4.1200000000000001,8.0800000000000001],"tickmode":"array","ticktext":["5","6","7","8"],"tickvals":[5,6,7,8],"categoryorder":"array","categoryarray":["5","6","7","8"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0,"zeroline":false,"anchor":"y","title":{"text":"Sepal.Length","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.70499999999999996,7.1950000000000003],"tickmode":"array","ticktext":["2","4","6"],"tickvals":[2,4,6],"categoryorder":"array","categoryarray":["2","4","6"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0,"zeroline":false,"anchor":"x","title":{"text":"Petal.Length","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"title":{"text":"Species","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"988181c69d4":{"x":{},"y":{},"colour":{},"type":"scatter"}},"cur_data":"988181c69d4","visdat":{"988181c69d4":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
 <section id="avec-le-package-gganimate" class="slide level4 smaller r-stretch">
 <h4>Avec le package <span class="pkg">gganimate</span></h4>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1"></a> <span class="fu">ggplot</span>(iris, <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length, <span class="at">y =</span> Petal.Length)) <span class="sc">+</span> </span>
-<span id="cb73-2"><a href="#cb73-2"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb73-3"><a href="#cb73-3"></a>  gganimate<span class="sc">::</span><span class="fu">transition_states</span>(<span class="at">states =</span> Species        <span class="co"># état</span></span>
-<span id="cb73-4"><a href="#cb73-4"></a>                               , <span class="at">transition_length =</span> <span class="dv">2</span> <span class="co"># durée de la transition entre les états</span></span>
-<span id="cb73-5"><a href="#cb73-5"></a>                               , <span class="at">state_length =</span> <span class="dv">3</span>      <span class="co"># durée de la pause à chaque état</span></span>
-<span id="cb73-6"><a href="#cb73-6"></a>                               , <span class="at">wrap =</span> <span class="cn">TRUE</span>) <span class="sc">+</span>        <span class="co"># transition du dernier au premier état</span></span>
-<span id="cb73-7"><a href="#cb73-7"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"{closest_state}"</span>) <span class="co"># affichage de la valeur de l'état dans le titre</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-43-1.gif"></p>
+<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1"></a> <span class="fu">ggplot</span>(iris) <span class="sc">+</span></span>
+<span id="cb82-2"><a href="#cb82-2"></a>  <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length, <span class="at">y =</span> Petal.Length) <span class="sc">+</span> </span>
+<span id="cb82-3"><a href="#cb82-3"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb82-4"><a href="#cb82-4"></a>  gganimate<span class="sc">::</span><span class="fu">transition_states</span>(<span class="at">states =</span> Species        <span class="co"># état</span></span>
+<span id="cb82-5"><a href="#cb82-5"></a>                               , <span class="at">transition_length =</span> <span class="dv">2</span> <span class="co"># durée de la transition entre les états</span></span>
+<span id="cb82-6"><a href="#cb82-6"></a>                               , <span class="at">state_length =</span> <span class="dv">3</span>      <span class="co"># durée de la pause à chaque état</span></span>
+<span id="cb82-7"><a href="#cb82-7"></a>                               , <span class="at">wrap =</span> <span class="cn">TRUE</span>) <span class="sc">+</span>        <span class="co"># transition du dernier au premier état</span></span>
+<span id="cb82-8"><a href="#cb82-8"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"{closest_state}"</span>) <span class="co"># affichage de la valeur de l'état dans le titre</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
+
 </section>
-<section id="avec-le-package-ggvis" class="slide level4 smaller">
+<section id="avec-le-package-gganimate-output" class="slide level4 smaller r-stretch output-location-slide"><h4>Avec le package <span class="pkg">gganimate</span></h4><div class="cell output-location-slide">
+<div class="cell-output-display">
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-68-1.gif"></p>
+</div>
+</div></section><section id="avec-le-package-ggvis" class="slide level4 smaller">
 <h4>Avec le package <span class="pkg">ggvis</span></h4>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1"></a>iris <span class="sc">%&gt;%</span></span>
-<span id="cb74-2"><a href="#cb74-2"></a>    ggvis<span class="sc">::</span><span class="fu">ggvis</span>(<span class="at">x =</span> <span class="sc">~</span>Sepal.Length, <span class="at">y =</span> <span class="sc">~</span>Petal.Length, <span class="at">fill =</span> <span class="sc">~</span>Species) <span class="sc">%&gt;%</span></span>
-<span id="cb74-3"><a href="#cb74-3"></a>    ggvis<span class="sc">::</span><span class="fu">layer_points</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb74-4"><a href="#cb74-4"></a>    <span class="co"># Ajouter une infobulle pour afficher les valeurs de Species, Sepal.Length et Petal.Length au survol d'un point</span></span>
-<span id="cb74-5"><a href="#cb74-5"></a>    ggvis<span class="sc">::</span><span class="fu">add_tooltip</span>(<span class="cf">function</span>(df) <span class="fu">paste0</span>(<span class="st">"Species: "</span></span>
-<span id="cb74-6"><a href="#cb74-6"></a>                                           , df<span class="sc">$</span>Species</span>
-<span id="cb74-7"><a href="#cb74-7"></a>                                           , <span class="st">"&lt;br&gt;"</span></span>
-<span id="cb74-8"><a href="#cb74-8"></a>                                           , <span class="st">"Petal Length: "</span></span>
-<span id="cb74-9"><a href="#cb74-9"></a>                                           , <span class="fu">format</span>(df<span class="sc">$</span>Petal.Length, <span class="at">digits =</span> <span class="dv">2</span>)</span>
-<span id="cb74-10"><a href="#cb74-10"></a>                                           , <span class="st">"&lt;br&gt;"</span></span>
-<span id="cb74-11"><a href="#cb74-11"></a>                                           , <span class="st">"Sepal Length: "</span></span>
-<span id="cb74-12"><a href="#cb74-12"></a>                                           , <span class="fu">format</span>(df<span class="sc">$</span>Sepal.Length , <span class="at">digits =</span> <span class="dv">2</span>)))</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1"></a>iris <span class="sc">%&gt;%</span></span>
+<span id="cb83-2"><a href="#cb83-2"></a>    ggvis<span class="sc">::</span><span class="fu">ggvis</span>(<span class="at">x =</span> <span class="sc">~</span>Sepal.Length, <span class="at">y =</span> <span class="sc">~</span>Petal.Length, <span class="at">fill =</span> <span class="sc">~</span>Species) <span class="sc">%&gt;%</span></span>
+<span id="cb83-3"><a href="#cb83-3"></a>    ggvis<span class="sc">::</span><span class="fu">layer_points</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb83-4"><a href="#cb83-4"></a>    <span class="co"># Ajouter une infobulle pour afficher les valeurs de Species, Sepal.Length et Petal.Length au survol d'un point</span></span>
+<span id="cb83-5"><a href="#cb83-5"></a>    ggvis<span class="sc">::</span><span class="fu">add_tooltip</span>(<span class="cf">function</span>(df) <span class="fu">paste0</span>(<span class="st">"Species: "</span></span>
+<span id="cb83-6"><a href="#cb83-6"></a>                                           , df<span class="sc">$</span>Species</span>
+<span id="cb83-7"><a href="#cb83-7"></a>                                           , <span class="st">"&lt;br&gt;"</span></span>
+<span id="cb83-8"><a href="#cb83-8"></a>                                           , <span class="st">"Petal Length: "</span></span>
+<span id="cb83-9"><a href="#cb83-9"></a>                                           , <span class="fu">format</span>(df<span class="sc">$</span>Petal.Length, <span class="at">digits =</span> <span class="dv">2</span>)</span>
+<span id="cb83-10"><a href="#cb83-10"></a>                                           , <span class="st">"&lt;br&gt;"</span></span>
+<span id="cb83-11"><a href="#cb83-11"></a>                                           , <span class="st">"Sepal Length: "</span></span>
+<span id="cb83-12"><a href="#cb83-12"></a>                                           , <span class="fu">format</span>(df<span class="sc">$</span>Sepal.Length , <span class="at">digits =</span> <span class="dv">2</span>)))</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+</section>
+
+<section id="avec-le-package-ggvis-output" class="slide level4 smaller output-location-slide"><h4>Avec le package <span class="pkg">ggvis</span></h4><div class="cell output-location-slide">
 <div class="cell-output-display">
-<div id="plot_id389360519-container" class="ggvis-output-container">
-<div id="plot_id389360519" class="ggvis-output"></div>
+<div id="plot_id440794912-container" class="ggvis-output-container">
+<div id="plot_id440794912" class="ggvis-output"></div>
 <div class="plot-gear-icon">
 <nav class="ggvis-control">
 <a class="ggvis-dropdown-toggle" title="Controls" onclick="return false;" href=""></a>
 <ul class="ggvis-dropdown">
 <li>
 Renderer: 
-<a id="plot_id389360519_renderer_svg" class="ggvis-renderer-button" onclick="return false;" data-plot-id="plot_id389360519" data-renderer="svg" href="">SVG</a>
+<a id="plot_id440794912_renderer_svg" class="ggvis-renderer-button" onclick="return false;" data-plot-id="plot_id440794912" data-renderer="svg" href="">SVG</a>
  | 
-<a id="plot_id389360519_renderer_canvas" class="ggvis-renderer-button" onclick="return false;" data-plot-id="plot_id389360519" data-renderer="canvas" href="">Canvas</a>
+<a id="plot_id440794912_renderer_canvas" class="ggvis-renderer-button" onclick="return false;" data-plot-id="plot_id440794912" data-renderer="canvas" href="">Canvas</a>
 </li>
 <li>
-<a id="plot_id389360519_download" class="ggvis-download" data-plot-id="plot_id389360519" href="">Download</a>
+<a id="plot_id440794912_download" class="ggvis-download" data-plot-id="plot_id440794912" href="">Download</a>
 </li>
 </ul>
 </nav>
 </div>
 </div>
 <script type="text/javascript">
-var plot_id389360519_spec = {
+var plot_id440794912_spec = {
   "data": [
     {
       "name": ".0",
@@ -3340,13 +3410,10 @@ var plot_id389360519_spec = {
   },
   "handlers": null
 };
-ggvis.getPlot("plot_id389360519").parseSpec(plot_id389360519_spec);
+ggvis.getPlot("plot_id440794912").parseSpec(plot_id440794912_spec);
 </script>
 </div>
-</div>
-</section>
-
-<section id="autres-productions" class="title-slide slide level2 smaller center">
+</div></section><section id="autres-productions" class="title-slide slide level2 smaller center">
 <h2>Autres productions</h2>
 
 </section>
