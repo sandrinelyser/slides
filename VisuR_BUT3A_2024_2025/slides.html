@@ -14,7 +14,8 @@
   <meta name="generator" content="quarto-1.4.551">
 
   <meta name="author" content="Sandrine LYSER">
-  <title>Visualisation avec Rlogo</title>
+  <meta name="dcterms.date" content="sept.-oct. 2024">
+  <title>Visualisation avec R</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -458,7 +459,7 @@
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" class="quarto-title-block center">
+<section id="title-slide" data-footer="– Diffusé sous licence CC BY-NC-SA 4.0 –" class="quarto-title-block center">
   <h1 class="title">Visualisation avec <img data-src="./img/Rlogo.png" class="center" style="width:10.0%" alt="Rlogo"></h1>
   <p class="subtitle">Dernière mise à jour : 09 sept. 2024</p>
 
@@ -4057,6 +4058,54 @@ quarto render e:/Data_R/coursBUT3A/VisuR_slides/index.qmd --to all -->
         ]
       });
     </script>
+    <script type="text/javascript" charset="utf-8">
+
+      function add_custom_footer() {
+
+        let title_slide = document.querySelector("section#title-slide");
+
+        let title_slide_footer = title_slide.getAttribute('data-footer');
+
+        let footer = document.querySelector('div.footer p');
+
+        let global_footer_text = footer.innerHTML;
+
+        
+
+        if (title_slide.classList.contains('present')) {
+
+          footer.innerHTML = title_slide_footer;
+
+        }
+
+        
+
+        Reveal.on( 'slidechanged' , event => {
+
+            if (event.currentSlide.matches('#title-slide')) {
+
+              footer.innerHTML = title_slide_footer;
+
+            } else {
+
+              footer.innerHTML = global_footer_text;
+
+            }
+
+          });
+
+      };
+
+      
+
+      window.addEventListener("load", (event) => {
+
+        add_custom_footer();
+
+      });
+
+    </script>
+
     <script>
 
       let placeholder = document.querySelector("div#toc");
@@ -4333,7 +4382,7 @@ quarto render e:/Data_R/coursBUT3A/VisuR_slides/index.qmd --to all -->
       }
     });
     </script>
-    <script>var lightboxQuarto = GLightbox({"openEffect":"zoom","descPosition":"bottom","closeEffect":"zoom","selector":".lightbox","loop":false});
+    <script>var lightboxQuarto = GLightbox({"selector":".lightbox","openEffect":"zoom","closeEffect":"zoom","loop":false,"descPosition":"bottom"});
     window.onload = () => {
       lightboxQuarto.on('slide_before_load', (data) => {
         const { slideIndex, slideNode, slideConfig, player, trigger } = data;
