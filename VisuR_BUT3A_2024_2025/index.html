@@ -3419,36 +3419,35 @@ Wickham, H., Vaughan, D., &amp; Girlich, M. (2024). <em>tidyr: Tidy Messy Data</
 <small>Source : <a href="https://r-charts.com/base-r/margins/" target="_blank">https://r-charts.com/base-r/margins/</a></small>
 </center>
 <!-- Exercice 6 -->
-<section id="à-vous-de-jouer-5" class="level6 unlisted unnumbered center purplewhite-text" data-background-color="#423089">
-<h6 class="unlisted unnumbered center purplewhite-text anchored" data-background-color="#423089" data-anchor-id="à-vous-de-jouer-5"><svg aria-hidden="true" role="img" viewbox="0 0 640 512" style="height:1em;width:1.25em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M64 96c0-35.3 28.7-64 64-64H512c35.3 0 64 28.7 64 64V352H512V96H128V352H64V96zM0 403.2C0 392.6 8.6 384 19.2 384H620.8c10.6 0 19.2 8.6 19.2 19.2c0 42.4-34.4 76.8-76.8 76.8H76.8C34.4 480 0 445.6 0 403.2zM281 209l-31 31 31 31c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-48-48c-9.4-9.4-9.4-24.6 0-33.9l48-48c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9zM393 175l48 48c9.4 9.4 9.4 24.6 0 33.9l-48 48c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l31-31-31-31c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0z"></path></svg> À VOUS DE JOUER !</h6>
-<div id="exr-plot" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercice 6</strong></span> Écrire dans votre script les commandes permettant de visualiser (graphiquement) :</p>
-<ol type="1">
-<li>la distribution du prix en fonction du nombre d’abonnements.<br>
-On ajoutera à ce graphique les titres des axes des abscisses et des ordonnées</li>
-<li>la distribution de l’appartenance à une société.<br>
-On ajoutera un titre à ce graphique</li>
-</ol>
-</div>
+<!-- :::: {.content-visible unless-format="pdf"} -->
+<!-- ###### `<svg aria-hidden="true" role="img" viewBox="0 0 640 512" style="height:1em;width:1.25em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M64 96c0-35.3 28.7-64 64-64H512c35.3 0 64 28.7 64 64V352H512V96H128V352H64V96zM0 403.2C0 392.6 8.6 384 19.2 384H620.8c10.6 0 19.2 8.6 19.2 19.2c0 42.4-34.4 76.8-76.8 76.8H76.8C34.4 480 0 445.6 0 403.2zM281 209l-31 31 31 31c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-48-48c-9.4-9.4-9.4-24.6 0-33.9l48-48c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9zM393 175l48 48c9.4 9.4 9.4 24.6 0 33.9l-48 48c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l31-31-31-31c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0z"/></svg>`{=html} À VOUS DE JOUER ! {background-color="#423089" .unlisted .unnumbered .center .purplewhite-text} -->
+<!-- ::: {#exr-plot} -->
+<!-- Écrire dans votre script les commandes permettant de visualiser (graphiquement)  : -->
+<!-- 1. la distribution du prix en fonction du nombre d'abonnements.   -->
+<!-- On ajoutera à ce graphique les titres des axes des abscisses et des ordonnées -->
+<!-- 2. la distribution de l'appartenance à une société.    -->
+<!-- On ajoutera un titre à ce graphique -->
+<!-- ::: -->
 <!-- fin exr- -->
-</section>
-<section id="section-5" class="level6 unlisted unnumbered center purple-text" data-background-color="#423089">
-<h6 class="unlisted unnumbered center purple-text anchored" data-background-color="#423089" data-anchor-id="section-5"></h6>
-<div id="sol-plot" class="proof solution">
-<p><span class="proof-title"><em>Solution 6</em>. </span></p>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Question 1. Prix en fonction du nombre d'abonnements (2 var QN --&gt; nuage de points)</span></span>
-<span id="cb95-2"><a href="#cb95-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> data_journals<span class="sc">$</span>oclc, <span class="at">y =</span> data_journals<span class="sc">$</span>libprice,</span>
-<span id="cb95-3"><a href="#cb95-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Nombre d'abonnements"</span>, <span class="at">ylab =</span> <span class="st">"Prix"</span>)</span>
-<span id="cb95-4"><a href="#cb95-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Question 2. Appartenance à une société (var QL --&gt; diagramme en barres)</span></span>
-<span id="cb95-5"><a href="#cb95-5" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(data_journals<span class="sc">$</span>society))</span>
-<span id="cb95-6"><a href="#cb95-6" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="at">main =</span> <span class="st">"Appartenance à une société"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-</div>
+<!-- ###### {background-color="#423089" .unlisted .unnumbered .center .purple-text} -->
+<!-- ::: {#sol-plot} -->
+<!-- ```{r} -->
+<!-- #| label: exr5 -->
+<!-- #| eval: false -->
+<!-- #| include: true -->
+<!-- #| message: false -->
+<!-- #| echo: true -->
+<!-- #| code-fold: true -->
+<!-- # Question 1. Prix en fonction du nombre d'abonnements (2 var QN : nuage de points) -->
+<!-- plot(x = data_journals$oclc, y = data_journals$libprice, -->
+<!--      xlab = "Nombre d'abonnements", ylab = "Prix") -->
+<!-- # Question 2. Appartenance à une société (var QL: diagramme en barres) -->
+<!-- barplot(table(data_journals$society)) -->
+<!-- title(main = "Appartenance à une société") -->
+<!-- ``` -->
+<!-- ::: -->
 <!-- fin sol -->
+<!-- :::: -->
 <!-- fin content-visible!pdf-->
 <!-- Pour compiler le document, dans le terminal lancer la commande :
 quarto render e:/Data_R/coursBUT3A/VisuR_slides/index.qmd --to all -->
@@ -3460,7 +3459,6 @@ quarto render e:/Data_R/coursBUT3A/VisuR_slides/index.qmd --to all -->
 <span class="glightbox-desc lightbox-desc-43">Marges des graphiques</span>
 <span class="glightbox-desc lightbox-desc-44">Marges extérieures</span>
 </div>
-</section>
 </section>
 </section>
 
@@ -4025,7 +4023,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"selector":".lightbox","openEffect":"zoom","loop":false,"descPosition":"bottom","closeEffect":"zoom"});
+<script>var lightboxQuarto = GLightbox({"loop":false,"selector":".lightbox","descPosition":"bottom","closeEffect":"zoom","openEffect":"zoom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;
