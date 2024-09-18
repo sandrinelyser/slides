@@ -1,4 +1,4 @@
-/* Modifié le 07/08/2024 */
+/* Modifié le 18/09/2024 */
 
 /*-- scss:defaults --*/ 
 /* -- used to define variables that affect fonts, colors, borders, etc. (note that variables start with a $) -- */
@@ -25,6 +25,12 @@ $presentation-heading-font: "Raleway", "Avenir Next Pro";
 /*-- scss:rules --*/
 /* -- used to create CSS rules. Note that CSS rules that target Reveal content generally need to use the .reveal .slide prefix to successfully override the theme’s default styles. -- */
 
+/* Raleway font */
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+ }
+ 
 // Titre présentation
 .reveal h1.title {
   color: #275662;
