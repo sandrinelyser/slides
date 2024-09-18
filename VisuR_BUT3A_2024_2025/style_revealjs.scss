@@ -25,12 +25,13 @@ $presentation-heading-font: "Raleway", "Avenir Next Pro";
 /*-- scss:rules --*/
 /* -- used to create CSS rules. Note that CSS rules that target Reveal content generally need to use the .reveal .slide prefix to successfully override the theme’s default styles. -- */
 
-/* Raleway font */
 @font-face {
-  font-family: 'Raleway';
-  font-style: normal;
- }
- 
+    font-family: 'Raleway';
+	src: local('Raleway'), local('Raleway-Regular'), url("/fonts/Raleway-Regular.woff") format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 // Titre présentation
 .reveal h1.title {
   color: #275662;
