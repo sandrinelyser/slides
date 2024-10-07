@@ -461,7 +461,7 @@
 
 <section id="title-slide" data-footer="– Diffusé sous licence CC BY-NC-SA 4.0 –" class="quarto-title-block center">
   <h1 class="title">Visualisation avec <img data-src="./img/Rlogo.png" class="center" style="width:10.0%" alt="Rlogo"></h1>
-  <p class="subtitle">Dernière mise à jour : 18 sept. 2024</p>
+  <p class="subtitle">Dernière mise à jour : 07 oct. 2024</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -2663,7 +2663,7 @@ Les quatre autres <em>layers</em> permettent de paramétrer plus finement le gra
 <div class="small-code">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb70"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href=""></a><span class="co"># Theme Dark pour tous les plots</span></span>
-<span id="cb70-2"><a href=""></a><span class="fu">theme_set</span>(theme_dark)</span>
+<span id="cb70-2"><a href=""></a><span class="fu">theme_set</span>(<span class="fu">theme_dark</span>())</span>
 <span id="cb70-3"><a href=""></a></span>
 <span id="cb70-4"><a href=""></a><span class="fu">ggplot</span>() <span class="sc">+</span> ...</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -3009,10 +3009,19 @@ Reproduire le graphique pour les revues créées avant 1980</li>
 <!-- #| message: false -->
 <!-- #| echo: true -->
 <!-- #| code-fold: true -->
-<!-- # Question 1. Prix en fonction du nombre d'abonnements (2 var QN -->
-<p>nuage de points) –&gt; <!-- ggplot(data = data_journals) + --> <!--   geom_point(aes(x = oclc, y = libprice)) + --> <!--   labs(x = "Nombre d'abonnements", --> <!--        y = "Prix") --></p>
-<!-- # Question 2. Appartenance à une société (var QL -->
-<p>diagramme en barres) –&gt; <!-- ggplot(data = data_journals) + --> <!--   geom_bar(aes(society)) + --> <!--   ggtitle(label = "Appartenance à une société") --> <!-- # Question 3. Nombre de citations en fonction de l'appartenance à une société --> <!-- # (var QN selon var QL --> boîte à moustaches) –&gt; <!-- ggplot(data = data_journals) + --> <!--   geom_boxplot(aes(x = society, y = citestot)) --></p>
+<!-- # Question 1. Prix en fonction du nombre d'abonnements (2 var QN : nuage de points) -->
+<!-- ggplot(data = data_journals) + -->
+<!--   geom_point(aes(x = oclc, y = libprice)) + -->
+<!--   labs(x = "Nombre d'abonnements", -->
+<!--        y = "Prix") -->
+<!-- # Question 2. Appartenance à une société (var QL : diagramme en barres) -->
+<!-- ggplot(data = data_journals) + -->
+<!--   geom_bar(aes(society)) + -->
+<!--   ggtitle(label = "Appartenance à une société") -->
+<!-- # Question 3. Nombre de citations en fonction de l'appartenance à une société -->
+<!-- # (var QN selon var QL : boîte à moustaches) -->
+<!-- ggplot(data = data_journals) + -->
+<!--   geom_boxplot(aes(x = society, y = citestot)) -->
 <!-- # Sélection des données avant 1980 -->
 <!-- ggplot(data = data_journals |> -->
 <!--               filter(date1 < 1980)) + -->
@@ -4366,7 +4375,7 @@ quarto render e:/Data_R/coursBUT3A/VisuR_slides/index.qmd --to all -->
       }
     });
     </script>
-    <script>var lightboxQuarto = GLightbox({"descPosition":"bottom","closeEffect":"zoom","selector":".lightbox","openEffect":"zoom","loop":false});
+    <script>var lightboxQuarto = GLightbox({"loop":false,"descPosition":"bottom","selector":".lightbox","openEffect":"zoom","closeEffect":"zoom"});
     window.onload = () => {
       lightboxQuarto.on('slide_before_load', (data) => {
         const { slideIndex, slideNode, slideConfig, player, trigger } = data;
