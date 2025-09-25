@@ -345,7 +345,7 @@ window.Quarto = {
   <li><a href="#la-manipulation-des-données" id="toc-la-manipulation-des-données" class="nav-link" data-scroll-target="#la-manipulation-des-données">La manipulation des données</a>
   <ul class="collapse">
   <li><a href="#importexport-des-données" id="toc-importexport-des-données" class="nav-link" data-scroll-target="#importexport-des-données">Import/Export des données</a></li>
-  <li><a href="#premières-manipulation-avec-le-package-dplyr" id="toc-premières-manipulation-avec-le-package-dplyr" class="nav-link" data-scroll-target="#premières-manipulation-avec-le-package-dplyr">Premières manipulation avec le package <span class="pkg">{dplyr}</span></a></li>
+  <li><a href="#premières-manipulations-avec-le-package-dplyr" id="toc-premières-manipulations-avec-le-package-dplyr" class="nav-link" data-scroll-target="#premières-manipulations-avec-le-package-dplyr">Premières manipulations avec le package <span class="pkg">{dplyr}</span></a></li>
   </ul></li>
   </ul></li>
   <li><a href="#démo" id="toc-démo" class="nav-link" data-scroll-target="#démo"><svg aria-hidden="true" role="img" viewbox="0 0 576 512" style="height:1em;width:1.12em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M64 0C28.7 0 0 28.7 0 64V352c0 35.3 28.7 64 64 64H240l-10.7 32H160c-17.7 0-32 14.3-32 32s14.3 32 32 32H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H346.7L336 416H512c35.3 0 64-28.7 64-64V64c0-35.3-28.7-64-64-64H64zM512 64V288H64V64H512z"></path></svg> Démo</a></li>
@@ -1298,8 +1298,8 @@ Bien étudier son jeu de données à importer, en se posant les questions suivan
 <hr>
 </section>
 </section>
-<section id="premières-manipulation-avec-le-package-dplyr" class="level4">
-<h4 class="anchored" data-anchor-id="premières-manipulation-avec-le-package-dplyr">Premières manipulation avec le package <a href="https://dplyr.tidyverse.org/" target="_blank"><span class="pkg">{dplyr}</span></a></h4>
+<section id="premières-manipulations-avec-le-package-dplyr" class="level4">
+<h4 class="anchored" data-anchor-id="premières-manipulations-avec-le-package-dplyr">Premières manipulations avec le package <a href="https://dplyr.tidyverse.org/" target="_blank"><span class="pkg">{dplyr}</span></a></h4>
 <section id="exploration-automatique-des-données-avec-la-fonction-glimpse" class="level5">
 <h5 class="anchored" data-anchor-id="exploration-automatique-des-données-avec-la-fonction-glimpse">Exploration automatique des données avec la fonction <code>glimpse()</code></h5>
 <p>Affiche, dans la console, en format transposé, une <strong>vue synthétique de la structure du jeu de données</strong> avec</p>
@@ -2466,53 +2466,6 @@ Si <code>device = NULL</code>, le type de graphique est déterminé automatiquem
 </ol>
 <p><strong>Les graphiques doivent comporter toutes les informations utiles (étiquettes) pour faciliter leur compréhension</strong></p>
 </div>
-<!-- ##     {background-color="#6859A1" .unlisted .unnumbered .purple-text} -->
-<!-- ::: {#sol-seance2} -->
-<!-- ```{r} -->
-<!-- #| label: exr2 -->
-<!-- #| eval: false -->
-<!-- #| include: true -->
-<!-- #| message: false -->
-<!-- #| warning: false -->
-<!-- #| echo: true -->
-<!-- #| code-fold: true -->
-<!-- # Chargement des packages -->
-<!-- library(ggplot2)  # v3.5.2 -->
-<!-- # Chargement des données -->
-<!-- data(hdv2003) -->
-<!-- # 1. Diagramme en barres - variable 'pratique du sport' -->
-<!-- ggplot(data = hdv2003) +       # initialisation du graphique -->
-<!--   aes(x = sport,               # variable à représenter -->
-<!--       fill = sport) +          # variable pour assigner une couleur aux barres -->
-<!--   geom_bar(color = "black") +  # type de graphique = barplot ; couleur de la bordure -->
-<!--   # Ajout du titre, des étiquettes des axes et de la source des données -->
-<!--   labs(title = "Distribution de la pratique du sport", -->
-<!--        x = "Pratique du sport", -->
-<!--        y = "Effectifs", -->
-<!--        caption = "Source : enquête hdv 2003 (Insee)") -->
-<!-- # 2. Histogramme - variable 'heures.tv' -->
-<!-- ggplot(data = hdv2003) +          # initialisation du graphique -->
-<!--   aes(x = heures.tv) +            # variable à représenter -->
-<!--   geom_histogram(binwidth = 1) +  # type de graphique = histo ; amplitude des classes -->
-<!--   # Ajout du titre, des étiquettes des axes et de la source des données -->
-<!--   labs(title = "Distribution du nombre d'heures passées devant la télévision", -->
-<!--        x = "Durée (h)", -->
-<!--        y = "Effectifs", -->
-<!--        caption = "Source : enquête hdv 2003 (Insee)") -->
-<!-- # 3. Boxplot - variable 'heures.tv' x 'lecture.bd' -->
-<!-- ggplot(data = hdv2003) +              # initialisation du graphique -->
-<!--   aes(x = lecture.bd,                 # variable en abscisse -->
-<!--       y = heures.tv) +                # variable en ordonnée            -->
-<!--   geom_boxplot(fill = "lightblue") +  # type de graphique = boxplot ; boîtes de couleur bleu -->
-<!--   # Ajout du titre, des étiquettes des axes et de la source des données -->
-<!--   labs(title = "Distribution du nombre d'heures de télévision selon la lecture de BD", -->
-<!--        x = "Lecture de BD", -->
-<!--        y = "Temps TV (h)", -->
-<!--        caption = "Source : enquête hdv 2003 (Insee)") -->
-<!-- # 4. Sauvegarde du graphique -->
-<!-- ggsave("plots/boxplot_TVxBD.png")  # dossier / nom du graphique.extension -->
-<!-- ``` -->
-<!-- ::: -->
 </section>
 </section>
 <section id="séance-3---visualisation-avancée-et-mise-en-forme" class="level1 theme-seance">

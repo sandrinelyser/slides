@@ -1161,7 +1161,7 @@ Il s’agit de l’opérateur <code>|&gt;</code> dont le fonctionnement reste id
 </section>
 <section class="slide level3">
 
-<h4 id="premières-manipulation-avec-le-package-dplyr">Premières manipulation avec le package <a href="https://dplyr.tidyverse.org/" target="_blank"><span class="pkg">{dplyr}</span></a></h4>
+<h4 id="premières-manipulations-avec-le-package-dplyr">Premières manipulations avec le package <a href="https://dplyr.tidyverse.org/" target="_blank"><span class="pkg">{dplyr}</span></a></h4>
 <h5 id="exploration-automatique-des-données-avec-la-fonction-glimpse">Exploration automatique des données avec la fonction <code>glimpse()</code></h5>
 <p>Affiche, dans la console, en format transposé, une <strong>vue synthétique de la structure du jeu de données</strong> avec</p>
 <ul>
@@ -2316,53 +2316,6 @@ Si <code>device = NULL</code>, le type de graphique est déterminé automatiquem
 </ol>
 <p><strong>Les graphiques doivent comporter toutes les informations utiles (étiquettes) pour faciliter leur compréhension</strong></p>
 </div>
-<!-- ##     {background-color="#6859A1" .unlisted .unnumbered .purple-text} -->
-<!-- ::: {#sol-seance2} -->
-<!-- ```{r} -->
-<!-- #| label: exr2 -->
-<!-- #| eval: false -->
-<!-- #| include: true -->
-<!-- #| message: false -->
-<!-- #| warning: false -->
-<!-- #| echo: true -->
-<!-- #| code-fold: true -->
-<!-- # Chargement des packages -->
-<!-- library(ggplot2)  # v3.5.2 -->
-<!-- # Chargement des données -->
-<!-- data(hdv2003) -->
-<!-- # 1. Diagramme en barres - variable 'pratique du sport' -->
-<!-- ggplot(data = hdv2003) +       # initialisation du graphique -->
-<!--   aes(x = sport,               # variable à représenter -->
-<!--       fill = sport) +          # variable pour assigner une couleur aux barres -->
-<!--   geom_bar(color = "black") +  # type de graphique = barplot ; couleur de la bordure -->
-<!--   # Ajout du titre, des étiquettes des axes et de la source des données -->
-<!--   labs(title = "Distribution de la pratique du sport", -->
-<!--        x = "Pratique du sport", -->
-<!--        y = "Effectifs", -->
-<!--        caption = "Source : enquête hdv 2003 (Insee)") -->
-<!-- # 2. Histogramme - variable 'heures.tv' -->
-<!-- ggplot(data = hdv2003) +          # initialisation du graphique -->
-<!--   aes(x = heures.tv) +            # variable à représenter -->
-<!--   geom_histogram(binwidth = 1) +  # type de graphique = histo ; amplitude des classes -->
-<!--   # Ajout du titre, des étiquettes des axes et de la source des données -->
-<!--   labs(title = "Distribution du nombre d'heures passées devant la télévision", -->
-<!--        x = "Durée (h)", -->
-<!--        y = "Effectifs", -->
-<!--        caption = "Source : enquête hdv 2003 (Insee)") -->
-<!-- # 3. Boxplot - variable 'heures.tv' x 'lecture.bd' -->
-<!-- ggplot(data = hdv2003) +              # initialisation du graphique -->
-<!--   aes(x = lecture.bd,                 # variable en abscisse -->
-<!--       y = heures.tv) +                # variable en ordonnée            -->
-<!--   geom_boxplot(fill = "lightblue") +  # type de graphique = boxplot ; boîtes de couleur bleu -->
-<!--   # Ajout du titre, des étiquettes des axes et de la source des données -->
-<!--   labs(title = "Distribution du nombre d'heures de télévision selon la lecture de BD", -->
-<!--        x = "Lecture de BD", -->
-<!--        y = "Temps TV (h)", -->
-<!--        caption = "Source : enquête hdv 2003 (Insee)") -->
-<!-- # 4. Sauvegarde du graphique -->
-<!-- ggsave("plots/boxplot_TVxBD.png")  # dossier / nom du graphique.extension -->
-<!-- ``` -->
-<!-- ::: -->
 </section>
 </section>
 <section id="séance-3---visualisation-avancée-et-mise-en-forme" class="title-slide slide level1 theme-seance center">
