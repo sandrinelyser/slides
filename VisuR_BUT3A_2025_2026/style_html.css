@@ -31,3 +31,7 @@ details>summary {
 .tiny-code{
   font-size: 70%  
 }
+
+.small-table table {
+  font-size: 0.8em !important;
+}
