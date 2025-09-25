@@ -345,7 +345,7 @@ window.Quarto = {
   <li><a href="#la-manipulation-des-données" id="toc-la-manipulation-des-données" class="nav-link" data-scroll-target="#la-manipulation-des-données">La manipulation des données</a>
   <ul class="collapse">
   <li><a href="#importexport-des-données" id="toc-importexport-des-données" class="nav-link" data-scroll-target="#importexport-des-données">Import/Export des données</a></li>
-  <li><a href="#premières-manipulation-avec-le-package-dplyr" id="toc-premières-manipulation-avec-le-package-dplyr" class="nav-link" data-scroll-target="#premières-manipulation-avec-le-package-dplyr">Premières manipulation avec le package <span class="pkg">{dplyr}</span></a></li>
+  <li><a href="#premières-manipulations-avec-le-package-dplyr" id="toc-premières-manipulations-avec-le-package-dplyr" class="nav-link" data-scroll-target="#premières-manipulations-avec-le-package-dplyr">Premières manipulations avec le package <span class="pkg">{dplyr}</span></a></li>
   </ul></li>
   </ul></li>
   <li><a href="#démo" id="toc-démo" class="nav-link" data-scroll-target="#démo"><svg aria-hidden="true" role="img" viewbox="0 0 576 512" style="height:1em;width:1.12em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M64 0C28.7 0 0 28.7 0 64V352c0 35.3 28.7 64 64 64H240l-10.7 32H160c-17.7 0-32 14.3-32 32s14.3 32 32 32H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H346.7L336 416H512c35.3 0 64-28.7 64-64V64c0-35.3-28.7-64-64-64H64zM512 64V288H64V64H512z"></path></svg> Démo</a></li>
@@ -1298,8 +1298,8 @@ Bien étudier son jeu de données à importer, en se posant les questions suivan
 <hr>
 </section>
 </section>
-<section id="premières-manipulation-avec-le-package-dplyr" class="level4">
-<h4 class="anchored" data-anchor-id="premières-manipulation-avec-le-package-dplyr">Premières manipulation avec le package <a href="https://dplyr.tidyverse.org/" target="_blank"><span class="pkg">{dplyr}</span></a></h4>
+<section id="premières-manipulations-avec-le-package-dplyr" class="level4">
+<h4 class="anchored" data-anchor-id="premières-manipulations-avec-le-package-dplyr">Premières manipulations avec le package <a href="https://dplyr.tidyverse.org/" target="_blank"><span class="pkg">{dplyr}</span></a></h4>
 <section id="exploration-automatique-des-données-avec-la-fonction-glimpse" class="level5">
 <h5 class="anchored" data-anchor-id="exploration-automatique-des-données-avec-la-fonction-glimpse">Exploration automatique des données avec la fonction <code>glimpse()</code></h5>
 <p>Affiche, dans la console, en format transposé, une <strong>vue synthétique de la structure du jeu de données</strong> avec</p>
@@ -1523,7 +1523,7 @@ Un rappel des opérateurs logiques les plus courants
 <section id="exemple-dajout-de-variable" class="level6">
 <h6 class="anchored" data-anchor-id="exemple-dajout-de-variable">Exemple d’ajout de variable</h6>
 <div class="cell" data-output.lines="4">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ajout de la variable 'anciennete' </span></span>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ajout de la variable "anciennete" </span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>Journals <span class="sc">|&gt;</span> </span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">anciennete =</span> <span class="dv">2025</span> <span class="sc">-</span> date1) <span class="ot">-&gt;</span> Journals</span>
 <span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -1541,7 +1541,7 @@ Un rappel des opérateurs logiques les plus courants
 <section id="exemple-de-suppression-de-variable" class="level6">
 <h6 class="anchored" data-anchor-id="exemple-de-suppression-de-variable">Exemple de suppression de variable</h6>
 <div class="cell" data-output.lines="4">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Suppression de la variable 'charpp'</span></span>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Suppression de la variable "charpp"</span></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>Journals <span class="sc">|&gt;</span> </span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">charpp =</span> <span class="cn">NULL</span>) <span class="sc">|&gt;</span> </span>
 <span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -2014,8 +2014,8 @@ Le principe consiste à initialiser un graphique avec la commande <code>ggplot()
 </ul>
 <div class="tiny-code">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Moyenne de Petal.Length</span></span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="co"># pour chaque modalité de Species</span></span>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Moyenne de "libprice"</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="co"># pour chaque modalité de "society"</span></span>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="co"># et affichage sur les boxplots</span></span>
 <span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> Journals) <span class="sc">+</span></span>
 <span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> society, </span>
@@ -2043,8 +2043,8 @@ Le principe consiste à initialiser un graphique avec la commande <code>ggplot()
 </ul>
 <div class="tiny-code">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Moyenne de libprice</span></span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="co"># pour chaque modalité de society</span></span>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Moyenne de "libprice"</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="co"># pour chaque modalité de "society"</span></span>
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="co"># et affichage sur les boxplots</span></span>
 <span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> Journals) <span class="sc">+</span></span>
 <span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> society, </span>
@@ -2256,7 +2256,7 @@ Aide pour le choix des couleurs
 </ul>
 <div class="small-code">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Histogramme du nombre total de citations (citestot)</span></span>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Histogramme du nombre total de citations ("citestot")</span></span>
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> Journals) <span class="sc">+</span></span>
 <span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> citestot ) <span class="sc">+</span></span>
 <span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">10</span>,  <span class="co"># nb de barres (30 par défaut)</span></span>
@@ -2283,8 +2283,8 @@ Aide pour le choix des couleurs
 </ul>
 <div class="small-code">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Boxplot du nombre total de citations (citestot) </span></span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="co"># selon l'appartenance à une société</span></span>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Boxplot du nombre total de citations ("citestot") </span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="co"># selon l'appartenance à une société ("society")</span></span>
 <span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> Journals) <span class="sc">+</span></span>
 <span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> society, <span class="at">y =</span> citestot) <span class="sc">+</span></span>
 <span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"purple"</span>) <span class="sc">+</span>   <span class="co"># couleur des boîtes</span></span>
@@ -2312,7 +2312,7 @@ Aide pour le choix des couleurs
 </ul>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Barplot du nombre de revues</span></span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="co"># selon l'appartenance à une société (society)</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="co"># selon l'appartenance à une société ("society")</span></span>
 <span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> Journals) <span class="sc">+</span></span>
 <span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> society) <span class="sc">+</span></span>
 <span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">fill =</span> <span class="st">"#00a3a6"</span>) <span class="sc">+</span>   <span class="co"># couleur des barres</span></span>
@@ -2466,53 +2466,6 @@ Si <code>device = NULL</code>, le type de graphique est déterminé automatiquem
 </ol>
 <p><strong>Les graphiques doivent comporter toutes les informations utiles (étiquettes) pour faciliter leur compréhension</strong></p>
 </div>
-<!-- ##     {background-color="#6859A1" .unlisted .unnumbered .purple-text} -->
-<!-- ::: {#sol-seance2} -->
-<!-- ```{r} -->
-<!-- #| label: exr2 -->
-<!-- #| eval: false -->
-<!-- #| include: true -->
-<!-- #| message: false -->
-<!-- #| warning: false -->
-<!-- #| echo: true -->
-<!-- #| code-fold: true -->
-<!-- # Chargement des packages -->
-<!-- library(ggplot2)  # v3.5.2 -->
-<!-- # Chargement des données -->
-<!-- data(hdv2003) -->
-<!-- # 1. Diagramme en barres - variable 'pratique du sport' -->
-<!-- ggplot(data = hdv2003) +       # initialisation du graphique -->
-<!--   aes(x = sport,               # variable à représenter -->
-<!--       fill = sport) +          # variable pour assigner une couleur aux barres -->
-<!--   geom_bar(color = "black") +  # type de graphique = barplot ; couleur de la bordure -->
-<!--   # Ajout du titre, des étiquettes des axes et de la source des données -->
-<!--   labs(title = "Distribution de la pratique du sport", -->
-<!--        x = "Pratique du sport", -->
-<!--        y = "Effectifs", -->
-<!--        caption = "Source : enquête hdv 2003 (Insee)") -->
-<!-- # 2. Histogramme - variable 'heures.tv' -->
-<!-- ggplot(data = hdv2003) +          # initialisation du graphique -->
-<!--   aes(x = heures.tv) +            # variable à représenter -->
-<!--   geom_histogram(binwidth = 1) +  # type de graphique = histo ; amplitude des classes -->
-<!--   # Ajout du titre, des étiquettes des axes et de la source des données -->
-<!--   labs(title = "Distribution du nombre d'heures passées devant la télévision", -->
-<!--        x = "Durée (h)", -->
-<!--        y = "Effectifs", -->
-<!--        caption = "Source : enquête hdv 2003 (Insee)") -->
-<!-- # 3. Boxplot - variable 'heures.tv' x 'lecture.bd' -->
-<!-- ggplot(data = hdv2003) +              # initialisation du graphique -->
-<!--   aes(x = lecture.bd,                 # variable en abscisse -->
-<!--       y = heures.tv) +                # variable en ordonnée            -->
-<!--   geom_boxplot(fill = "lightblue") +  # type de graphique = boxplot ; boîtes de couleur bleu -->
-<!--   # Ajout du titre, des étiquettes des axes et de la source des données -->
-<!--   labs(title = "Distribution du nombre d'heures de télévision selon la lecture de BD", -->
-<!--        x = "Lecture de BD", -->
-<!--        y = "Temps TV (h)", -->
-<!--        caption = "Source : enquête hdv 2003 (Insee)") -->
-<!-- # 4. Sauvegarde du graphique -->
-<!-- ggsave("plots/boxplot_TVxBD.png")  # dossier / nom du graphique.extension -->
-<!-- ``` -->
-<!-- ::: -->
 </section>
 </section>
 <section id="séance-3---visualisation-avancée-et-mise-en-forme" class="level1 theme-seance">
