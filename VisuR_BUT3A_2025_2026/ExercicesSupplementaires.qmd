@@ -1,0 +1,471 @@
+---
+title: "Visualisation avec ![Rlogo](./img/Rlogo.png){.center width=10%}. \n Quelques exercices supplémentaires pour vous entraîner..."
+pagetitle: Visualisation avec R
+lang: fr  
+author:
+  name: Sandrine LYSER
+email: sandrine.lyser@inrae.fr
+author-meta: "Sandrine LYSER"
+subtitle: "Dernière mise à jour : 29 sept. 2025"
+date-meta: "sept.-oct. 2025"
+footer: "Visualisation avec R | BUT 3A Sciences des données | Année universitaire 2025-2026"
+title-slide-attributes: 
+  data-footer: "-- Diffusé sous licence CC BY-NC-SA 4.0 --"
+license: CC BY-NC-SA
+lightbox: true # pour avoir les images cliquables
+format:
+  html:
+    link-external-icon: false
+    link-external-newwindow: true
+    toc: true
+    toc-depth: 4
+    theme:
+      light: flatly
+      dark: darkly      
+    grid:
+      sidebar-width: 300px
+      body-width: 900px
+      margin-width: 300px
+      gutter-width: 1.5rem
+    code-copy: true
+    code-block-background: true
+    code-block-border-left: true
+    css: style_html.css     
+    fig-width: 7 # par défaut
+    fig-height: 5 # par défaut
+    include-after-body: [toc-add.html, add-custom-footer.html]
+  pdf:
+    toc: false
+    number-sections: false
+    include-in-header:
+      text: |
+        \usepackage{graphicx} % pour insérer des images
+        \usepackage{fancyhdr}
+        \pagestyle{plain} % style par défaut avec numéro de page centré en bas
+
+        % Style pied de page personnalisé pour la première page
+        \fancypagestyle{firstpage}{
+          \fancyhf{} % vide header et footer
+          % augmenter \footskip localement avec \setlength
+          \setlength{\footskip}{1pt}
+          \fancyfoot[C]{%
+            Diffusé sous licence CC BY-NC-SA 4.0 \\[6pt] % texte avec saut de ligne vertical
+            \includegraphics[height=1cm]{E:/Data_R/coursBUT3A/VisuR_2025/img/Licence_cc-by-nc-sa.png} \\[10pt] % logo en dessous puis ligne vide supplémentaire
+            }
+            \renewcommand{\headrulewidth}{0pt} % supprime la ligne horizontale de l'en-tête
+            \renewcommand{\footrulewidth}{0pt} % supprime la ligne horizontale du pied de page
+            }
+    colorlinks: true
+    documentclass: article
+    papersize: A4
+    geometry:
+      - top=20mm
+      - left=20mm
+      - right=20mm
+      - bottom=20mm
+    prefer-html: true
+    output-file: VisuR_ExercicesSupplementaires.pdf # nom du fichier de sortie
+    code-block-background: true
+    code-block-border-left: true    
+    fig-width: 5 # par défaut
+    fig-height: 3 # par défaut
+    mainfont: "Raleway"
+    sansfont: "Avenir Next LT Pro"
+    monofont: "Consolas"
+    monofontoptions: 
+      - Scale=0.9
+    fontsize: 10pt
+transition: none
+controls: false # afficher les flèches de navigation dans la présentation
+controls-layout: edges # type d'affichage des flèches de navigation
+highlight-style: atom-one
+filters:
+  - multibib
+validate-yaml: false
+execute: 
+  cache: false
+# Dernière mise à jour le : 30 sept. 2025
+---
+
+<!-- Chargement du package et des données utilisés dans les diapos -->
+```{r}
+#| label: initR
+#| eval: true
+#| include: false
+#| message: false
+#| echo: false
+
+library(tidyverse)    # v2.0.0
+library(knitr)        # v1.50
+library(kableExtra)   # v1.4.0 ; pour scroll_box
+library(questionr)    # v0.8.1
+library(Ecdat)        # v0.4.7 ; pour data Journals
+library(viridis)      # v0.6.5 ; pour palette couleurs
+
+# Données des exercices
+data(hdv2003)
+
+#  Fonction pour n'afficher que quelques lignes de l'output des chunks
+## Source : https://forum.posit.co/t/showing-only-the-first-few-lines-of-the-results-of-a-code-chunk/6963
+hook_output <- knit_hooks$get("output")
+knit_hooks$set(output = function(x, options) {
+   lines <- options$output.lines
+   if (is.null(lines)) {
+     return(hook_output(x, options))  # pass to default hook
+   }
+   x <- unlist(strsplit(x, "\n"))
+   more <- "..."
+   if (length(lines) == 1) {        # first n lines
+     if (length(x) > lines) {
+       # truncate the output, but add ....
+       x <- c(head(x, lines), more)
+     }
+   } else {
+     x <- c(more, x[lines], more)
+   }
+   # paste these lines together
+   x <- paste(c(x, ""), collapse = "\n")
+   hook_output(x, options)
+})
+```
+
+::: {.panel-tabset}
+
+#     Exercice 1
+
+**-- Manipulation des données --**  
+
+En utilisant le jeu de données `hdv2003`, écrire dans un script les commandes qui permettent de répondre aux questions suivantes :
+
+**1. Quel est le nombre moyen de frères et soeurs des individus ?**  
+On souhaite calculer cet indicateur sur l'ensemble de l'échantillon et pour chaque modalité de la pratique de la religion.  
+
+**2. Quel est le nombre maximum d'heures passées devant la TV pour les individus qui sont à la retraite ?**  
+On veut que le résultat affiche l'identifiant de ces individus, leur occupation antérieure et le nombre d'heures passées devant la TV*.  
+
+**3. Quel est le nombre total d'heures passées devant la TV par les étudiants/élèves ?**  
+
+**4. Quelles sont les valeurs minimales, médianes et maximales du nombre d'heures passées devant la TV par classe d'âge ?**  
+On souhaite découper selon les classes d'âges suivantes : 18-24 ; 25-39 ; 40-54 ; 55-64 ; 65+.  
+La nouvelle variable "cl_age" doit être placée après la variable "age" dans un nouveau jeu de données qui s'appellera `hdv2003_m`. 
+
+\pagebreak
+
+#     Correction 1
+
+####  Première étape : chargement des packages et des données
+```{r}
+#| label: exr1explodataInit
+#| eval: true
+#| include: true
+#| message: false
+#| echo: true
+#| code-fold: false
+
+# Chargement des packages
+library(dplyr)    # v1.1.4
+library(tidyr)    # v1.3.1
+library(ggplot2)  # v3.5.2
+library(viridis)  # v0.6.5 # pour palette couleurs
+
+# Chargement des données
+data(hdv2003)
+
+```
+
+####  Question 1. Nombre moyen de frères et soeurs 
+```{r}
+#| label: exr1explodataQ1
+#| eval: true
+#| include: true
+#| message: false
+#| echo: true
+#| code-fold: false
+
+# Pour l'ensemble des individus
+hdv2003 |> 
+  summarise(FreresSoeurs_moyenne = mean(freres.soeurs, na.rm = TRUE))
+
+# Pour chaque modalité de la pratique de la religion
+hdv2003 |> 
+  group_by(relig) |> # pour faire le calcul pour chacune des modalités de la variable "relig"
+  summarise(FreresSoeurs_moyenne = mean(freres.soeurs, na.rm = TRUE))
+```
+
+####  Question 2. Nombre maximum d'heures passées devant la TV pour les individus qui sont à la retraite  
+```{r}
+#| label: exr1explodataQ2
+#| eval: true
+#| include: true
+#| message: false
+#| echo: true
+#| code-fold: false
+
+hdv2003 |> 
+  # sélection des individus qui sont à la retraite
+  filter(occup == "Retraite") |> 
+  # sélection du nombre d'heures maximum pour ces individus
+  filter(heures.tv == max(heures.tv, na.rm = TRUE)) |>
+  # affichage des 3 variables : id, qualif et heures.tv
+  select(id, qualif, heures.tv)
+```
+
+####  Question 3. Nombre total total d'heures passées devant la TV des étudiants/élèves
+```{r}
+#| label: exr1explodataQ3
+#| eval: true
+#| include: true
+#| message: false
+#| echo: true
+#| code-fold: false
+
+hdv2003 |> 
+  filter(occup == "Etudiant, eleve") |>
+  select(heures.tv) |> 
+  summarise(HeuresTV_total = sum(heures.tv))
+```
+
+####  Question 4. Ajout de la variable "cl_age" dans un nouveau jeu de données nommé `hdv2003_m` et calcul des indicateurs par classes d'âge
+```{r}
+#| label: exr1explodataQ4
+#| eval: true
+#| include: true
+#| message: false
+#| echo: true
+#| code-fold: false
+
+# Création de la variable cl_age
+hdv2003 |> 
+  mutate(cl_age = ifelse(age  >= 18 & age <= 24, "18-24", 
+                         ifelse(age  >= 25 & age <= 39, "25-39",
+                                ifelse(age  >= 40 & age <= 54, "40-54",
+                                       ifelse(age  >= 55 & age <= 64, "55-64",
+                                              ifelse(age >= 65, "65+", "ERREUR")))))) |> 
+  relocate(cl_age, .after = age) -> hdv2003_m
+
+# On obtient le même résultat en écrivant les commandes suivantes 
+hdv2003 |> 
+  mutate(cl_age = case_when(age  >= 18 & age <= 24 ~ "18-24",
+                            age  >= 25 & age <= 39 ~ "25-39",
+                            age  >= 40 & age <= 54 ~ "40-54",
+                            age  >= 55 & age <= 64 ~ "55-64",
+                            age >= 65 ~ "65+",
+                            TRUE ~ "ERREUR")) |> 
+  relocate(cl_age, .before = sexe)  -> hdv2003_m
+
+# Indicateurs du nombre d'heures passées devant la TV par classe d'âge
+hdv2003_m |> 
+  group_by(cl_age) |> 
+  summarise(Min = min(heures.tv, na.rm = TRUE), 
+            Mediane = median(heures.tv, na.rm = TRUE),
+            Max = max(heures.tv, na.rm = TRUE))
+```
+
+\pagebreak
+
+#     Exercice 2
+
+**-- Représentations graphiques avec {ggplot2} --**  
+
+On utilise pour cet exercice le jeu de données `hdv2003_m` auquel on va supprimer les observations qui ont une valeur manquante à la variable "heures.tv". Le nouveau jeu de données s'appellera `hdv2003_TVnarm`.
+
+**1. Représenter la distribution du nombre d'heures passées devant la TV en fonction de l'âge, sous forme de nuage de points.**  
+
+**2. Représenter la distribution du nombre d'heures passées devant la TV en fonction des classes d'âge, sous forme de boxplot.**  
+Les *boxplot* auront une couleur différente selon les classes d'âge.  
+On utilisera une palette de couleurs adaptée aux variables catégorielles.  
+
+**3. Représenter la distribution de la variable de satisfaction au travail, en excluant les non réponses à cette variable**  
+
+  a) pour faire une analyse globale  
+  b) pour faire une analyse selon les classes d'âge, avec des barres de couleurs différentes selon la satisfaction au travail  
+
+Pour ces 2 graphiques, les modalités de la variable de satisfaction doivent être ordonnées : insatisfaction, équilibre, satisfaction.  
+
+**4. Refaire le graphique 3b, en ne retenant que les individus pour lesquels le travail est aussi important que le reste.**  
+Sur ce graphique, on veut représenter les pourcentages et non pas les effectifs.  
+
+**Les graphiques doivent comporter les informations nécessaires à leur bonne compréhension : titres, labels, etc.**
+
+\pagebreak
+
+#     Correction 2
+
+####  Étape préliminaire : suppression des observations pour lesquelles la valeur de "heures.tv" est manquante
+```{r}
+#| label: exr2ggplotInit
+#| eval: true
+#| include: true
+#| message: false
+#| echo: true
+#| code-fold: false
+
+hdv2003_m |> 
+  drop_na(heures.tv) -> hdv2003_TVnarm
+```
+
+####  Question 1. Nuage de points
+```{r}
+#| label: exr2ggplotQ1
+#| eval: true
+#| include: true
+#| message: false
+#| echo: true
+#| code-fold: false
+#| fig-align: center
+
+ggplot(data = hdv2003_TVnarm) + 
+  geom_point(aes(x = age, y = heures.tv)) +
+  # informations
+  labs(x = "Age", 
+       y = "Heures TV",
+       title = "Distribution du nombre d'heures passées devant la TV \n en fonction de l'âge.")
+```
+
+\pagebreak
+
+####  Question 2. Boxplot
+```{r}
+#| label: exr2ggplotQ2
+#| eval: true
+#| include: true
+#| message: false
+#| echo: true
+#| code-fold: false
+#| fig-align: center
+
+ggplot(data = hdv2003_TVnarm) + 
+  aes(x = cl_age, y = heures.tv, fill = cl_age) +
+  geom_boxplot() +
+# palette couleurs Viridis
+  viridis::scale_fill_viridis(discrete = TRUE) +
+  # informations
+  labs(x = "Age", 
+       y = "Heures TV",
+       title = "Distribution du nombre d'heures passées devant la TV \n en fonction des classes d'âge.")
+```
+
+\pagebreak
+
+####  Question 3. Barplot
+
+##### Préparation des données : suppression des données manquantes à "trav.satisf" et ordre des modalités
+```{r}
+#| label: exr2ggplotQ3Init
+#| eval: true
+#| include: true
+#| message: false
+#| echo: true
+#| code-fold: false
+
+hdv2003_TVnarm |> 
+  # suppression des valeurs manquantes
+  drop_na(trav.satisf) |> 
+  # ordre des modalités
+  mutate(trav.satisfOrdonne = factor(trav.satisf, 
+                              levels = c("Insatisfaction", "Equilibre", "Satisfaction"))) |> 
+  relocate(trav.satisfOrdonne, .after = trav.satisf) -> hdv2003_TravSatisfnarm
+```
+
+##### Analyse globale
+```{r}
+#| label: exr2ggplotQ3a
+#| eval: true
+#| include: true
+#| message: false
+#| echo: true
+#| code-fold: false
+#| fig-align: center
+
+ggplot(data = hdv2003_TravSatisfnarm) + 
+  aes(x = trav.satisfOrdonne) +
+  geom_bar() +
+  # informations
+  labs(x = "Satisfaction au travail", 
+       y = "Effectif",
+       title = "Distribution de la variable de satisfaction au travail.")
+```
+
+\pagebreak
+
+##### Analyse selon les classes d'âge
+```{r}
+#| label: exr2ggplotQ3b
+#| eval: true
+#| include: true
+#| message: false
+#| echo: true
+#| code-fold: false
+#| fig-align: center
+
+ggplot(data = hdv2003_TravSatisfnarm) + 
+  aes(x = trav.satisfOrdonne, fill = trav.satisfOrdonne) +
+  geom_bar() +
+  # graphique pour chaque modalité de cl_age
+  facet_grid(cols = vars(cl_age)) +
+  # choix des couleurs
+  scale_fill_manual(values = c("#D55E00", "#BDBDBD", "#009E73"),
+                    # modification du titre de la légende
+                    name = "Degré de satisfaction") + 
+  # informations
+  labs(x = NULL, 
+       y = "Effectif",
+       title = "Distribution de la variable de satisfaction au travail \n selon les classes d'âge.") +
+  # améliorations visuelles
+  theme(axis.text.x = element_blank(), # suppression des étiquettes de l'axe des abscisses
+        legend.position = "bottom")    # positionnement de la légende sous le graphique
+```
+
+\pagebreak
+
+####  Question 4.
+```{r}
+#| label: exr2ggplotQ4
+#| eval: true
+#| include: true
+#| message: false
+#| echo: true
+#| code-fold: false
+#| fig-align: center
+
+# Préparation des données
+hdv2003_TravSatisfnarm |> 
+  # sélection des individus pour lesquels le travail est aussi important que le reste
+  filter(trav.imp == "Aussi important que le reste") |> 
+  # sélection des variables à représenter sur le graphique
+  select(cl_age, trav.satisfOrdonne) |> 
+  # calcul des pourcentages des modalités de trav.imp pour chaque classe d'âge
+  tidyr::pivot_longer(cols = trav.satisfOrdonne,
+                      names_to = "satisfaction",
+                      values_to = "degre") |> 
+  # groupes par classes d'âge
+  group_by(cl_age) |> 
+  # calcul des effectifs de chaque degré de satisfaction par classe d'âge
+  dplyr::count(degre) |> 
+  # calcul des pourcentages de chaque degré de satisfaction par classe d'âge
+  dplyr::mutate(pourcentage = n / sum(n) * 100) |> 
+# Graphique à partir des données préparées au-dessus
+ggplot() + 
+  aes(x = degre, y = pourcentage, fill = degre) +
+  geom_bar(stat = "identity") + # stat = "identity" car y précisé dans aes()
+  # graphique pour chaque modalité de cl_age
+  facet_grid(cols = vars(cl_age)) +
+  # choix des couleurs
+  scale_fill_manual(values = c("#D55E00", "#BDBDBD", "#009E73"),
+                    # modification du titre de la légende
+                    name = "Degré de satisfaction") + 
+  # graduations de l'axe des ordonnées
+  scale_y_continuous(limits = c(0, 100),   # valeurs min et max de l'axe
+                     breaks = seq(from = 0, to = 100, by = 20)) +  # graduations
+  # informations
+  labs(x = NULL, 
+       y = "Pourcentage",
+       title = "Distribution de la variable de satisfaction au travail \n selon les classes d'âge.",
+       caption = "Uniquement pour les individus pour lesquels 
+                 le travail est aussi important que le reste") +
+  # améliorations visuelles
+  theme(axis.text.x = element_blank(), # suppression des étiquettes de l'axe des abscisses
+        legend.position = "bottom")    # positionnement de la légende sous le graphique
+```
+:::
+
