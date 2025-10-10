@@ -1,0 +1,237 @@
+---
+title: "Visualisation avec ![Rlogo](/img/Rlogo.png){.center width=10%}. Évaluation finale"
+pagetitle: Visualisation avec R
+lang: fr  
+author:
+  name: Sandrine LYSER
+  email: sandrine.lyser@inrae.fr
+author-meta: "Sandrine LYSER"
+subtitle: "Dernière mise à jour : 06 oct. 2025"
+date-meta: "sept.-oct. 2025"
+footer: "Visualisation avec R | BUT 3A Sciences des données | Année universitaire 2025-2026"
+title-slide-attributes: 
+  data-footer: "-- Diffusé sous licence CC BY-NC-SA 4.0 --"
+license: CC BY-NC-SA
+lightbox: true # pour avoir les images cliquables
+format: 
+  html:
+    link-external-icon: false
+    link-external-newwindow: true
+    toc: true
+    toc-depth: 4
+    theme:
+      light: flatly
+      dark: darkly      
+    grid:
+      sidebar-width: 300px
+      body-width: 900px
+      margin-width: 300px
+      gutter-width: 1.5rem
+    code-copy: true
+    code-block-background: true
+    code-block-border-left: true
+    css: style_html.css     
+    fig-width: 7 # par défaut
+    fig-height: 5 # par défaut
+    include-after-body: [toc-add.html, add-custom-footer.html]
+  pdf:
+    number-sections: true
+    include-in-header:
+      text: |
+        \usepackage{graphicx} % pour insérer des images
+        \usepackage{fancyhdr}
+        \pagestyle{plain} % style par défaut avec numéro de page centré en bas
+
+        % Style pied de page personnalisé pour la première page
+        \fancypagestyle{firstpage}{
+          \fancyhf{} % vide header et footer
+          % augmenter \footskip localement avec \setlength
+          \setlength{\footskip}{1pt}e
+          \fancyfoot[C]{%
+            Diffusé sous licence CC BY-NC-SA 4.0 \\[6pt] % texte avec saut de ligne vertical
+            \includegraphics[height=1cm]{E:/Data_R/coursBUT3A/VisuR_2025/img/Licence_cc-by-nc-sa.png} \\[10pt] % logo en dessous puis ligne vide supplémentaire
+            }
+            \renewcommand{\headrulewidth}{0pt} % supprime la ligne horizontale de l'en-tête
+            \renewcommand{\footrulewidth}{0pt} % supprime la ligne horizontale du pied de page
+            }
+    colorlinks: true
+    documentclass: article
+    papersize: A4
+    geometry:
+      - top=20mm
+      - left=25mm
+      - right=25mm
+      - bottom=20mm
+    prefer-html: true
+    output-file: VisuR_Evaluation.pdf # nom du fichier de sortie
+    code-block-background: true
+    code-block-border-left: true    
+    fig-width: 4.5 # par défaut
+    fig-height: 2.5 # par défaut
+    mainfont: "Raleway"
+    sansfont: "Avenir Next LT Pro"
+    monofont: "Consolas"
+    monofontoptions: 
+      - Scale=0.9
+    fontsize: 10pt
+transition: none
+controls: false # afficher les flèches de navigation dans la présentation
+controls-layout: edges # type d'affichage des flèches de navigation
+highlight-style: atom-one
+validate-yaml: false
+execute: 
+  cache: false
+# Dernière mise à jour le : 07 oct. 2025
+---
+
+<!-- Chargement des packages et des données -->
+```{r}
+#| label: initR
+#| eval: true
+#| include: false
+#| message: false
+#| echo: false
+
+library(tidyverse)    # v2.0.0
+library(knitr)        # v1.50
+library(kableExtra)   # v1.4.0 ; pour scroll_box
+library(questionr)    # v0.8.1
+
+# Fichier de données sur les films Netflix
+readr::read_csv(file = "data/netflix_movies_detailed_up_to_2025.csv") -> netflixmovies
+
+# Données pour l'évaluation
+netflixmovies |> 
+  # Filtre sur les films en FR, en EN et en ES
+  filter(language %in% c("en", "es", "fr") & 
+  # et ceux dont le genre ne contient qu'une seule valeur
+         (genres == "Action" | genres == "Adventure"  | genres == "Comedy" | 
+          genres == "Crime" | genres == "Documentary" | genres == "Drama" | 
+          genres == "History" | genres == "Horror" | genres == "Music" | 
+          genres == "Romance" | genres == "Science Fiction" | 
+          genres == "Thriller") & 
+  # et ceux dont le pays ne contient qu'une seule valeur
+         (country == "Australia" | country == "Brazil" | country == "France" |
+          country == "Greece" | country == "Hong Kong" | country == "Japan" |
+          country == "Norway" | country ==  "Sweden" | country == "Turkey" |
+          country == "United States of America")) |> 
+  # Suppression des colonnes inutiles pour l'évaluation
+  select(-c(type # il n'y a que "Movie" avec ce filtre
+         , director
+         , cast # casting
+         , date_added 
+         , rating
+         , duration 
+         , description # variable texte
+         , popularity
+         , vote_count)) |> 
+  rename(id_oeuvre = show_id
+         , titre = title
+         , pays = country
+         , année_sortie = release_year
+         , genre = genres
+         , langue = language
+         , notemoyenne = vote_average
+         , recettes = revenue) -> films
+
+write_csv2(films, file = "data/films.csv")
+         
+#  Fonction pour n'afficher que quelques lignes de l'output des chunks
+## Source : https://forum.posit.co/t/showing-only-the-first-few-lines-of-the-results-of-a-code-chunk/6963
+hook_output <- knit_hooks$get("output")
+knit_hooks$set(output = function(x, options) {
+   lines <- options$output.lines
+   if (is.null(lines)) {
+     return(hook_output(x, options))  # pass to default hook
+   }
+   x <- unlist(strsplit(x, "\n"))
+   more <- "..."
+   if (length(lines) == 1) {        # first n lines
+     if (length(x) > lines) {
+       # truncate the output, but add ....
+       x <- c(head(x, lines), more)
+     }
+   } else {
+     x <- c(more, x[lines], more)
+   }
+   # paste these lines together
+   x <- paste(c(x, ""), collapse = "\n")
+   hook_output(x, options)
+})
+```
+
+#   Consignes et données
+
+À partir du jeu de données `films` vous devez effectuer une analyse reproductible et répondre aux trois questions qui vous sont posées.
+
+Vous écrirez les commandes et les réponses aux questions dans un script R, que vous déposerez à la fin de l'évaluation, sur [l'espace Elearn dédié](https://elearn.univ-pau.fr/mod/assign/view.php?id=579241).
+
+##   Le jeu de données `films`
+
+Les données concernent les films Netflix. Le fichier `films.csv` est à télécharger depuis l'espace [Elearn](https://elearn.univ-pau.fr/mod/resource/view.php?id=649611).
+
+Ce fichier contient les variables suivantes :
+
+- **id_oeuvre** : identifiant du film
+- **titre** : titre du film
+- **pays** : pays
+- **année_sortie** : année de sortie
+- **genre** : genre de film
+- **langue** : langue du film
+- **notemoyenne** : note moyenne sur 10
+- **budget** : budget du film
+- **recettes** : recettes du film
+
+
+#   Exercice
+
+##  Mise en place du projet [2 points]
+
+Créez un projet RStudio et organisez votre script et vos fichiers de données de manière à ce que le projet soit reproductible.
+
+<span style="color:#3a3a87;">*Question 1. Indiquer en 2 points en quoi un projet RStudio est utile pour la reproductibilité d'une analyse*</span>
+
+
+##  Préparation des données [3 points]
+
+- Chargez le jeu de données dans votre projet, **en utilisant le tidyverse**
+- Vérifiez que le jeu de données respecte les bonnes pratiques de codage (corrigez si nécessaire)
+- Créez une nouvelle variable calculée *profit* :  
+<center>$profit = recettes - budget$</center>
+
+<span style="color:#3a3a87;">*Question 2. Qu'est-ce-que le tidyverse ? Citez 3 packages qui en font partie.*</span>
+
+
+##  Visualisation [15 points]
+
+Réalisez les 4 graphiques suivants, en ajoutant sur chacun un titre et des labels d'axes clairs et informatifs
+
+### Graphique 1
+
+- Représentez la distribution des notes moyennes par genre en utilisant **un boxplot**
+- Personnalisez les couleurs
+
+<span style="color:#3a3a87;">*Question 3. Décrivez le rôle de chacune des couches que vous utilisez dans ce graphique*</span>
+
+### Graphique 2
+
+- Montrez l'évolution du nombre de films par année, en utilisant **une courbe**
+- La courbe ainsi que les libellés des axes seront de couleur bleue
+- Exportez ce graphique dans un fichier image (png, jpeg, etc.)
+
+### Graphique 3
+
+- Sélectionnez les films de la France et des États-Unis
+- Comparez la note moyenne par genre et pays, en utilisant **un diagramme en barres**, avec une facette et une couleur pour chacun de ces 2 pays
+- Faites les ajustements nécessaires pour que le graphique soit lisible et compréhensible
+
+
+### Graphique 4
+
+- Créez un graphique qui montre, sur **un nuage de points**, la relation entre le budget et les recettes des films pour lesquels le budget et les recettes sont tous deux positifs. 
+Pour une meilleure visibilité :
+  + modifiez l'unité des recettes et du budget pour les exprimer en millions (divisez par 1 000 000)
+  + sélectionnez les 3 genres principaux 
+- Utilisez la couleur pour distinguer les années de sortie et les formes pour distingues les genres
+- Appliquez un thème prédéfini
+
