@@ -1,5 +1,5 @@
 ---
-title: "Visualisation avec ![Rlogo](/img/Rlogo.png){.center width=10%}. Évaluation finale"
+title: "Visualisation avec ![Rlogo](/img/Rlogo.png){.center width=10%}. Évaluation finale - Corrigé"
 pagetitle: Visualisation avec R
 lang: fr  
 author:
