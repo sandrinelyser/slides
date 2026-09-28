@@ -14,7 +14,7 @@ project:
 abstract-title: "Résumé"
 
 bibliography:
-  main: Lyser_UTF8.bib
+  main: biblioVisuR.bib
   packages: packagesR_2026.bib
   
 citeproc: false

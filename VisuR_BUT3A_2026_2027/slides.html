@@ -104,7 +104,27 @@
     code span.va { color: #e45649; } /* Variable */
     code span.vs { color: #da4453; } /* VerbatimString */
     code span.wa { color: #da4453; } /* Warning */
-  </style>
+    /* CSS for citations */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+      margin-bottom: 0em;
+    }
+    .hanging-indent div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }  </style>
   <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-c3ede8a8ce53f0ae177493fef1d70f8b.css">
   <link rel="stylesheet" href="style_html.css">
   <link href="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -238,6 +258,7 @@ Sandrine LYSER
 <li><a href="#/manipulations-des-données" id="/toc-manipulations-des-données">Manipulations des données</a></li>
 <li><a href="#/à-vous-de-jouer-1" id="/toc-à-vous-de-jouer-1"><svg aria-hidden="true" role="img" viewbox="0 0 576 512" style="height:1em;width:1.12em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M64 112c-8.8 0-16 7.2-16 16V384c0 8.8 7.2 16 16 16H512c8.8 0 16-7.2 16-16V128c0-8.8-7.2-16-16-16H64zM0 128C0 92.7 28.7 64 64 64H512c35.3 0 64 28.7 64 64V384c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128zM176 320H400c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16H176c-8.8 0-16-7.2-16-16V336c0-8.8 7.2-16 16-16zm-72-72c0-8.8 7.2-16 16-16h16c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16H120c-8.8 0-16-7.2-16-16V248zm16-96h16c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16H120c-8.8 0-16-7.2-16-16V168c0-8.8 7.2-16 16-16zm64 96c0-8.8 7.2-16 16-16h16c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16H200c-8.8 0-16-7.2-16-16V248zm16-96h16c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16H200c-8.8 0-16-7.2-16-16V168c0-8.8 7.2-16 16-16zm64 96c0-8.8 7.2-16 16-16h16c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16H280c-8.8 0-16-7.2-16-16V248zm16-96h16c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16H280c-8.8 0-16-7.2-16-16V168c0-8.8 7.2-16 16-16zm64 96c0-8.8 7.2-16 16-16h16c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16H360c-8.8 0-16-7.2-16-16V248zm16-96h16c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16H360c-8.8 0-16-7.2-16-16V168c0-8.8 7.2-16 16-16zm64 96c0-8.8 7.2-16 16-16h16c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16H440c-8.8 0-16-7.2-16-16V248zm16-96h16c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16H440c-8.8 0-16-7.2-16-16V168c0-8.8 7.2-16 16-16z"></path></svg> À VOUS DE JOUER !</a></li>
 </ul></li>
+<li><a href="#/bibliographie" id="/toc-bibliographie">Bibliographie</a></li>
 </ul>
 	</nav>
 </section>
@@ -262,7 +283,8 @@ Sandrine LYSER
 <li><p>Vendredi 02 octobre 2026 (3h)<br>
 <span class="softw">R</span> et <span class="softw">RStudio</span>, bonnes pratiques pour une analyse reproductible : du projet au <code>tidyverse</code></p></li>
 <li><p>Lundi 05 octobre 2026 (2h30)<br>
-Premiers graphiques <a href="https://ggplot2.tidyverse.org/" target="_blank"><span class="pkg">{ggplot2}</span></a> Transformation des données et approfondissements <a href="https://ggplot2.tidyverse.org/" target="_blank"><span class="pkg">{ggplot2}</span></a></p></li>
+Premiers graphiques <a href="https://ggplot2.tidyverse.org/" target="_blank"><span class="pkg">{ggplot2}</span></a><br>
+Transformation des données et approfondissements <a href="https://ggplot2.tidyverse.org/" target="_blank"><span class="pkg">{ggplot2}</span></a></p></li>
 <li><p>Vendredi 09 octobre 2026 (4h30)<br>
 Visualisations avancées et mini-projet</p></li>
 <li><p>Vendredi 02 novembre (2h)<br>
@@ -994,6 +1016,42 @@ Une entrée BibTeX pour les utilisateurs LaTeX est
 <li>Commencer l’écriture de ce script avec ces premiers éléments</li>
 </ol>
 </div>
+<!-- ##     {background-color="#222251" .unlisted .unnumbered .purple-text} -->
+<!-- :::{#sol-seance1_1} -->
+<!-- **Proposition de structuration du projet** -->
+<!-- ```md -->
+<!-- VisuR_exercices/ -->
+<!-- ├── data/ -->
+<!-- │   ├── sources/ -->
+<!-- │   │   └── communes.csv -->
+<!-- │   └── produites/ -->
+<!-- ├── scripts/ -->
+<!-- │   └── Exercices_VisuR.R -->
+<!-- ├── figures/ -->
+<!-- ├── results/ -->
+<!-- ├── README.md -->
+<!-- └── VisuR_exercices.Rproj -->
+<!-- ``` -->
+<!-- **Script Exercices_VisuR.R** -->
+<!-- ```{r} -->
+<!-- #| label: exr11 -->
+<!-- #| eval: false -->
+<!-- #| code-fold: true -->
+<!-- #   ____________________________________________________________________________ -->
+<!-- #   Script : Script pour les exercices "VisuR" -->
+<!-- #   Auteur : Sandrine Lyser -->
+<!-- #   Date   : 02 oct. 2026 -->
+<!-- #   Dernière modification : sys.date() -->
+<!-- #   Text encoding : UTF-8 -->
+<!-- #   R version : R version 4.6.0 (2026-04-24 ucrt) -- "Because it was There" -->
+<!-- #   ____________________________________________________________________________ -->
+<!-- #   ____________________________________________________________________________ -->
+<!-- #   Packages                                                                #### -->
+<!-- library(readr)    # v2.2.0 -->
+<!-- library(dplyr)    # v1.2.1 -->
+<!-- library(ggplot2)  # v4.0.3 -->
+<!-- ``` -->
+<!-- ::: -->
 </section>
 
 <section id="lunivers-du-tidyverse" class="title-slide slide level2 theme-section1 center">
@@ -1740,11 +1798,158 @@ Une entrée BibTeX pour les utilisateurs LaTeX est
 <li>Afficher la colonne commune et toutes celles qui commencent par “surface_”</li>
 </ol>
 </div>
+<!-- ##     {background-color="#222251" .unlisted .unnumbered .purple-text} -->
+<!-- :::{#sol-seance1_2} -->
+<!-- Ces commandes sont à écrire dans le script créé dans l'exercice 1. -->
+<!-- ```{r} -->
+<!-- #| label: exr12 -->
+<!-- #| eval: false -->
+<!-- #| code-fold: true -->
+<!-- #   ____________________________________________________________________________ -->
+<!-- #   01. Import des données                                                  #### -->
+<!-- #   Le fichier csv est dans le dossier 'data' -->
+<!-- #   Les colonnes sont séparées par un ';' et les décimales par une ',' -> on peut utiliser read_csv2 -->
+<!-- readr::read_csv2("data/communes.csv") -> communes -->
+<!-- #   ____________________________________________________________________________ -->
+<!-- #   02. Type et structure de 'communes'                                     #### -->
+<!-- class(communes) -->
+<!-- # ==>  L'objet 'communes' est de type tibble. Il contient 84 lignes et 16 colonnes -->
+<!-- #   ____________________________________________________________________________ -->
+<!-- #   03. Transformer la variable `CODGEO`en variable caractères              #### -->
+<!-- communes <- communes |>  -->
+<!--   mutate(CODGEO = as.character(CODGEO)) -->
+<!-- #   ____________________________________________________________________________ -->
+<!-- #   04. Nombre de communes et d'années distinctes                           #### -->
+<!-- communes |>  -->
+<!--   distinct(commune) -->
+<!-- # ==>  Il y a 28 communes différentes -->
+<!-- communes |>  -->
+<!--   distinct(annee) -->
+<!-- # ==>  Il y a trois années différentes : 2018, 2020 et 2022 -->
+<!-- #   ____________________________________________________________________________ -->
+<!-- #   05. Affichage des observations de l'année 2018                          #### -->
+<!-- communes |> -->
+<!--   filter(annee == 2018) -->
+<!-- # ==>  Si l'on filtre les observations de l'année 2018, on n'affiche que 28 observations -->
+<!-- #   ____________________________________________________________________________ -->
+<!-- #   06. Création de la variable 'surface'                                   #### -->
+<!-- communes <- communes |>  -->
+<!--   mutate(surface = surface_urbaine + surface_verte) |>  -->
+<!--   # positionnement avant la variable 'surface_urbaine' -->
+<!--   relocate(surface, .before = surface_urbaine) -->
+<!-- #   ____________________________________________________________________________ -->
+<!-- #   07. Affichage de la colonne 'commune' et des colonnes "surface_"        #### -->
+<!-- communes |>  -->
+<!--   select(commune, starts_with("surface_")) -->
+<!-- ``` -->
+<!-- ::: -->
+<!-- #      Séance 2.  {.theme-seance} -->
+<!-- ##     Objectifs pédagogiques -->
+</section>
+</section>
+<section>
+<section id="bibliographie" class="title-slide slide level1 theme-seance center">
+<h1>Bibliographie</h1>
+<!-- Création de la base biblio des packages cités/utilisés dans le cours -->
+</section>
+<section id="références-citées" class="slide level3 unlisted unnumbered smaller">
+<h3>Références citées</h3>
+<!-- https://github.com/pandoc-ext/multibib -->
+<div id="refs-main" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-Orozco2020" class="csl-entry" role="listitem">
+Orozco, V., Bontemps, C., Maigné, E., Piguet, V., Hofstetter, A., Lacroix, A., Levert, F., &amp; Rousselle, J.-M. (2020). How To Make A Pie: Reproducible Research for Empirical Economics and Econometrics. <em>Journal of Economic Surveys</em>, <em>34</em>(5), 1134‑1169. <a href="https://doi.org/10.1111/joes.12389">https://doi.org/10.1111/joes.12389</a>
+</div>
+</div>
+</section>
+<section id="packages" class="slide level3 unlisted unnumbered smaller scroll-container" style="overflow-y: scroll;">
+<h3>Packages</h3>
+<div id="refs-packages" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-R-magrittr" class="csl-entry" role="listitem">
+Bache, S. M., &amp; Wickham, H. (2026). <em>magrittr: A Forward-Pipe Operator for R</em>. <a href="https://magrittr.tidyverse.org">https://magrittr.tidyverse.org</a>
+</div>
+<div id="ref-R-openxlsx2" class="csl-entry" role="listitem">
+Barbone, J. M., &amp; Garbuszus, J. M. (2026). <em>openxlsx2: Read, Write and Edit xlsx Files</em>. <a href="https://janmarvin.github.io/openxlsx2/">https://janmarvin.github.io/openxlsx2/</a>
+</div>
+<div id="ref-R-questionr" class="csl-entry" role="listitem">
+Barnier, J., Briatte, F., &amp; Larmarange, J. (2026). <em>questionr: Functions to Make Surveys Processing Easier</em>. <a href="https://juba.github.io/questionr/">https://juba.github.io/questionr/</a>
+</div>
+<div id="ref-R-Ecdat" class="csl-entry" role="listitem">
+Croissant, Y., &amp; Graves, S. (2025). <em>Ecdat: Data Sets for Econometrics</em>. <a href="https://www.r-project.org">https://www.r-project.org</a>
+</div>
+<div id="ref-R-remotes" class="csl-entry" role="listitem">
+Csárdi, G., Hester, J., Wickham, H., Chang, W., Morgan, M., &amp; Tenenbaum, D. (2024). <em>remotes: R Package Installation from Remote Repositories, Including GitHub</em>. <a href="https://remotes.r-lib.org">https://remotes.r-lib.org</a>
+</div>
+<div id="ref-R-xlsx" class="csl-entry" role="listitem">
+Dragulescu, A., &amp; Arendt, C. (2020). <em>xlsx: Read, Write, Format Excel 2007 and Excel 97/2000/XP/2003 Files</em>. <a href="https://github.com/colearendt/xlsx">https://github.com/colearendt/xlsx</a>
+</div>
+<div id="ref-lubridate2011" class="csl-entry" role="listitem">
+Grolemund, G., &amp; Wickham, H. (2011). Dates and Times Made Easy with <span>lubridate</span>. <em>Journal of Statistical Software</em>, <em>40</em>(3), 1‑25. <a href="https://www.jstatsoft.org/v40/i03/">https://www.jstatsoft.org/v40/i03/</a>
+</div>
+<div id="ref-lintr2025" class="csl-entry" role="listitem">
+Hester, J., Angly, F., Chirico, M., Hyde, R., Kun, R., Patil, I., &amp; Rosenstock, A. (2025). Static Code Analysis for R. <em><span class="nocase">Journal of Open Source Software</span></em>, <em>10</em>(108), 7240. <a href="https://doi.org/10.21105/joss.07240">https://doi.org/10.21105/joss.07240</a>
+</div>
+<div id="ref-R-lintr" class="csl-entry" role="listitem">
+Hester, J., Angly, F., Hyde, R., Chirico, M., Ren, K., Rosenstock, A., Patil, I., Gruson, H., &amp; Ferdman, E. (2026). <em>lintr: A Linter for R Code</em>. <a href="https://lintr.r-lib.org">https://lintr.r-lib.org</a>
+</div>
+<div id="ref-R-styler" class="csl-entry" role="listitem">
+Müller, K., Walthert, L., &amp; Patil, I. (2025). <em>styler: Non-Invasive Pretty Printing of R Code</em>. <a href="https://github.com/r-lib/styler">https://github.com/r-lib/styler</a>
+</div>
+<div id="ref-R-tibble" class="csl-entry" role="listitem">
+Müller, K., &amp; Wickham, H. (2026). <em>tibble: Simple Data Frames</em>. <a href="https://tibble.tidyverse.org/">https://tibble.tidyverse.org/</a>
+</div>
+<div id="ref-R-writexl" class="csl-entry" role="listitem">
+Ooms, J. (2025). <em>writexl: Export Data Frames to Excel xlsx Format</em>. <a href="https://ropensci.r-universe.dev/writexl">https://ropensci.r-universe.dev/writexl</a>
+</div>
+<div id="ref-R-foreign" class="csl-entry" role="listitem">
+R Core Team. (2026). <em>foreign: Read Data Stored by Minitab, S, SAS, SPSS, Stata, Systat, Weka, dBase, ...</em> <a href="https://svn.r-project.org/R-packages/trunk/foreign/">https://svn.r-project.org/R-packages/trunk/foreign/</a>
+</div>
+<div id="ref-R-lubridate" class="csl-entry" role="listitem">
+Spinu, V., Grolemund, G., &amp; Wickham, H. (2026). <em>lubridate: Make Dealing with Dates a Little Easier</em>. <a href="https://lubridate.tidyverse.org">https://lubridate.tidyverse.org</a>
+</div>
+<div id="ref-R-strcode" class="csl-entry" role="listitem">
+Walthert, L. (2026). <em>strcode: Structure and abstract your code</em>. <a href="https://github.com/lorenzwalthert/strcode">https://github.com/lorenzwalthert/strcode</a>
+</div>
+<div id="ref-ggplot22016" class="csl-entry" role="listitem">
+Wickham, H. (2016). <em>ggplot2: Elegant Graphics for Data Analysis</em>. Springer-Verlag New York. <a href="https://ggplot2.tidyverse.org">https://ggplot2.tidyverse.org</a>
+</div>
+<div id="ref-R-tidyverse" class="csl-entry" role="listitem">
+Wickham, H. (2023). <em>tidyverse: Easily Install and Load the Tidyverse</em>. <a href="https://tidyverse.tidyverse.org">https://tidyverse.tidyverse.org</a>
+</div>
+<div id="ref-R-forcats" class="csl-entry" role="listitem">
+Wickham, H. (2025a). <em>forcats: Tools for Working with Categorical Variables (Factors)</em>. <a href="https://forcats.tidyverse.org/">https://forcats.tidyverse.org/</a>
+</div>
+<div id="ref-R-stringr" class="csl-entry" role="listitem">
+Wickham, H. (2025b). <em>stringr: Simple, Consistent Wrappers for Common String Operations</em>. <a href="https://stringr.tidyverse.org">https://stringr.tidyverse.org</a>
+</div>
+<div id="ref-tidyverse2019" class="csl-entry" role="listitem">
+Wickham, H., Averick, M., Bryan, J., Chang, W., McGowan, L. D., François, R., Grolemund, G., Hayes, A., Henry, L., Hester, J., Kuhn, M., Pedersen, T. L., Miller, E., Bache, S. M., Müller, K., Ooms, J., Robinson, D., Seidel, D. P., Spinu, V., … Yutani, H. (2019). Welcome to the <span>tidyverse</span>. <em>Journal of Open Source Software</em>, <em>4</em>(43), 1686. <a href="https://doi.org/10.21105/joss.01686">https://doi.org/10.21105/joss.01686</a>
+</div>
+<div id="ref-R-readxl" class="csl-entry" role="listitem">
+Wickham, H., &amp; Bryan, J. (2026). <em>readxl: Read Excel Files</em>. <a href="https://readxl.tidyverse.org">https://readxl.tidyverse.org</a>
+</div>
+<div id="ref-R-ggplot2" class="csl-entry" role="listitem">
+<span class="nocase">Wickham, H., Chang, W., Henry, L., Pedersen, T. L., Takahashi, K., Wilke, C., Woo, K., Yutani, H., Dunnington, D., &amp; van den Brand, T.</span> (2026). <em>ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics</em>. <a href="https://ggplot2.tidyverse.org">https://ggplot2.tidyverse.org</a>
+</div>
+<div id="ref-R-dplyr" class="csl-entry" role="listitem">
+Wickham, H., François, R., Henry, L., Müller, K., &amp; Vaughan, D. (2026). <em>dplyr: A Grammar of Data Manipulation</em>. <a href="https://dplyr.tidyverse.org">https://dplyr.tidyverse.org</a>
+</div>
+<div id="ref-R-purrr" class="csl-entry" role="listitem">
+Wickham, H., &amp; Henry, L. (2026). <em>purrr: Functional Programming Tools</em>. <a href="https://purrr.tidyverse.org/">https://purrr.tidyverse.org/</a>
+</div>
+<div id="ref-R-readr" class="csl-entry" role="listitem">
+Wickham, H., Hester, J., &amp; Bryan, J. (2026). <em>readr: Read Rectangular Text Data</em>. <a href="https://readr.tidyverse.org">https://readr.tidyverse.org</a>
+</div>
+<div id="ref-R-haven" class="csl-entry" role="listitem">
+Wickham, H., Miller, E., &amp; Smith, D. (2025). <em>haven: Import and Export SPSS, Stata and SAS Files</em>. <a href="https://haven.tidyverse.org">https://haven.tidyverse.org</a>
+</div>
+<div id="ref-R-tidyr" class="csl-entry" role="listitem">
+Wickham, H., Vaughan, D., &amp; Girlich, M. (2025). <em>tidyr: Tidy Messy Data</em>. <a href="https://tidyr.tidyverse.org">https://tidyr.tidyverse.org</a>
+</div>
+</div>
 <!-- Pour compiler le document, dans le terminal lancer la commande : -->
 <!-- quarto render index.qmd --to revealjs -->
 
-</section>
-</section>
+</section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">

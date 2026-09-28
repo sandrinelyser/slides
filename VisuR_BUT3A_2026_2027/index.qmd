@@ -16,6 +16,7 @@ title-slide-attributes:
 # \pagebreak 
 # avant la section Introduction uniquement pour le format PDF
 ---
+
 # {.unlisted .unnumbered}
 
 ##    Présentation du cours {.theme-section1 .unnumbered}
@@ -89,7 +90,7 @@ Dans ce cours, vous apprendrez à...
 [R]{.softw} et [RStudio]{.softw}, bonnes pratiques pour une analyse reproductible : du projet au `tidyverse`
 
 2. Lundi 05 octobre 2026 (2h30)  
-Premiers graphiques [[{ggplot2}]{.pkg}](https://ggplot2.tidyverse.org/){target="_blank"}
+Premiers graphiques [[{ggplot2}]{.pkg}](https://ggplot2.tidyverse.org/){target="_blank"}  
 Transformation des données et approfondissements  [[{ggplot2}]{.pkg}](https://ggplot2.tidyverse.org/){target="_blank"}
 
 3. Vendredi 09 octobre 2026 (4h30)  
@@ -1278,6 +1279,60 @@ On se place toujours dans le projet **`VisuR_exercices`** et on utilise les fonc
 07. Afficher la colonne commune et toutes celles qui commencent par "surface_"
 :::
 
+#      Bibliographie {.theme-seance}
+
+<!-- Création de la base biblio des packages cités/utilisés dans le cours -->
+```{r}
+#| label: biblio
+#| eval: false
+#| include: false
+#| echo: false
+knitr::write_bib(c(# séance 1
+                   "Ecdat", "readr", "tidyverse", "questionr", "strcode"
+                   , "remotes", "styler", "lintr", "dplyr", "ggplot2"
+                   , "forcats", "lubridate", "purrr", "stringr", "tibble"
+                   , "tidyr", "magrittr", "readxl", "haven", "openxlsx2"
+                   , "writexl", "xlsx", "foreign"
+                   # séance 2
+                   # séances 3 & 4
+                   )
+                 , "packagesR_2026.bib")
+```
+
+
+###    Références citées {.unlisted .unnumbered .smaller}
+<!-- https://github.com/pandoc-ext/multibib -->
+::: {#refs-main}
+<!-- Réfs citées dans le texte insérées dans cette section -->
+:::
+
+
+:::: {.content-visible when-format="revealjs"}
+###    Packages {.unlisted .unnumbered .smaller .scroll-container style="overflow-y: scroll;"}
+::: {#refs-packages}
+<!-- Réfs du fichier packagesR_2026.bib insérées dans cette section, sans être citées dans le texte -->
+
+---
+nocite: |
+  @ggplot22016, @lintr2025, @lubridate2011, @R-dplyr, @R-Ecdat, @R-forcats, @R-foreign, @R-ggplot2, @R-haven, @R-lintr, @R-lubridate, @R-magrittr, @R-openxlsx2, @R-purrr, @R-questionr, @R-readr, @R-readxl, @R-remotes, @R-strcode, @R-stringr, @R-styler, @R-tibble, @R-tidyr, @R-tidyverse, @R-writexl, @R-xlsx, @tidyverse2019
+---
+
+:::
+::::
+
+:::: {.content-visible unless-format="revealjs"}
+###    Packages {.unlisted .unnumbered}
+::: {#refs-packages}
+<!-- Réfs du fichier packagesR_2026.bib insérées dans cette section, sans être citées dans le texte -->
+
+---
+nocite: |
+  @ggplot22016, @lintr2025, @lubridate2011, @R-dplyr, @R-Ecdat, @R-forcats, @R-foreign, @R-ggplot2, @R-haven, @R-lintr, @R-lubridate, @R-magrittr, @R-openxlsx2, @R-purrr, @R-questionr, @R-readr, @R-readxl, @R-remotes, @R-strcode, @R-stringr, @R-styler, @R-tibble, @R-tidyr, @R-tidyverse, @R-writexl, @R-xlsx, @tidyverse2019
+  
+---
+
+:::
+::::
 
 <!-- Pour compiler le document, dans le terminal lancer la commande : -->
 <!-- quarto render index.qmd --to revealjs -->
