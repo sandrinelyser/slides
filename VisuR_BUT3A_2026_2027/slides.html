@@ -230,7 +230,7 @@
 
 <section id="title-slide" data-footer="– Diffusé sous licence CC BY-NC-SA 4.0 –" class="quarto-title-block center">
   <h1 class="title">Visualisation avec <img data-src="./img/Rlogo.png" class="center" style="width:10.0%" alt="Rlogo"></h1>
-  <p class="subtitle">Dernière mise à jour : 28 sept. 2026</p>
+  <p class="subtitle">Dernière mise à jour : 02 oct. 2026</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -247,7 +247,6 @@ Sandrine LYSER
 	<nav id="toc-nav" role="doc-toc" "="">  
 					<h2 id="toc-title">Plan</h2>
 				<ul>
-<li><a href="#/présentation-du-cours" id="/toc-présentation-du-cours">Présentation du cours</a></li>
 <li><a href="#/séance-1.-r-et-rstudio-bonnes-pratiques-pour-une-analyse-reproductible-du-projet-au-tidyverse" id="/toc-séance-1.-r-et-rstudio-bonnes-pratiques-pour-une-analyse-reproductible-du-projet-au-tidyverse">Séance 1. R et RStudio, bonnes pratiques pour une analyse reproductible : du projet au tidyverse</a>
 <ul>
 <li><a href="#/objectifs-pédagogiques-1" id="/toc-objectifs-pédagogiques-1">Objectifs pédagogiques</a></li>
@@ -263,6 +262,10 @@ Sandrine LYSER
 	</nav>
 </section>
 <section>
+<section id="section" class="title-slide slide level1 unlisted unnumbered center">
+<h1></h1>
+
+</section>
 <section id="présentation-du-cours" class="title-slide slide level2 theme-section1 unnumbered center">
 <h2>Présentation du cours</h2>
 <!-- Chargement du package et des données utilisés dans les diapos -->
@@ -286,7 +289,7 @@ Sandrine LYSER
 Premiers graphiques <a href="https://ggplot2.tidyverse.org/" target="_blank"><span class="pkg">{ggplot2}</span></a><br>
 Transformation des données et approfondissements <a href="https://ggplot2.tidyverse.org/" target="_blank"><span class="pkg">{ggplot2}</span></a></p></li>
 <li><p>Vendredi 09 octobre 2026 (4h30)<br>
-Visualisations avancées et mini-projet</p></li>
+Visualisations avancées</p></li>
 <li><p>Vendredi 02 novembre (2h)<br>
 Évaluation finale (1h30)<br>
 Débriefing évaluation et cours</p></li>
@@ -301,7 +304,8 @@ Débriefing évaluation et cours</p></li>
 <li>la bonne utilisation du <code>tidyverse</code></li>
 <li>la clarté/reproductibilité du script</li>
 </ul>
-</section></section>
+</section>
+
 <section id="données-utilisées-dans-les-exemples" class="title-slide slide level2 unlisted unnumbered center" data-background-color="#9ed6e3">
 <h2><svg aria-hidden="true" role="img" viewbox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M64 256V160H224v96H64zm0 64H224v96H64V320zm224 96V320H448v96H288zM448 256H288V160H448v96zM64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64z"></path></svg> Données utilisées dans les exemples</h2>
 <p>Les exemples du cours s’appuient sur le jeu de données <code>Journals</code>, disponible dans le package <span class="pkg">{Ecdat}</span></p>
@@ -398,7 +402,7 @@ Débriefing évaluation et cours</p></li>
 </tr>
 <tr class="odd">
 <td style="text-align: left; color: white !important;">emis_co2_hab</td>
-<td style="text-align: left; color: white !important;">Émissions de CO2 par habitant (tonnes eq. CO2/hab/an)emis_co2_hab</td>
+<td style="text-align: left; color: white !important;">Émissions de CO2 par habitant (tonnes eq. CO2/hab/an)</td>
 <td style="text-align: left; color: white !important;">numérique</td>
 </tr>
 <tr class="even">
@@ -422,7 +426,7 @@ Débriefing évaluation et cours</p></li>
 </div>
 </div>
 </section>
-
+</section>
 <section>
 <section id="séance-1.-r-et-rstudio-bonnes-pratiques-pour-une-analyse-reproductible-du-projet-au-tidyverse" class="title-slide slide level1 theme-seance center">
 <h1>Séance 1. R et RStudio, bonnes pratiques pour une analyse reproductible : du projet au tidyverse</h1>
@@ -534,19 +538,6 @@ Débriefing évaluation et cours</p></li>
 <li>des informations nécessaires à l’interprétation (tableaux, graphiques)</li>
 </ul>
 </div></div>
-<!-- ###    Reproductibilité & principes FAIR -->
-<!-- **Une analyse peut être reproductible sans que toutes les données soient publiques ** -->
-<!-- L'ouverture des données est souhaitable mais elle n'est pas toujours possible (données confidentielles, soumises à une restriction d'accès, protégées par une licence), mais il est néanmoins possible de partager  -->
-<!-- - le code -->
-<!-- - la description des données -->
-<!-- - les métadonnées -->
-<!-- - les étapes de traitement -->
-<!-- - un jeu de données anonymisé ou fictif -->
-<!-- - les instructions d'accès aux données -->
-<!-- pour répondre aux principes **FAIR** (_Findable_, _Accessible_, _Interoperable_, _Reusable_), qui visent à rendre les données faciles à trouver, accessibles, interopérables entre humains et machines, et réutilisables -->
-<!-- :::{.callout-note appearance="simple"} -->
-<!-- Ces principes s'appliquent surtout aux données de la recherche mais ils sont applicables à d'autres ressources numériques, comme les logiciels par exemple -->
-<!-- ::: -->
 </section>
 
 <section id="comment-travailler-de-façon-reproductible-avec-rrstudio" class="title-slide slide level2 theme-section1 center">
@@ -878,7 +869,7 @@ Débriefing évaluation et cours</p></li>
 <p><strong>Avantages</strong></p>
 <ul>
 <li>Évite les conflits si plusieurs packages ont une fonction avec le même nom (mais des paramètres différents)<br>
-<em>Exemple</em> la fonction <code>filter()</code> existe dans les packages <span class="pkg">{stats}</span> et <span class="pkg">{dplyr}</span></li>
+<em>Exemple</em> : la fonction <code>filter()</code> existe dans les packages <span class="pkg">{stats}</span> et <span class="pkg">{dplyr}</span></li>
 <li>Identifie le package d’où provient une fonction</li>
 <li>Ne charge pas la totalité d’un package pour n’utiliser qu’une seule de ses fonctions</li>
 </ul>
@@ -902,7 +893,7 @@ Débriefing évaluation et cours</p></li>
 <p><svg aria-hidden="true" role="img" viewbox="0 0 640 512" style="height:1em;width:1.25em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#A626A4;overflow:visible;position:relative;"><path d="M308.5 135.3c7.1-6.3 9.9-16.2 6.2-25c-2.3-5.3-4.8-10.5-7.6-15.5L304 89.4c-3-5-6.3-9.9-9.8-14.6c-5.7-7.6-15.7-10.1-24.7-7.1l-28.2 9.3c-10.7-8.8-23-16-36.2-20.9L199 27.1c-1.9-9.3-9.1-16.7-18.5-17.8C173.9 8.4 167.2 8 160.4 8h-.7c-6.8 0-13.5 .4-20.1 1.2c-9.4 1.1-16.6 8.6-18.5 17.8L115 56.1c-13.3 5-25.5 12.1-36.2 20.9L50.5 67.8c-9-3-19-.5-24.7 7.1c-3.5 4.7-6.8 9.6-9.9 14.6l-3 5.3c-2.8 5-5.3 10.2-7.6 15.6c-3.7 8.7-.9 18.6 6.2 25l22.2 19.8C32.6 161.9 32 168.9 32 176s.6 14.1 1.7 20.9L11.5 216.7c-7.1 6.3-9.9 16.2-6.2 25c2.3 5.3 4.8 10.5 7.6 15.6l3 5.2c3 5.1 6.3 9.9 9.9 14.6c5.7 7.6 15.7 10.1 24.7 7.1l28.2-9.3c10.7 8.8 23 16 36.2 20.9l6.1 29.1c1.9 9.3 9.1 16.7 18.5 17.8c6.7 .8 13.5 1.2 20.4 1.2s13.7-.4 20.4-1.2c9.4-1.1 16.6-8.6 18.5-17.8l6.1-29.1c13.3-5 25.5-12.1 36.2-20.9l28.2 9.3c9 3 19 .5 24.7-7.1c3.5-4.7 6.8-9.5 9.8-14.6l3.1-5.4c2.8-5 5.3-10.2 7.6-15.5c3.7-8.7 .9-18.6-6.2-25l-22.2-19.8c1.1-6.8 1.7-13.8 1.7-20.9s-.6-14.1-1.7-20.9l22.2-19.8zM112 176a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zM504.7 500.5c6.3 7.1 16.2 9.9 25 6.2c5.3-2.3 10.5-4.8 15.5-7.6l5.4-3.1c5-3 9.9-6.3 14.6-9.8c7.6-5.7 10.1-15.7 7.1-24.7l-9.3-28.2c8.8-10.7 16-23 20.9-36.2l29.1-6.1c9.3-1.9 16.7-9.1 17.8-18.5c.8-6.7 1.2-13.5 1.2-20.4s-.4-13.7-1.2-20.4c-1.1-9.4-8.6-16.6-17.8-18.5L583.9 307c-5-13.3-12.1-25.5-20.9-36.2l9.3-28.2c3-9 .5-19-7.1-24.7c-4.7-3.5-9.6-6.8-14.6-9.9l-5.3-3c-5-2.8-10.2-5.3-15.6-7.6c-8.7-3.7-18.6-.9-25 6.2l-19.8 22.2c-6.8-1.1-13.8-1.7-20.9-1.7s-14.1 .6-20.9 1.7l-19.8-22.2c-6.3-7.1-16.2-9.9-25-6.2c-5.3 2.3-10.5 4.8-15.6 7.6l-5.2 3c-5.1 3-9.9 6.3-14.6 9.9c-7.6 5.7-10.1 15.7-7.1 24.7l9.3 28.2c-8.8 10.7-16 23-20.9 36.2L315.1 313c-9.3 1.9-16.7 9.1-17.8 18.5c-.8 6.7-1.2 13.5-1.2 20.4s.4 13.7 1.2 20.4c1.1 9.4 8.6 16.6 17.8 18.5l29.1 6.1c5 13.3 12.1 25.5 20.9 36.2l-9.3 28.2c-3 9-.5 19 7.1 24.7c4.7 3.5 9.5 6.8 14.6 9.8l5.4 3.1c5 2.8 10.2 5.3 15.5 7.6c8.7 3.7 18.6 .9 25-6.2l19.8-22.2c6.8 1.1 13.8 1.7 20.9 1.7s14.1-.6 20.9-1.7l19.8 22.2zM464 304a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"></path></svg> Activer les options de diagnostic pour signaler les erreurs dans les scripts sous <span class="softw">RStudio</span> : <code>Tools &gt; Global Options &gt; Code &gt; Diagnostics</code></p>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><a href="img/screenshot_diagnostic_script2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img data-src="img/screenshot_diagnostic_script2.png" class="quarto-figure quarto-figure-center" style="width:100.0%" alt="Diagnostic de script."></a></p>
+<p><a href="img/screenshot_diagnostic_script.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img data-src="img/screenshot_diagnostic_script.png" class="quarto-figure quarto-figure-center" style="width:100.0%" alt="Diagnostic de script."></a></p>
 </figure>
 </div>
 <p><svg aria-hidden="true" role="img" viewbox="0 0 581 512" style="height:1em;width:1.13em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#A626A4;overflow:visible;position:relative;"><path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"></path></svg> package <span class="pkg"><a href="https://github.com/r-lib/styler" target="_blank">{styler}</a></span> : mettre en forme le code selon le <a href="https://style.tidyverse.org/index.html" target="_blank">Tidyverse Style Guide</a> (ou selon son propre style)</p>
@@ -1012,46 +1003,10 @@ Une entrée BibTeX pour les utilisateurs LaTeX est
 <li>Sous [RStudio], créer un projet nommé <strong><code>VisuR_exercices</code></strong></li>
 <li>Créer les dossiers nécessaires pour une bonne structuration de votre travail</li>
 <li>Déposer le fichier <code>communes.csv</code> dans le dossier adéquat de votre projet</li>
-<li>Dans votre projet [RStudio], créer un script [R] nommé <strong><code>Exercices_VisuR.R</code></strong>, qui servira pour les exercices à venir, durant lesquels vous aurez besoin des packages <code>{readr}</code>, <code>{dplyr}</code> et <code>{ggplot2}</code></li>
+<li>Dans votre projet [RStudio], créer un script [R] nommé <strong><code>01_Exercices_VisuR.R</code></strong>, qui servira pour les exercices à venir, durant lesquels vous aurez besoin des packages <code>{readr}</code> et <code>{dplyr}</code></li>
 <li>Commencer l’écriture de ce script avec ces premiers éléments</li>
 </ol>
 </div>
-<!-- ##     {background-color="#222251" .unlisted .unnumbered .purple-text} -->
-<!-- :::{#sol-seance1_1} -->
-<!-- **Proposition de structuration du projet** -->
-<!-- ```md -->
-<!-- VisuR_exercices/ -->
-<!-- ├── data/ -->
-<!-- │   ├── sources/ -->
-<!-- │   │   └── communes.csv -->
-<!-- │   └── produites/ -->
-<!-- ├── scripts/ -->
-<!-- │   └── Exercices_VisuR.R -->
-<!-- ├── figures/ -->
-<!-- ├── results/ -->
-<!-- ├── README.md -->
-<!-- └── VisuR_exercices.Rproj -->
-<!-- ``` -->
-<!-- **Script Exercices_VisuR.R** -->
-<!-- ```{r} -->
-<!-- #| label: exr11 -->
-<!-- #| eval: false -->
-<!-- #| code-fold: true -->
-<!-- #   ____________________________________________________________________________ -->
-<!-- #   Script : Script pour les exercices "VisuR" -->
-<!-- #   Auteur : Sandrine Lyser -->
-<!-- #   Date   : 02 oct. 2026 -->
-<!-- #   Dernière modification : sys.date() -->
-<!-- #   Text encoding : UTF-8 -->
-<!-- #   R version : R version 4.6.0 (2026-04-24 ucrt) -- "Because it was There" -->
-<!-- #   ____________________________________________________________________________ -->
-<!-- #   ____________________________________________________________________________ -->
-<!-- #   Packages                                                                #### -->
-<!-- library(readr)    # v2.2.0 -->
-<!-- library(dplyr)    # v1.2.1 -->
-<!-- library(ggplot2)  # v4.0.3 -->
-<!-- ``` -->
-<!-- ::: -->
 </section>
 
 <section id="lunivers-du-tidyverse" class="title-slide slide level2 theme-section1 center">
@@ -1138,7 +1093,7 @@ Une entrée BibTeX pour les utilisateurs LaTeX est
 <li><em>tibble</em> <span class="math inline">\(\rightarrow\)</span> <em>dataframe</em> : avec la fonction <strong>R</strong> de base <code>as.data.frame()</code></li>
 </ul></li>
 </ul>
-<p><svg aria-hidden="true" role="img" viewbox="0 0 581 512" style="height:1em;width:1.13em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#A626A4;overflow:visible;position:relative;"><path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"></path></svg> Pour connaître le type d’objet et savoir si on a u n_dataframe_ ou un <em>tibble</em>, on peut utiliser la fonction <code>str()</code></p>
+<p><svg aria-hidden="true" role="img" viewbox="0 0 581 512" style="height:1em;width:1.13em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#A626A4;overflow:visible;position:relative;"><path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"></path></svg> Pour connaître le type d’objet et savoir si on a un <em>dataframe</em> ou un <em>tibble</em>, on peut utiliser la fonction <code>str()</code></p>
 </section>
 <section class="slide level3">
 
@@ -1593,8 +1548,10 @@ Une entrée BibTeX pour les utilisateurs LaTeX est
 
 <h4 id="sélectionner-des-colonnes-avec-la-fonction-select">Sélectionner des colonnes avec la fonction <code>select()</code></h4>
 <h5 id="une-seule-colonne">Une seule colonne</h5>
+<div class="columns">
+<div class="column" style="width:47%;">
 <div class="cell" data-output.lines="10">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="" aria-label="1"></a><span class="co"># Sélection de la variable "pub"</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="" aria-label="1"></a><span class="co"># Sélection de la variable 'pub'</span></span>
 <span id="cb23-2"><a href="" aria-label="2"></a>Journals <span class="sc">|&gt;</span></span>
 <span id="cb23-3"><a href="" aria-label="3"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(pub)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -1611,6 +1568,46 @@ Une entrée BibTeX pour les utilisateurs LaTeX est
 ...</code></pre>
 </div>
 </div>
+</div><div class="column" style="width:6%;">
+<!-- colonne vide pour espacer les 2 colonnes de texte -->
+</div><div class="column" style="width:47%;">
+<div class="callout callout-tip callout-style-simple">
+<div class="callout-body">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-content">
+<p>On peut également utiliser la fonction <code>pull()</code> pour sélectionner une (et une seule) colonne</p>
+<div class="cell" data-output.lines="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="" aria-label="1"></a><span class="co"># Sélection de la variable 'pub'</span></span>
+<span id="cb25-2"><a href="" aria-label="2"></a>Journals <span class="sc">|&gt;</span></span>
+<span id="cb25-3"><a href="" aria-label="3"></a>  dplyr<span class="sc">::</span><span class="fu">pull</span>(pub)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  [1] Blackwell                   So Afr ec history assn     
+  [3] Kluwer                      Kluwer                     
+  [5] Elsevier                    Elsevier                   
+  [7] Cambridge Univ Pres         Elsevier                   
+  [9] Kluwer                      Blackwell                  
+ [11] Kluwer                      MIT                        
+ [13] Blackwell                   Wiley                      
+ [15] Elsevier                    Springer                   
+ [17] MIT Press                   Intnl Atlantic Ec. Soc.    
+ [19] Sage                        Elsevier                   
+...</code></pre>
+</div>
+</div>
+<ul>
+<li>Quelle différence avec <code>select()</code> ?<br>
+Le format de sortie est différent :
+<ul>
+<li>la fonction <code>select()</code> renvoie la colonne sous forme de <em>dataframe</em></li>
+<li>la fonction <code>pull()</code> renvoie une colonne sous forme de vecteur</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+</div></div>
 </section>
 <section class="slide level3">
 
@@ -1619,9 +1616,9 @@ Une entrée BibTeX pour les utilisateurs LaTeX est
 <div class="column" style="width:47%;">
 <h6 id="en-listant-lales-variables-à-conserver">En listant la/les variables à conserver</h6>
 <div class="cell" data-output.lines="3">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="" aria-label="1"></a><span class="co"># Sélection des variables "field" et "libprice"</span></span>
-<span id="cb25-2"><a href="" aria-label="2"></a>Journals <span class="sc">|&gt;</span></span>
-<span id="cb25-3"><a href="" aria-label="3"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="fu">c</span>(field, libprice))</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="" aria-label="1"></a><span class="co"># Sélection des variables "field" et "libprice"</span></span>
+<span id="cb27-2"><a href="" aria-label="2"></a>Journals <span class="sc">|&gt;</span></span>
+<span id="cb27-3"><a href="" aria-label="3"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="fu">c</span>(field, libprice))</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                 field libprice
 1              General      123
@@ -1634,9 +1631,9 @@ Une entrée BibTeX pour les utilisateurs LaTeX est
 </div><div class="column" style="width:47%;">
 <h6 id="en-listant-lales-variables-à-supprimer">En listant la/les variables à supprimer</h6>
 <div class="cell" data-output.lines="3">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="" aria-label="1"></a><span class="co"># Sélection des variables sauf "title" et "pub"</span></span>
-<span id="cb27-2"><a href="" aria-label="2"></a>Journals <span class="sc">|&gt;</span></span>
-<span id="cb27-3"><a href="" aria-label="3"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(title, pub))</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="" aria-label="1"></a><span class="co"># Sélection des variables sauf "title" et "pub"</span></span>
+<span id="cb29-2"><a href="" aria-label="2"></a>Journals <span class="sc">|&gt;</span></span>
+<span id="cb29-3"><a href="" aria-label="3"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(title, pub))</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    society libprice pages charpp citestot date1 oclc              field
 1        no      123   440   3822       21  1986   14            General
@@ -1665,9 +1662,9 @@ Une entrée BibTeX pour les utilisateurs LaTeX est
 </div><div class="column" style="width:47%;">
 <p><br></p>
 <div class="cell" data-output.lines="2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="" aria-label="1"></a><span class="co"># Sélection des variables dont le nom contient "s"</span></span>
-<span id="cb29-2"><a href="" aria-label="2"></a>Journals <span class="sc">|&gt;</span></span>
-<span id="cb29-3"><a href="" aria-label="3"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="fu">contains</span>(<span class="st">"s"</span>))</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="" aria-label="1"></a><span class="co"># Sélection des variables dont le nom contient "s"</span></span>
+<span id="cb31-2"><a href="" aria-label="2"></a>Journals <span class="sc">|&gt;</span></span>
+<span id="cb31-3"><a href="" aria-label="3"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="fu">contains</span>(<span class="st">"s"</span>))</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    society pages citestot
 1        no   440       21
@@ -1686,11 +1683,11 @@ Une entrée BibTeX pour les utilisateurs LaTeX est
 <div class="column" style="width:47%;">
 <p><br></p>
 <div class="cell" data-output.lines="4">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="" aria-label="1"></a><span class="co"># Ajout de la variable "anciennete"</span></span>
-<span id="cb31-2"><a href="" aria-label="2"></a>Journals <span class="sc">|&gt;</span></span>
-<span id="cb31-3"><a href="" aria-label="3"></a>  <span class="fu">mutate</span>(<span class="at">anciennete =</span> <span class="dv">2026</span> <span class="sc">-</span> date1) <span class="ot">-&gt;</span> Journals</span>
-<span id="cb31-4"><a href="" aria-label="4"></a></span>
-<span id="cb31-5"><a href="" aria-label="5"></a><span class="fu">names</span>(Journals)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="" aria-label="1"></a><span class="co"># Ajout de la variable 'anciennete'</span></span>
+<span id="cb33-2"><a href="" aria-label="2"></a>Journals <span class="sc">|&gt;</span></span>
+<span id="cb33-3"><a href="" aria-label="3"></a>  <span class="fu">mutate</span>(<span class="at">anciennete =</span> <span class="dv">2026</span> <span class="sc">-</span> date1) <span class="ot">-&gt;</span> Journals</span>
+<span id="cb33-4"><a href="" aria-label="4"></a></span>
+<span id="cb33-5"><a href="" aria-label="5"></a><span class="fu">names</span>(Journals)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "title"      "pub"        "society"    "libprice"   "pages"     
  [6] "charpp"     "citestot"   "date1"      "oclc"       "field"     
@@ -1709,10 +1706,10 @@ Une entrée BibTeX pour les utilisateurs LaTeX est
 </ul></li>
 </ul>
 <div class="cell" data-output.lines="4">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="" aria-label="1"></a><span class="co"># Suppression de la variable "charpp"</span></span>
-<span id="cb33-2"><a href="" aria-label="2"></a>Journals <span class="sc">|&gt;</span></span>
-<span id="cb33-3"><a href="" aria-label="3"></a>  <span class="fu">mutate</span>(<span class="at">charpp =</span> <span class="cn">NULL</span>) <span class="sc">|&gt;</span></span>
-<span id="cb33-4"><a href="" aria-label="4"></a>  <span class="fu">names</span>()</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="" aria-label="1"></a><span class="co"># Suppression de la variable 'charpp'</span></span>
+<span id="cb35-2"><a href="" aria-label="2"></a>Journals <span class="sc">|&gt;</span></span>
+<span id="cb35-3"><a href="" aria-label="3"></a>  <span class="fu">mutate</span>(<span class="at">charpp =</span> <span class="cn">NULL</span>) <span class="sc">|&gt;</span></span>
+<span id="cb35-4"><a href="" aria-label="4"></a>  <span class="fu">names</span>()</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "title"      "pub"        "society"    "libprice"   "pages"     
  [6] "citestot"   "date1"      "oclc"       "field"      "anciennete"</code></pre>
@@ -1724,21 +1721,21 @@ Une entrée BibTeX pour les utilisateurs LaTeX est
 
 <h5 id="appliquer-des-règles-conditionnelles">Appliquer des règles conditionnelles</h5>
 <h6 id="la-fonction-if_else">La fonction <code>if_else()</code></h6>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="" aria-label="1"></a>Journals <span class="sc">|&gt;</span> </span>
-<span id="cb35-2"><a href="" aria-label="2"></a>  <span class="fu">mutate</span>(<span class="at">cl_anciennete =</span> <span class="fu">if_else</span>(anciennete <span class="sc">&lt;</span> <span class="dv">30</span>, <span class="st">" Moins de 30 ans"</span>,</span>
-<span id="cb35-3"><a href="" aria-label="3"></a>                                 <span class="fu">if_else</span>(anciennete <span class="sc">&gt;=</span> <span class="dv">30</span>  <span class="sc">&amp;</span> anciennete <span class="sc">&lt;</span> <span class="dv">50</span>, <span class="st">"30 à 49 ans"</span>,</span>
-<span id="cb35-4"><a href="" aria-label="4"></a>                                         <span class="fu">if_else</span>(anciennete <span class="sc">&gt;=</span> <span class="dv">50</span> <span class="sc">&amp;</span> anciennete <span class="sc">&lt;</span> <span class="dv">100</span>, <span class="st">"50 à 99 ans"</span>,</span>
-<span id="cb35-5"><a href="" aria-label="5"></a>                                                 <span class="fu">if_else</span>(anciennete <span class="sc">&gt;=</span> <span class="dv">100</span> <span class="sc">&amp;</span> anciennete <span class="sc">&lt;</span> <span class="dv">150</span>, </span>
-<span id="cb35-6"><a href="" aria-label="6"></a>                                                         <span class="st">"100 à 149 ans"</span>, <span class="st">"150 ans et plus"</span>))))) <span class="ot">-&gt;</span> Journals</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="" aria-label="1"></a>Journals <span class="sc">|&gt;</span> </span>
+<span id="cb37-2"><a href="" aria-label="2"></a>  <span class="fu">mutate</span>(<span class="at">cl_anciennete =</span> <span class="fu">if_else</span>(anciennete <span class="sc">&lt;</span> <span class="dv">30</span>, <span class="st">" Moins de 30 ans"</span>,</span>
+<span id="cb37-3"><a href="" aria-label="3"></a>                                 <span class="fu">if_else</span>(anciennete <span class="sc">&gt;=</span> <span class="dv">30</span>  <span class="sc">&amp;</span> anciennete <span class="sc">&lt;</span> <span class="dv">50</span>, <span class="st">"30 à 49 ans"</span>,</span>
+<span id="cb37-4"><a href="" aria-label="4"></a>                                         <span class="fu">if_else</span>(anciennete <span class="sc">&gt;=</span> <span class="dv">50</span> <span class="sc">&amp;</span> anciennete <span class="sc">&lt;</span> <span class="dv">100</span>, <span class="st">"50 à 99 ans"</span>,</span>
+<span id="cb37-5"><a href="" aria-label="5"></a>                                                 <span class="fu">if_else</span>(anciennete <span class="sc">&gt;=</span> <span class="dv">100</span> <span class="sc">&amp;</span> anciennete <span class="sc">&lt;</span> <span class="dv">150</span>, </span>
+<span id="cb37-6"><a href="" aria-label="6"></a>                                                         <span class="st">"100 à 149 ans"</span>, <span class="st">"150 ans et plus"</span>))))) <span class="ot">-&gt;</span> Journals</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 <p><br></p>
 <h6 id="la-fonction-case_when">La fonction <code>case_when()</code></h6>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="" aria-label="1"></a>Journals <span class="sc">|&gt;</span> </span>
-<span id="cb36-2"><a href="" aria-label="2"></a>  <span class="fu">mutate</span>(<span class="at">cl_annciennete =</span> <span class="fu">case_when</span>(anciennete <span class="sc">&lt;</span> <span class="dv">30</span> <span class="sc">~</span> <span class="st">"Moins de 30 ans"</span>,</span>
-<span id="cb36-3"><a href="" aria-label="3"></a>                                    anciennete <span class="sc">&gt;=</span> <span class="dv">30</span>  <span class="sc">&amp;</span> anciennete <span class="sc">&lt;</span> <span class="dv">50</span> <span class="sc">~</span> <span class="st">"30 à 49 ans"</span>,</span>
-<span id="cb36-4"><a href="" aria-label="4"></a>                                    anciennete <span class="sc">&gt;=</span> <span class="dv">50</span> <span class="sc">&amp;</span> anciennete <span class="sc">&lt;</span> <span class="dv">100</span> <span class="sc">~</span> <span class="st">"50 à 99 ans"</span>,</span>
-<span id="cb36-5"><a href="" aria-label="5"></a>                                    anciennete <span class="sc">&gt;=</span> <span class="dv">100</span> <span class="sc">&amp;</span> age <span class="sc">&lt;</span> <span class="dv">150</span> <span class="sc">~</span> <span class="st">"100 à 149 ans"</span>, </span>
-<span id="cb36-6"><a href="" aria-label="6"></a>                                    anciennete <span class="sc">&gt;=</span> <span class="dv">150</span> <span class="sc">~</span> <span class="st">"150 ans et plus"</span>,</span>
-<span id="cb36-7"><a href="" aria-label="7"></a>                                    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"ERREUR"</span>)) <span class="ot">-&gt;</span> Journals</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="" aria-label="1"></a>Journals <span class="sc">|&gt;</span> </span>
+<span id="cb38-2"><a href="" aria-label="2"></a>  <span class="fu">mutate</span>(<span class="at">cl_annciennete =</span> <span class="fu">case_when</span>(anciennete <span class="sc">&lt;</span> <span class="dv">30</span> <span class="sc">~</span> <span class="st">"Moins de 30 ans"</span>,</span>
+<span id="cb38-3"><a href="" aria-label="3"></a>                                    anciennete <span class="sc">&gt;=</span> <span class="dv">30</span>  <span class="sc">&amp;</span> anciennete <span class="sc">&lt;</span> <span class="dv">50</span> <span class="sc">~</span> <span class="st">"30 à 49 ans"</span>,</span>
+<span id="cb38-4"><a href="" aria-label="4"></a>                                    anciennete <span class="sc">&gt;=</span> <span class="dv">50</span> <span class="sc">&amp;</span> anciennete <span class="sc">&lt;</span> <span class="dv">100</span> <span class="sc">~</span> <span class="st">"50 à 99 ans"</span>,</span>
+<span id="cb38-5"><a href="" aria-label="5"></a>                                    anciennete <span class="sc">&gt;=</span> <span class="dv">100</span> <span class="sc">&amp;</span> age <span class="sc">&lt;</span> <span class="dv">150</span> <span class="sc">~</span> <span class="st">"100 à 149 ans"</span>, </span>
+<span id="cb38-6"><a href="" aria-label="6"></a>                                    anciennete <span class="sc">&gt;=</span> <span class="dv">150</span> <span class="sc">~</span> <span class="st">"150 ans et plus"</span>,</span>
+<span id="cb38-7"><a href="" aria-label="7"></a>                                    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"ERREUR"</span>)) <span class="ot">-&gt;</span> Journals</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section class="slide level3">
 
@@ -1746,13 +1743,13 @@ Une entrée BibTeX pour les utilisateurs LaTeX est
 <p><svg aria-hidden="true" role="img" viewbox="0 0 384 512" style="height:1em;width:0.75em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#A626A4;overflow:visible;position:relative;"><path d="M297.2 248.9C311.6 228.3 320 203.2 320 176c0-70.7-57.3-128-128-128S64 105.3 64 176c0 27.2 8.4 52.3 22.8 72.9c3.7 5.3 8.1 11.3 12.8 17.7l0 0c12.9 17.7 28.3 38.9 39.8 59.8c10.4 19 15.7 38.8 18.3 57.5H109c-2.2-12-5.9-23.7-11.8-34.5c-9.9-18-22.2-34.9-34.5-51.8l0 0 0 0c-5.2-7.1-10.4-14.2-15.4-21.4C27.6 247.9 16 213.3 16 176C16 78.8 94.8 0 192 0s176 78.8 176 176c0 37.3-11.6 71.9-31.4 100.3c-5 7.2-10.2 14.3-15.4 21.4l0 0 0 0c-12.3 16.8-24.6 33.7-34.5 51.8c-5.9 10.8-9.6 22.5-11.8 34.5H226.4c2.6-18.7 7.9-38.6 18.3-57.5c11.5-20.9 26.9-42.1 39.8-59.8l0 0 0 0 0 0c4.7-6.4 9-12.4 12.7-17.7zM192 128c-26.5 0-48 21.5-48 48c0 8.8-7.2 16-16 16s-16-7.2-16-16c0-44.2 35.8-80 80-80c8.8 0 16 7.2 16 16s-7.2 16-16 16zm0 384c-44.2 0-80-35.8-80-80V416H272v16c0 44.2-35.8 80-80 80z"></path></svg> Les nouvelles variables ajoutées avec <code>mutate()</code> se positionnent toujours à la fin du jeu de données</p>
 <p><svg aria-hidden="true" role="img" viewbox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#A626A4;overflow:visible;position:relative;"><path d="M470.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 256 265.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160zm-352 160l160-160c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L210.7 256 73.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0z"></path></svg> Il est possible de les positionner où l’on souhaite, avec la fonction <code>relocate()</code></p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="" aria-label="1"></a><span class="co"># On repositionne la variable 'anciennete' après la variable 'date1' </span></span>
-<span id="cb37-2"><a href="" aria-label="2"></a>Journals <span class="sc">|&gt;</span> </span>
-<span id="cb37-3"><a href="" aria-label="3"></a>  <span class="fu">relocate</span>(anciennete, <span class="at">.after =</span> date1) <span class="ot">-&gt;</span> Journals</span>
-<span id="cb37-4"><a href="" aria-label="4"></a></span>
-<span id="cb37-5"><a href="" aria-label="5"></a><span class="co"># Vérification</span></span>
-<span id="cb37-6"><a href="" aria-label="6"></a>Journals <span class="sc">|&gt;</span> </span>
-<span id="cb37-7"><a href="" aria-label="7"></a>  <span class="fu">names</span>()</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="" aria-label="1"></a><span class="co"># On repositionne la variable 'anciennete' après la variable 'date1' </span></span>
+<span id="cb39-2"><a href="" aria-label="2"></a>Journals <span class="sc">|&gt;</span> </span>
+<span id="cb39-3"><a href="" aria-label="3"></a>  <span class="fu">relocate</span>(anciennete, <span class="at">.after =</span> date1) <span class="ot">-&gt;</span> Journals</span>
+<span id="cb39-4"><a href="" aria-label="4"></a></span>
+<span id="cb39-5"><a href="" aria-label="5"></a><span class="co"># Vérification</span></span>
+<span id="cb39-6"><a href="" aria-label="6"></a>Journals <span class="sc">|&gt;</span> </span>
+<span id="cb39-7"><a href="" aria-label="7"></a>  <span class="fu">names</span>()</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "title"      "pub"        "society"    "libprice"   "pages"     
  [6] "charpp"     "citestot"   "date1"      "anciennete" "oclc"      
@@ -1760,20 +1757,20 @@ Une entrée BibTeX pour les utilisateurs LaTeX est
 </div>
 </div>
 <p><br> On aurait également pu obtenir le même résultat avec le paramètre <code>.before</code></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="" aria-label="1"></a>Journals <span class="sc">|&gt;</span> </span>
-<span id="cb39-2"><a href="" aria-label="2"></a>  <span class="fu">relocate</span>(anciennete, <span class="at">.before =</span> oclc) <span class="ot">-&gt;</span> Journals</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="" aria-label="1"></a>Journals <span class="sc">|&gt;</span> </span>
+<span id="cb41-2"><a href="" aria-label="2"></a>  <span class="fu">relocate</span>(anciennete, <span class="at">.before =</span> oclc) <span class="ot">-&gt;</span> Journals</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section class="slide level3">
 
 <h4 id="modification-du-nom-des-colonnes-avec-rename">Modification du nom des colonnes avec <code>rename()</code></h4>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="" aria-label="1"></a><span class="co"># On renomme la colonne 'pub' en 'publisher'</span></span>
-<span id="cb40-2"><a href="" aria-label="2"></a>Journals <span class="sc">|&gt;</span></span>
-<span id="cb40-3"><a href="" aria-label="3"></a>  dplyr<span class="sc">::</span><span class="fu">rename</span>(<span class="at">publisher =</span> pub) <span class="ot">-&gt;</span> Journals</span>
-<span id="cb40-4"><a href="" aria-label="4"></a></span>
-<span id="cb40-5"><a href="" aria-label="5"></a><span class="co"># Vérification : affichage du nom des colonnes</span></span>
-<span id="cb40-6"><a href="" aria-label="6"></a>Journals <span class="sc">|&gt;</span> </span>
-<span id="cb40-7"><a href="" aria-label="7"></a>  <span class="fu">names</span>()</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="" aria-label="1"></a><span class="co"># On renomme la colonne 'pub' en 'publisher'</span></span>
+<span id="cb42-2"><a href="" aria-label="2"></a>Journals <span class="sc">|&gt;</span></span>
+<span id="cb42-3"><a href="" aria-label="3"></a>  dplyr<span class="sc">::</span><span class="fu">rename</span>(<span class="at">publisher =</span> pub) <span class="ot">-&gt;</span> Journals</span>
+<span id="cb42-4"><a href="" aria-label="4"></a></span>
+<span id="cb42-5"><a href="" aria-label="5"></a><span class="co"># Vérification : affichage du nom des colonnes</span></span>
+<span id="cb42-6"><a href="" aria-label="6"></a>Journals <span class="sc">|&gt;</span> </span>
+<span id="cb42-7"><a href="" aria-label="7"></a>  <span class="fu">names</span>()</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "title"      "publisher"  "society"    "libprice"   "pages"     
  [6] "charpp"     "citestot"   "date1"      "anciennete" "oclc"      
@@ -1787,7 +1784,7 @@ Une entrée BibTeX pour les utilisateurs LaTeX est
 <section id="à-vous-de-jouer-1" class="title-slide slide level2 purplewhite-text center scrollable" data-background-color="#222251">
 <h2><svg aria-hidden="true" role="img" viewbox="0 0 576 512" style="height:1em;width:1.12em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M64 112c-8.8 0-16 7.2-16 16V384c0 8.8 7.2 16 16 16H512c8.8 0 16-7.2 16-16V128c0-8.8-7.2-16-16-16H64zM0 128C0 92.7 28.7 64 64 64H512c35.3 0 64 28.7 64 64V384c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128zM176 320H400c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16H176c-8.8 0-16-7.2-16-16V336c0-8.8 7.2-16 16-16zm-72-72c0-8.8 7.2-16 16-16h16c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16H120c-8.8 0-16-7.2-16-16V248zm16-96h16c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16H120c-8.8 0-16-7.2-16-16V168c0-8.8 7.2-16 16-16zm64 96c0-8.8 7.2-16 16-16h16c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16H200c-8.8 0-16-7.2-16-16V248zm16-96h16c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16H200c-8.8 0-16-7.2-16-16V168c0-8.8 7.2-16 16-16zm64 96c0-8.8 7.2-16 16-16h16c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16H280c-8.8 0-16-7.2-16-16V248zm16-96h16c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16H280c-8.8 0-16-7.2-16-16V168c0-8.8 7.2-16 16-16zm64 96c0-8.8 7.2-16 16-16h16c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16H360c-8.8 0-16-7.2-16-16V248zm16-96h16c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16H360c-8.8 0-16-7.2-16-16V168c0-8.8 7.2-16 16-16zm64 96c0-8.8 7.2-16 16-16h16c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16H440c-8.8 0-16-7.2-16-16V248zm16-96h16c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16H440c-8.8 0-16-7.2-16-16V168c0-8.8 7.2-16 16-16z"></path></svg> À VOUS DE JOUER !</h2>
 <div id="exr-seance1_2" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercice 2</strong></span> On se place toujours dans le projet <strong><code>VisuR_exercices</code></strong> et on utilise les fonctions du <code>tidyverse</code></p>
+<p><span class="theorem-title"><strong>Exercice 2</strong></span> On se place toujours dans le projet <strong><code>VisuR_exercices</code></strong> et le fichier <em>01_Exercices_VisuR.R</em>, et on utilise les fonctions du <code>tidyverse</code></p>
 <ol type="1">
 <li>Importer les données du fichier <code>communes.csv</code> dans un objet <code>communes</code></li>
 <li>Quel est le type de cet objet et sa structure (nombre de lignes et de colonnes) ?</li>
@@ -1798,53 +1795,6 @@ Une entrée BibTeX pour les utilisateurs LaTeX est
 <li>Afficher la colonne commune et toutes celles qui commencent par “surface_”</li>
 </ol>
 </div>
-<!-- ##     {background-color="#222251" .unlisted .unnumbered .purple-text} -->
-<!-- :::{#sol-seance1_2} -->
-<!-- Ces commandes sont à écrire dans le script créé dans l'exercice 1. -->
-<!-- ```{r} -->
-<!-- #| label: exr12 -->
-<!-- #| eval: false -->
-<!-- #| code-fold: true -->
-<!-- #   ____________________________________________________________________________ -->
-<!-- #   01. Import des données                                                  #### -->
-<!-- #   Le fichier csv est dans le dossier 'data' -->
-<!-- #   Les colonnes sont séparées par un ';' et les décimales par une ',' -> on peut utiliser read_csv2 -->
-<!-- readr::read_csv2("data/communes.csv") -> communes -->
-<!-- #   ____________________________________________________________________________ -->
-<!-- #   02. Type et structure de 'communes'                                     #### -->
-<!-- class(communes) -->
-<!-- # ==>  L'objet 'communes' est de type tibble. Il contient 84 lignes et 16 colonnes -->
-<!-- #   ____________________________________________________________________________ -->
-<!-- #   03. Transformer la variable `CODGEO`en variable caractères              #### -->
-<!-- communes <- communes |>  -->
-<!--   mutate(CODGEO = as.character(CODGEO)) -->
-<!-- #   ____________________________________________________________________________ -->
-<!-- #   04. Nombre de communes et d'années distinctes                           #### -->
-<!-- communes |>  -->
-<!--   distinct(commune) -->
-<!-- # ==>  Il y a 28 communes différentes -->
-<!-- communes |>  -->
-<!--   distinct(annee) -->
-<!-- # ==>  Il y a trois années différentes : 2018, 2020 et 2022 -->
-<!-- #   ____________________________________________________________________________ -->
-<!-- #   05. Affichage des observations de l'année 2018                          #### -->
-<!-- communes |> -->
-<!--   filter(annee == 2018) -->
-<!-- # ==>  Si l'on filtre les observations de l'année 2018, on n'affiche que 28 observations -->
-<!-- #   ____________________________________________________________________________ -->
-<!-- #   06. Création de la variable 'surface'                                   #### -->
-<!-- communes <- communes |>  -->
-<!--   mutate(surface = surface_urbaine + surface_verte) |>  -->
-<!--   # positionnement avant la variable 'surface_urbaine' -->
-<!--   relocate(surface, .before = surface_urbaine) -->
-<!-- #   ____________________________________________________________________________ -->
-<!-- #   07. Affichage de la colonne 'commune' et des colonnes "surface_"        #### -->
-<!-- communes |>  -->
-<!--   select(commune, starts_with("surface_")) -->
-<!-- ``` -->
-<!-- ::: -->
-<!-- #      Séance 2.  {.theme-seance} -->
-<!-- ##     Objectifs pédagogiques -->
 </section>
 </section>
 <section>

@@ -5,9 +5,9 @@ author:
   name: Sandrine LYSER
   email: sandrine.lyser@inrae.fr
 author-meta: "Sandrine LYSER"
-subtitle: "Dernière mise à jour : 28 sept. 2026"
+subtitle: "Dernière mise à jour : 02 oct. 2026"
 date-meta: "oct.-nov. 2026"
-date-update: 2026-09-28
+date-update: 2026-10-02
 footer: "Visualisation avec R | BUT 3A Sciences des données | Année universitaire 2026-2027"
 title-slide-attributes: 
   data-footer: "-- Diffusé sous licence CC BY-NC-SA 4.0 --"
@@ -94,7 +94,7 @@ Premiers graphiques [[{ggplot2}]{.pkg}](https://ggplot2.tidyverse.org/){target="
 Transformation des données et approfondissements  [[{ggplot2}]{.pkg}](https://ggplot2.tidyverse.org/){target="_blank"}
 
 3. Vendredi 09 octobre 2026 (4h30)  
-Visualisations avancées et mini-projet
+Visualisations avancées
 
 4. Vendredi 02 novembre (2h)  
 Évaluation finale (1h30)  
@@ -165,7 +165,7 @@ descriptions <- c("Identifiant unique de la commune"
                , "Surface urbaine -- bâti, routes, zones d'activité -- (ha)"
                , "Surface d'espaces verts -- parcs, jardins, forêts, espaces naturels -- (ha)"
                , "Part d'espaces verts dans la surface totale (%)"
-               , "Émissions de CO2 par habitant (tonnes eq. CO2/hab/an)emis_co2_hab"
+               , "Émissions de CO2 par habitant (tonnes eq. CO2/hab/an)"
                , "Émissions totales de CO2 (milliers de tonnes eq. CO2)"
                , "Part des émissions dues aux transports (%)"
                , "Part des émissions dues au résidentiel (%)")
@@ -237,7 +237,7 @@ descriptions <- c("Identifiant unique de la commune"
                , "Surface urbaine -- bâti, routes, zones d'activité -- (ha)"
                , "Surface d'espaces verts -- parcs, jardins, forêts, espaces naturels -- (ha)"
                , "Part d'espaces verts dans la surface totale (%)"
-               , "Émissions de CO2 par habitant (tonnes eq. CO2/hab/an)emis_co2_hab"
+               , "Émissions de CO2 par habitant (tonnes eq. CO2/hab/an)"
                , "Émissions totales de CO2 (milliers de tonnes eq. CO2)"
                , "Part des émissions dues aux transports (%)"
                , "Part des émissions dues au résidentiel (%)")
@@ -389,26 +389,6 @@ Deux notions à distinguer
 - des informations nécessaires à l'interprétation (tableaux, graphiques)
 :::::
 
-<!-- ###    Reproductibilité & principes FAIR -->
-
-<!-- **Une analyse peut être reproductible sans que toutes les données soient publiques ** -->
-
-<!-- L'ouverture des données est souhaitable mais elle n'est pas toujours possible (données confidentielles, soumises à une restriction d'accès, protégées par une licence), mais il est néanmoins possible de partager  -->
-
-<!-- - le code -->
-<!-- - la description des données -->
-<!-- - les métadonnées -->
-<!-- - les étapes de traitement -->
-<!-- - un jeu de données anonymisé ou fictif -->
-<!-- - les instructions d'accès aux données -->
-
-<!-- pour répondre aux principes **FAIR** (_Findable_, _Accessible_, _Interoperable_, _Reusable_), qui visent à rendre les données faciles à trouver, accessibles, interopérables entre humains et machines, et réutilisables -->
-
-
-<!-- :::{.callout-note appearance="simple"} -->
-<!-- Ces principes s'appliquent surtout aux données de la recherche mais ils sont applicables à d'autres ressources numériques, comme les logiciels par exemple -->
-<!-- ::: -->
-
 ##     Comment travailler de façon reproductible avec R/RStudio ?  {.theme-section1}
 
 ###    Les projets [RStudio]{.softw}
@@ -423,10 +403,10 @@ Les projets [RStudio]{.softw} sont utiles pour
 
 :::{.callout-note title="Chemins absolus/relatifs"}
 - Le chemin absolu est exprimé par rapport au disque dur, à l'ordinateur  
-*Exemple* : `C:/Users/...`
+_Exemple_ : `C:/Users/...`
 
 - Le chemin relatif est exprimé par rapport au projet  
-*Exemple* : `data/mon_fichier.csv`
+_Exemple_ : `data/mon_fichier.csv`
 
 `r fontawesome::fa("lightbulb", fill = "#A626A4")` **Le répertoire par défaut du projet est le dossier où est enregistré le projet sur votre machine** 
 :::
@@ -487,10 +467,10 @@ Cliquez sur `New Project > New Directory > New Project` et complétez les inform
 **Quand le projet est créé**
 
 - [RStudio]{.softw} redémarre et se place dans ce projet
-- le projet apparaît dans l'onglet *Files* de [RStudio]{.softw}
+- le projet apparaît dans l'onglet _Files_ de [RStudio]{.softw}
 
 `r fontawesome::fa("lightbulb", fill = "#A626A4")` **Pour ranger efficacement les différents documents liés à l'analyse, vous pouvez créer les sous-dossiers**  
-- soit en cliquant sur `New Folder` dans le menu en haut de l'onglet *Files*  
+- soit en cliquant sur `New Folder` dans le menu en haut de l'onglet _Files_  
 - soit de façon classique, à partir de l'explorateur de fichier de votre machine
 :::
 
@@ -550,11 +530,11 @@ Cliquez sur `New Project > New Directory > New Project` et complétez les inform
 
 :::{.callout-tip appearance="simple"}
 - Pour les **variables**, utiliser un **nom**  
-*Exemple* : `temperature_max`
+_Exemple_ : `temperature_max`
 - Pour les **fonctions**, utiliser un **verbe**  
-*Exemple* : `create.map` serait une fonction qui permettrait de créer une carte
+_Exemple_ : `create.map` serait une fonction qui permettrait de créer une carte
 - Pour **distinguer variables d'origine / variables recodées**, on peut utiliser un préfixe ou un suffixe  
-*Exemple* : `age` est la variable d'origine et `age_recod` est la variable recodée
+_Exemple_ : `age` est la variable d'origine et `age_recod` est la variable recodée
 :::
 
 ---
@@ -564,7 +544,7 @@ Il existe différentes conventions
 
 - **`allowercase`** : tout en minuscule, sans séparateur
 - **`period.separated`** : tout en minuscule, mots séparés par des points
-- **`underscore_separated`** : tout en minuscule, mots séparés par un *underscore* (`_`)
+- **`underscore_separated`** : tout en minuscule, mots séparés par un _underscore_ (`_`)
 - **`lowerCamelCase`** : première lettre des mots en majuscule, à l'exception du premier mot ; et si nom simple, tout en minuscule
 - **`UpperCamelCase`** : première lettre des mots en majuscule, y compris le premier et même lorsque le nom est composé d'un seul mot
 
@@ -593,7 +573,7 @@ Il existe différentes conventions
 :::{.callout-tip title="Comment nommer ses scripts ?"}
 - Une "bonne" pratique consiste à utiliser la structure `numero_nom_millesime.extension`  
 - Le nom ne doit contenir ni caractères spéciaux (``-.,;:\/$^`) ni caractères accentués  
-*Exemple* : `01_import_donnees_20250606.R` ; `02_nettoyage_donnees_20250610.R` ; `03_analyses_univariees_20250701.R`
+_Exemple_ : `01_import_donnees_20250606.R` ; `02_nettoyage_donnees_20250610.R` ; `03_analyses_univariees_20250701.R`
 :::
 
 :::{.callout-note title="Ressources sur le processus d'analyse et de communication des données reproductibles"}
@@ -643,7 +623,7 @@ packages_utilises <- sessionInfo()
 :::
 ::::
 
-3.   **Structurer** en parties et sous-parties, facilement grâce à l'*addin* `strcode`  
+3.   **Structurer** en parties et sous-parties, facilement grâce à l'_addin_ `strcode`  
 
 ::::{.columns}
 :::{.column width="47%"}
@@ -682,7 +662,7 @@ filter(Journals, field == "Econometrics")
 **Avantages**
 
 - Évite les conflits si plusieurs packages ont une fonction avec le même nom (mais des paramètres différents)  
-*Exemple*  la fonction `filter()` existe dans les packages [{stats}]{.pkg} et [{dplyr}]{.pkg}
+_Exemple_ : la fonction `filter()` existe dans les packages [{stats}]{.pkg} et [{dplyr}]{.pkg}
 - Identifie le package d'où provient une fonction
 - Ne charge pas la totalité d'un package pour n'utiliser qu'une seule de ses fonctions
 :::
@@ -692,7 +672,7 @@ filter(Journals, field == "Econometrics")
 :::{.callout-tip title="Aide pour écrire les scripts"}
 `r fontawesome::fa("gears", fill = "#A626A4")` Activer les options de diagnostic pour signaler les erreurs dans les scripts sous [RStudio]{.softw} : `Tools > Global Options > Code > Diagnostics`
 
-![](img/screenshot_diagnostic_script2.png){width="100%" fig-align="center" fig-alt="Diagnostic de script."}
+![](img/screenshot_diagnostic_script.png){width="100%" fig-align="center" fig-alt="Diagnostic de script."}
 
 `r fontawesome::fa("r-project", fill = "#A626A4")` package [[{styler}](https://github.com/r-lib/styler){target="_blank"}]{.pkg} : mettre en forme le code selon le [Tidyverse Style Guide](https://style.tidyverse.org/index.html){target="_blank"} (ou selon son propre style)  
 
@@ -775,7 +755,7 @@ citation("ggplot2")
 04. Sous [RStudio], créer un projet nommé **`VisuR_exercices`**
 05. Créer les dossiers nécessaires pour une bonne structuration de votre travail
 06. Déposer le fichier `communes.csv` dans le dossier adéquat de votre projet
-07. Dans votre projet [RStudio], créer un script [R] nommé **`Exercices_VisuR.R`**, qui servira pour les exercices à venir, durant lesquels vous aurez besoin des packages `{readr}`, `{dplyr}` et `{ggplot2}` 
+07. Dans votre projet [RStudio], créer un script [R] nommé **`01_Exercices_VisuR.R`**, qui servira pour les exercices à venir, durant lesquels vous aurez besoin des packages `{readr}` et `{dplyr}` 
 08. Commencer l'écriture de ce script avec ces premiers éléments
 :::
 
@@ -784,7 +764,7 @@ citation("ggplot2")
 ###    Présentation générale et installation
 
 - **Ensemble de packages reprenant des opérations courantes de [R]{.softw}, qui partagent une même philosophie et syntaxe pour travailler ensemble et faciliter, la manuipulation, l'analyse et la visualisation des données**  
-- L'accent est mis sur la lisibilité et la chaîne d'opérations, via l'opérateur *pipe* `|>`  
+- L'accent est mis sur la lisibilité et la chaîne d'opérations, via l'opérateur _pipe_ `|>`  
 `r fontawesome::fa("angles-right", fill = "#A626A4")` code dans l'ordre logique des étapes, moins d'objets intermédiaires et de parenthèses imbriquées que dans la syntaxe [R]{.softw} de base  
 
 `r fontawesome::fa("gears", fill = "#A626A4")` La commande `install.packages("tidyverse")` installe simultanément plusieurs packages
@@ -805,7 +785,7 @@ citation("ggplot2")
 :::{.column width="47%"}
   + [[{readr}]{.pkg}](https://readr.tidyverse.org/){target="_blank"} : import de données
   + [[{stringr}]{.pkg}](https://stringr.tidyverse.org/){target="_blank"} : manipulation des chaînes de caractères
-  + [[{tibble}]{.pkg}](https://tibble.tidyverse.org/){target="_blank"} : version modernisée des *dataframes*, plus pratiques à utiliser que les *dataframes* "classiques"
+  + [[{tibble}]{.pkg}](https://tibble.tidyverse.org/){target="_blank"} : version modernisée des _dataframes_, plus pratiques à utiliser que les _dataframes_ "classiques"
   + [[{tidyr}]{.pkg}](https://tidyr.tidyverse.org/){target="_blank"} : nettoyage, remise en forme des données
 :::
 ::::
@@ -817,7 +797,7 @@ citation("ggplot2")
 
 ---
 
-####   L'opérateur *pipe*
+####   L'opérateur _pipe_
 
 - Opérateur qui permet d'enchaîner des opérations : il prend la sortie d'une fonction (ou d'une expression) et la passe automatiquement comme **premier** argument à la fonction suivante
 - Initialement fourni dans le package [{magrittr}](https://magrittr.tidyverse.org/){target="_blank"} et noté `%>%`
@@ -848,13 +828,13 @@ fonction3(fonction2(fonction1(data)))
 ####   Les *tibbles*
 
 - **Version modernisée des _dataframes_**, proposée dans le cadre du [`tidyverse`](https://www.tidyverse.org/){target="_blank"}
-- Plus pratiques à utiliser que les *dataframes* "classiques"
-- Plus rapides à manipuler (et plus stables) que les *dataframes*
+- Plus pratiques à utiliser que les _dataframes_ "classiques"
+- Plus rapides à manipuler (et plus stables) que les _dataframes_
 - Il est possible de convertir d'un type à l'autre
-  + *dataframe* $\rightarrow$ *tibble* : avec la fonction `as_tibble()` du package [{tibble}](https://tibble.tidyverse.org/){target="_blank"}
-  + *tibble* $\rightarrow$ *dataframe* : avec la fonction **R** de base `as.data.frame()`
+  + _dataframe_ $\rightarrow$ *tibble* : avec la fonction `as_tibble()` du package [{tibble}](https://tibble.tidyverse.org/){target="_blank"}
+  + *tibble* $\rightarrow$ _dataframe_ : avec la fonction **R** de base `as.data.frame()`
 
-`r fontawesome::fa("r-project", fill = "#A626A4")` Pour connaître le type d'objet et savoir si on a u n_dataframe_ ou un _tibble_, on peut utiliser la fonction `str()`
+`r fontawesome::fa("r-project", fill = "#A626A4")` Pour connaître le type d'objet et savoir si on a un _dataframe_ ou un _tibble_, on peut utiliser la fonction `str()`
 
 ---
 
@@ -883,7 +863,7 @@ Journals |>
 ::::
 
 ::::{.content-visible when-format="pdf"}
-####   Aperçu des formats {.unlisted .unnumbered}
+#####  Aperçu des formats {.unlisted .unnumbered}
 **_dataframe_**
 ```{r}
 #| label: dataframepdf
@@ -987,8 +967,8 @@ La fonction en langage [R]{.softw} de base `read.csv2()` a les mêmes paramètre
   + `relocate()` : changer l'ordre d'une colonne
   + `rename()` : changer le nom des variables
 
-::: {.callout-note title="Aide-mémoire des principales fonctions du package [{dplyr}]{.pkg}"}
-`r fontawesome::fa("r-project", fill = "#A626A4")` [*Cheatsheet*](https://rstudio.github.io/cheatsheets/data-transformation.pdf){target="_blank"}
+:::{.callout-note title="Aide-mémoire des principales fonctions du package [{dplyr}]{.pkg}"}
+`r fontawesome::fa("r-project", fill = "#A626A4")` [_Cheatsheet_](https://rstudio.github.io/cheatsheets/data-transformation.pdf){target="_blank"}
 :::
 
 ---
@@ -1029,7 +1009,7 @@ Journals |>
 
 ---
 
-::: {.callout-note title="Opérateurs logiques les plus courants"}
+:::{.callout-note title="Opérateurs logiques les plus courants"}
 
 | **Opérateur** | **Description**                 |
 |:--------------|:--------------------------------|
@@ -1070,13 +1050,41 @@ Journals |>
 
 #####  Une seule colonne
 
+:::::{.columns}
+::::{.column width="47%"}
 ```{r, output.lines=10}
 #| label: select
 
-# Sélection de la variable "pub"
+# Sélection de la variable 'pub'
 Journals |>
   dplyr::select(pub)
 ```
+::::
+
+::::{.column width="6%"}
+<!-- colonne vide pour espacer les 2 colonnes de texte -->
+::::
+
+::::{.column width="47%"}
+:::{.callout-tip appearance="simple"}
+On peut également utiliser la fonction `pull()` pour sélectionner une (et une seule) colonne
+
+```{r, output.lines=10}
+#| label: pull
+
+# Sélection de la variable 'pub'
+Journals |>
+  dplyr::pull(pub)
+```
+
+- Quelle différence avec `select()` ?  
+Le format de sortie est différent :  
+  + la fonction `select()` renvoie la colonne sous forme de _dataframe_
+  + la fonction `pull()` renvoie une colonne sous forme de vecteur
+
+:::
+::::
+:::::
 
 ---
 
@@ -1113,7 +1121,7 @@ Journals |>
 :::
 ::::
 
-::::: {.callout-tip appearance="simple"}
+:::::{.callout-tip appearance="simple"}
 
 ::::{.columns}
 :::{.column width="47%"}
@@ -1157,7 +1165,7 @@ Journals |>
 ```{r, output.lines=4}
 #| label: mutate
 
-# Ajout de la variable "anciennete"
+# Ajout de la variable 'anciennete'
 Journals |>
   mutate(anciennete = 2026 - date1) -> Journals
 
@@ -1181,7 +1189,7 @@ names(Journals)
 ```{r, output.lines=4}
 #| label: mutateNULL
 
-# Suppression de la variable "charpp"
+# Suppression de la variable 'charpp'
 Journals |>
   mutate(charpp = NULL) |>
   names()
@@ -1268,7 +1276,7 @@ Journals |>
 <!-- EXERCICE 2. -->
 ##     `r fontawesome::fa("keyboard")` À VOUS DE JOUER ! {background-color="#222251" .purplewhite-text}
 :::{#exr-seance1_2}
-On se place toujours dans le projet **`VisuR_exercices`** et on utilise les fonctions du `tidyverse`
+On se place toujours dans le projet **`VisuR_exercices`** et le fichier *01_Exercices_VisuR.R*, et on utilise les fonctions du `tidyverse`
 
 01. Importer les données du fichier `communes.csv` dans un objet `communes`
 02. Quel est le type de cet objet et sa structure (nombre de lignes et de colonnes) ?
