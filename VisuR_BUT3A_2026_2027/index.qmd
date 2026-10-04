@@ -16,8 +16,6 @@ title-slide-attributes:
 # \pagebreak 
 # avant la section Introduction uniquement pour le format PDF
 ---
-\thispagestyle{firstpage}
-\pagebreak 
 
 # {.unlisted .unnumbered}
 
