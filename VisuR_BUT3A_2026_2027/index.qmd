@@ -16,6 +16,8 @@ title-slide-attributes:
 # \pagebreak 
 # avant la section Introduction uniquement pour le format PDF
 ---
+\thispagestyle{firstpage}
+\pagebreak 
 
 # {.unlisted .unnumbered}
 
@@ -759,6 +761,58 @@ citation("ggplot2")
 08. Commencer l'écriture de ce script avec ces premiers éléments
 :::
 
+##     {background-color="#222251" .unlisted .unnumbered .purple-text}
+:::::{#sol-seance1_1}
+
+::::{.columns}
+:::{.column width = "47%"}
+**Proposition de structuration du projet**
+```md
+VisuR_exercices/
+├── data/
+│   ├── sources/
+│   │   └── communes.csv
+│   └── produites/
+├── scripts/
+│   └── 01_Exercices_VisuR.R
+├── figures/
+├── results/
+├── README.md
+└── VisuR_exercices.Rproj
+```
+:::
+
+:::{.column width = "6%"}
+:::
+
+:::{.column width = "47%"}
+**Script 01_Exercices_VisuR.R**
+```{r}
+#| label: exr11
+#| eval: false
+#| code-fold: true
+
+#   ____________________________________________________________________________
+#   Script : Script pour les exercices "VisuR"
+#   Auteur : Sandrine Lyser
+#   Date   : 02 oct. 2026
+#   Dernière modification : sys.date()
+#   Text encoding : UTF-8
+#   R version : R version 4.6.0 (2026-04-24 ucrt) -- "Because it was There"
+#   ____________________________________________________________________________
+
+#   ____________________________________________________________________________
+#   Packages                                                                ####
+
+library(readr)    # v2.2.0
+library(dplyr)    # v1.2.1
+
+```
+:::
+::::
+
+:::::
+
 ##     L'univers du `tidyverse` {.theme-section1}
 
 ###    Présentation générale et installation
@@ -831,8 +885,8 @@ fonction3(fonction2(fonction1(data)))
 - Plus pratiques à utiliser que les _dataframes_ "classiques"
 - Plus rapides à manipuler (et plus stables) que les _dataframes_
 - Il est possible de convertir d'un type à l'autre
-  + _dataframe_ $\rightarrow$ *tibble* : avec la fonction `as_tibble()` du package [{tibble}](https://tibble.tidyverse.org/){target="_blank"}
-  + *tibble* $\rightarrow$ _dataframe_ : avec la fonction **R** de base `as.data.frame()`
+  + _dataframe_ $\rightarrow$ _tibble_ : avec la fonction `as_tibble()` du package [{tibble}](https://tibble.tidyverse.org/){target="_blank"}
+  + _tibble_ $\rightarrow$ _dataframe_ : avec la fonction **R** de base `as.data.frame()`
 
 `r fontawesome::fa("r-project", fill = "#A626A4")` Pour connaître le type d'objet et savoir si on a un _dataframe_ ou un _tibble_, on peut utiliser la fonction `str()`
 
@@ -1283,8 +1337,609 @@ On se place toujours dans le projet **`VisuR_exercices`** et le fichier *01_Exer
 03. La variable `CODGEO` est un code. Transformer en variable caractère avec la fonction `as.character()` 
 04. Combien de communes distinctes y a-t'il dans `communes` ? et combien d'années ? 
 05. Filtrer les données pour n'afficher que les observations de l'année 2018
-06. Créer la variable `surface = surface_urbaine + surface_verte` dans votre jeu de données. elle doit se trouver avant la variable `surface_urbaine`
+06. Créer la variable `surface = surface_urbaine + surface_verte` dans votre jeu de données. Elle doit se trouver avant la variable `surface_urbaine`
 07. Afficher la colonne commune et toutes celles qui commencent par "surface_"
+:::
+
+##     {background-color="#222251" .unlisted .unnumbered .purple-text}
+:::{#sol-seance1_2}
+
+Ces commandes sont à écrire dans le script *01_Exercices_VisuR.R* créé dans l'exercice 1.
+```{r}
+#| label: exr12
+#| eval: false
+#| code-fold: true
+
+#   ____________________________________________________________________________
+#   01. Import des données                                                  ####
+
+#   Le fichier csv est dans le dossier 'data'
+#   Les colonnes sont séparées par un ';' et les décimales par une ',' -> on peut utiliser read_csv2
+readr::read_csv2("data/communes.csv") -> communes
+
+
+#   ____________________________________________________________________________
+#   02. Type et structure de 'communes'                                     ####
+
+class(communes)
+# ==>  L'objet 'communes' est de type tibble. Il contient 84 lignes et 16 colonnes
+
+
+#   ____________________________________________________________________________
+#   03. Transformer la variable `CODGEO`en variable caractères              ####
+communes <- communes |>
+  mutate(CODGEO = as.character(CODGEO))
+
+
+#   ____________________________________________________________________________
+#   04. Nombre de communes et d'années distinctes                           ####
+communes |>
+  distinct(commune)
+# ==>  Il y a 28 communes différentes
+
+communes |>
+  distinct(annee)
+# ==>  Il y a trois années différentes : 2018, 2020 et 2022
+
+
+#   ____________________________________________________________________________
+#   05. Affichage des observations de l'année 2018                          ####
+communes |>
+  filter(annee == 2018)
+# ==>  Si l'on filtre les observations de l'année 2018, on n'affiche que 28 observations
+
+#   ____________________________________________________________________________
+#   06. Création de la variable 'surface'                                   ####
+communes <- communes |>
+  mutate(surface = surface_urbaine + surface_verte) |>
+  # positionnement avant la variable 'surface_urbaine'
+  relocate(surface, .before = surface_urbaine)
+
+#   ____________________________________________________________________________
+#   07. Affichage de la colonne 'commune' et des colonnes "surface_"        ####
+communes |>
+  select(commune, starts_with("surface_"))
+```
+:::
+
+#      Séance 2. Premiers graphiques avec {ggplot2} {.theme-seance}
+
+##     Objectifs pédagogiques
+
+À l'issue de cette séance, vous serez capable de
+
+- comprendre la logique de [{ggplot2}]{.pkg}
+- transformer les données dans un format adapté pour les graphiques
+
+##     Visualisations graphiques avec {ggplot2} {.theme-section1}
+
+###    Le package [[{ggplot2}]{.pkg}](https://ggplot2.tidyverse.org/){target="_blank"}
+Ce package produit des graphiques en utilisant une grammaire particulière (*grammar of graphics*)
+
+::::::{.content-visible unless-format="pdf"}
+
+:::::{.columns}
+::::{.column width="47%"}
+- **Installation**
+```r 
+install.packages("ggplot2")
+```
+- **Chargement**
+```r
+library(ggplot2)
+```
+- **Création d'un graphique**  
+Le principe consiste à initialiser un graphique avec la commande `ggplot()` puis à construire le graphique, couche par couche avec le signe `+`
+```r
+ggplot(data = dataframe,
+       aes = (...)) +
+       geom_*(...) +
+       ...
+```
+::::
+
+::::{.column width="6%"}
+<!-- colonne vide pour espacer les 2 colonnes de texte -->
+::::
+
+::::{.column width="47%"}
+![](img/ggplot_gallery.png){fig-align="center" fig-alt="Exemples de graphiques ggplot2."}
+<center>Source : <https://r-charts.com/ggplot2/>{target="_blank"}</center>
+
+:::{.callout-note appearance="simple"}
+- Le système de création des graphiques est basé sur *The Grammar of Graphics* [@Wilkinson1999; -@Wilkinson2005]
+- **L'idée est de décomposer la construction d'un graphique en plusieurs éléments, que l'on appelle _layers_ (couches, en français)**
+:::
+::::
+:::::
+::::::
+
+::::::{.content-visible when-format="pdf"}
+- **Installation**
+```r
+install.packages("ggplot2")
+```
+- **Chargement**
+```r
+library(ggplot2)
+```
+- **Création d'un graphique**  
+Le principe consiste à initialiser un graphique avec la commande `ggplot()` puis à ajouter des couches permettant de représenter les données et mettre en forme le graphique
+```r
+ggplot(data = dataframe,
+       aes = (x, y)) +
+       ...
+```
+
+Voir le site <https://r-charts.com/ggplot2/>{target="_blank"} pour une galerie de graphiques.
+
+:::{.callout-note appearance="simple"}
+Le système de création des graphiques est basé sur *The Grammar of Graphics* [@Wilkinson1999; -@Wilkinson2005]  
+- **L'idée est de décomposer la construction d'un graphique en plusieurs éléments, que l'on appelle _layers_ (couches, en français)**
+:::
+::::::
+
+###    La grammaire ggplot
+Une structure en 7 _layers_ superposables
+
+![](img/ggplot_layers.png){width="45%" fig-align="center" fig-alt="Couches ggplot."}
+
+<center><p>Source : [ThinkR (2016)](https://thinkr.fr/guide-survie-ggplot2-datajournalistes/){target="_blank"}</p></center>
+
+:::{.callout-note appearance="simple"}
+**A minima : `un graphique = data + aesthetics + geometries`**  
+Les quatre autres _layers_ permettent de paramétrer plus finement le graphique
+:::
+
+###    Construction d'un graphique, couche par couche
+
+1. On initialise le graphique par `ggplot()` puis on associe les données (_dataframe_ ou _tibble_) avec `data` et les attributs esthétiques avec `aes()`
+```{r}
+#| label: aes
+#| eval: true
+#| fig-height: 2
+#| fig-align: center
+#| output-location: column
+
+ggplot(data = Journals) +
+  aes(x = oclc, y = libprice)
+```
+<small>`r fontawesome::fa("circle-exclamation", fill = "#A626A4")` **À ce stade, on visualise le canevas du graphique mais les données ne sont pas encore représentées**</small>  
+2. On ajoute une couche de géométrie pour dessiner les données (= type de graphique)
+```{r}
+#| label: geom
+#| fig-height: 2
+#| fig-align: center
+#| output-location: column
+
+# Nuage de points avec geom_point
+ggplot(data = Journals) +
+  aes(x = oclc, y = libprice) +
+  geom_point()
+```
+<small>`r fontawesome::fa("angles-right", fill = "#A626A4")` **Avec `geom_*()`, les données sont représentées sur le graphique**</small>  
+3. On ajoute ensuite des couches pour ajuster la mise en forme du graphique
+
+---
+
+####   `aes()` : définir les paramètres esthétiques
+On précise quelles variables contrôlent les propriétés visuelles du graphique
+<center>
+
+:::{.small-table}
+
+|**_Aesthetic_** | **Description**                                   |
+|:---------------|:--------------------------------------------------|
+| x              | variable en abscisse                              |
+| y              | variable en ordonnée                              |
+| colour         | couleur du contour (des points, lignes, etc.)     |
+| fill           | couleur de remplissage (des points, formes, etc.) |
+| size           | taille des points, épaisseur des lignes           |
+| alpha          | transparence                                      |
+| linetype       | motif des tirets des lignes                       |
+| shape          | type de formes                                    |
+
+:::
+
+</center>
+
+---
+
+####   `geom_*()` : définir le type de graphique
+
+**Principales geométries**
+
+:::{.small-table}
+
+| **_Geometry_**     | 	**Description** 	  | **Aspects esthétiques**                                                                                                 |
+|:-------------------|:---------------------|:------------------------------------------------------------------------------------------------------------------------|
+| `geom_point()` 	   | Nuage de points      | **x**, **y**, colour, fill, group, shape, size, alpha                                                                   |
+|` geom_bar()` 	     | Diagramme en barres  | **x**, **y**, colour, fill, group, linetype, linewidth, alpha                                                           |
+| `geom_histogram()` | Histogramme 	        | *identiques à `geom_bar()`*                                                                                             |
+| `geom_boxplot()`   | Boîte à moustaches 	| **x** OU **y**, **ymin** OU **xmin**, **ymax** OU **xmax**, colour, fill, group, linetype, linewidth, shape, size, alpha|
+| `geom_density()` 	 | Densité 	            | **x**, **y**, colour, fill, group, linetype, linewidth, alpha                                                           |
+| `geom_line()` 	   | Courbe  	            | **x**, **y**, colour, group, linetype, linewidth, alpha                                                           |
+| `geom_text()` 	   | Texte 	              | **x**, **y**, label, colour, angle, group, hjust, lineheight, size, vjust, alpha                                        |
+| `geom_label()` 	   | Texte                | *identiques à `geom_text()`* + fill                                                                                     |
+
+: Les aspects esthétiques obligatoires sont indiqués en gras
+
+:::
+
+`r fontawesome::fa("lightbulb", fill = "#A626A4")` **Possibilité d'ajouter plusieurs fonctions `geom_*()` sur un même graphique**
+</small>
+
+:::{.callout-note appearance="simple"}
+`r fontawesome::fa("r-project", prefer_type = "solid", fill = "#A626A4")` L'ensemble des fonctions `geom_` est détaillé dans la _cheatsheet_ [{ggplot2}]{.pkg}
+
+- version [![](img\france.png){.center width=5%}](https://rstudio.github.io/cheatsheets/translations/french/data-visualization_fr.pdf){target="_blank"}
+- version [![](img\united-kingdom.png){.center width=5%}](https://rstudio.github.io/cheatsheets/data-visualization.pdf){target="_blank"}
+:::
+
+---
+
+:::{.callout-tip title="Une règle simple à retenir"}
+- **Ce qui se trouve dans `aes()` varie avec les données** = une variable détermine une esthétique
+- **Les esthétiques placées en dehors de `aes()`, dans `geom_*()`, correspondent à un réglage fixe** = une valeur fixe règle l'apparence de la couche `geom_*()`
+
+_Exemples_
+
+```{r}
+#| label: aescolour
+#| fig-height: 3
+#| fig-align: center
+#| output-location: column
+
+# Points colorés selon les valeurs de "society"
+ggplot(data = Journals) +
+  aes(x = oclc, y = libprice,
+      colour = society) +
+  geom_point()
+```
+
+```{r}
+#| label: geomcolor
+#| fig-align: center
+#| fig-height: 3
+#| output-location: column
+
+# Points de couleur verte"
+ggplot(data = Journals) +
+  aes(x = oclc, y = libprice) + 
+  geom_point(color = "#275662")
+```
+:::
+
+---
+
+####   `stat_*()` : effectuer un calcul sur les données avant leur affichage
+
+`r fontawesome::fa("angles-right", fill = "#A626A4")` Ce qui est affiché sur le graphique : comptage, moyenne, etc.
+
+**Principales fonctions**
+
+:::{.small-table}
+
+| ***Fonctions***    | 	**Description** 	                                                                |
+|:-------------------|:-----------------------------------------------------------------------------------|
+| `stat_identity()`  | Données brutes, sans transformation                                                |
+|` stat_count()` 	   | Comptage par modalité d'une variable catégorielle                                  |
+| `stats_bin()`      | Découpage d'une variable continue en classes (_bins_)                              |
+| `stat_summary()`   | Résumé d'une variable pour chaque modalité d'une autre variable                    |
+| `stats_boxplot()`  | Calcul des statistiques de la boîte à moustaches (médiane, quartiles, moustaches)  |
+| `stats_sum()` 	   | Comptage de points superposés                                                      |
+
+:::
+
+_Exemple_
+```{r}
+#| label: statsummary
+#| fig-align: center
+#| fig-height: 3.5
+#| output-location: column
+
+# Affichage sur chaque boxplot 
+# de la moyenne de 'libprice'
+ggplot(data = Journals) +
+  aes(x = society, y = libprice) +
+  geom_boxplot() +
+  stat_summary(geom = "point",
+               fun = "mean",
+               colour = "#A626A4", 
+               shape = 17, 
+               size = 4)
+```
+
+---
+
+####   Équivalences entre `geom_*()` et `stat_*()`
+**Les deux sont souvent interchangeables, c'est une différence de point de vue :**  `geom_*()` priorise la forme graphique (barres, points, lignes) ; `stat_*()` priorise la transformation statistique (comptage, résumé, etc.)  
+
+:::{.callout-tip appearance="minimal"}
+`r fontawesome::fa("angles-right", fill = "#A626A4")` On peut reproduire le graphique précédent avec `geom_point()`
+
+```{r}
+#| label: geompointsummary
+#| fig-align: center
+#| fig-height: 2.5
+#| output-location: column
+
+ggplot(data = Journals) +
+  aes(x = society, y = libprice) +
+  geom_boxplot() +
+  geom_point(stat = "summary",
+             fun = "mean",
+             colour = "#A626A4", shape = 17, size = 4)
+```
+:::
+
+**Principales correspondances**
+
+:::{.small-table}
+
+| **_Geometry_**     | **_Statistics_**  |
+|:-------------------|:------------------|
+| `geom_bar()` 	     | `stat_count()`    |
+| `geom_histogram()` | `stat_bin()`      |
+| `geom_boxplot()`   | `stat_boxplot()`  |
+| `geom_density()` 	 | `stat_density()`  |
+| `geom_quantile()`  | `stat_quantile()` |
+| `geom_count()`     | `stat_sum()`      |
+| `geom_dotplot()`   | `stat_bindot()`   |
+
+:::
+
+###    Éléments de personnalisation des graphiques pour faciliter leur lecture
+
+- `scale_...()` : modifier les attributs liés
+  + aux axes (échelles, limites, titre, format des chiffres par exemple)
+  + aux données représentées (couleurs, etc.)
+- `ggtitle()` : ajouter ou modifier uniquement le titre principal du graphique
+- `xlab()` : modifier uniquement l'intitulé de l'axe des abscisses
+- `ylab()` : modifier uniquement l'intitulé de l'axe des ordonnées
+- `labs(title = ..., subtitle = ..., caption = ..., x = ..., y = ...)` : modifier plusieurs étiquettes (titre, sous-titre, légende, axes) en une seule commande
+
+:::{.callout-tip appearance="simple"}
+Les fonctions `ggtitle()`, `xlab()`, `ylab()` sont pratiques pour de petits ajouts rapides  
+La fonction `labs()` offre plusieurs options de personnalisation des titres et labels, en une seule commande
+:::
+
+<br />
+`r fontawesome::fa("lightbulb", fill = "#A626A4")` **Si certains éléments peuvent être omis pour épurer le graphique sans nuire à sa compréhension (axe des abscisses, cadre, 3D), il est conseillé de faire commencer l'axe des ordonnées à 0**
+
+---
+
+::::{.columns}
+:::{.column width="45%"}
+![Les épaisseurs de lignes](img/linewidths.png){width="48%" fig-alt="Épaisseurs de lignes." }
+
+![Les types de lignes](img/linetypes.png){width="48%" fig-alt="Types de lignes."}
+:::
+
+:::{.column width="10%"}
+<!-- colonne vide pour espacer les 2 colonnes de texte -->
+:::
+
+:::{.column width="45%"}
+![Les symboles de points](img/pchsymbols.png){width="48%" fig-alt="Symboles de points."}
+
+![Les couleurs (package [[{RColorBrewer}]{.pkg})](https://cran.r-project.org/web/packages/RColorBrewer/RColorBrewer.pdf){target="_blank"}](img/Rplotbrewer.png){width="80%" fig-alt="Package RColorBrewer."}
+:::
+
+::::
+
+---
+
+:::{.callout-tip title="Aide pour le choix des couleurs"}
+- **Packages**  
+  `r fontawesome::fa("r-project", prefer_type = "solid", fill = "#A626A4")`  [[{paletteer}]{.pkg}](https://github.com/EmilHvitfeldt/paletteer){target="_blank"} : recense des milliers de palettes (2893) issues de packages différents (79)  
+  `r fontawesome::fa("r-project", prefer_type = "solid", fill = "#A626A4")`  [[{cols4all}]{.pkg}](https://github.com/mtennekes/cols4all){target="_blank"} : une application Shiny pour explorer les palettes, accessibles pour tous, y compris les personnes souffrant d'un déficit de vision des couleurs
+
+  ```r
+  cols4all::c4a_gui()
+  ```
+
+- **Sites**  
+  `r fontawesome::fa("globe", fill = "#A626A4")` Informations sur une couleur : <https://chir.ag/projects/name-that-color/>{target="_blank"}  
+  `r fontawesome::fa("globe", fill = "#A626A4")` Un générateur de palettes de couleurs : <https://coolors.co/>{target="_blank"}  
+  `r fontawesome::fa("globe", fill = "#A626A4")` Des palettes de couleurs prédéfinies : <https://flatuicolors.com/>{target="_blank"}  
+  `r fontawesome::fa("globe", fill = "#A626A4")` Des palettes de couleurs pour la cartographie : <http://colorbrewer2.org>{target="_blank"}
+:::
+
+###    Exemples de graphiques de base avec [[{ggplot2}]{.pkg}](https://ggplot2.tidyverse.org/){target="_blank"}
+
+####   Histogramme
+
+```{r}
+#| label: geomhistogram
+#| fig-align: center
+#| fig-height: 4.5
+
+# Histogramme du nombre total de citations ("citestot")
+ggplot(data = Journals) +
+  aes(x = citestot) +
+  geom_histogram(bins = 10,  # nb de barres (30 par défaut)
+                 fill = "skyblue",  # remplissage des barres
+                 color = "black") + # couleur de la bordure
+  # Ajout du titre et des labels
+  labs(title = "Histogramme du nombre total de citations",
+       x = "citestot",
+       y = "Effectif")
+```
+
+---
+
+####   Boxplot
+
+```{r}
+#| label: geomboxplot
+#| fig-align: center
+#| fig-height: 4.5
+
+# Boxplot du nombre total de citations ("citestot")
+# selon l'appartenance à une société ("society")
+ggplot(data = Journals) +
+  aes(x = society, y = citestot) +
+  geom_boxplot(fill = "purple") +   # couleur des boîtes
+  # Ajout du titre et des labels
+  labs(title = "Boxplot du nombre de citations
+                selon l'appartenance à une société",
+       x = "society",
+       y = "citestot")
+```
+
+---
+
+####   Diagramme en barres
+
+```{r}
+#| label: geombar
+#| fig-align: center
+#| fig-height: 4.5
+
+# Barplot du nombre de revues
+# selon l'appartenance à une société ("society")
+ggplot(data = Journals) +
+  aes(x = society) +
+  geom_bar(fill = "#00a3a6") +   # couleur des barres
+# Ajout du titre et des labels
+  labs(title = "Barplot du nombre de revues 
+                selon l'appartenance à une société",
+       x = "society",
+       y = "Nombre")
+```
+
+###    Exemple de mise en forme plus avancée d'un graphique avec [[{ggplot2}]{.pkg}](https://ggplot2.tidyverse.org/){target="_blank"}
+
+<div class=small-code>
+
+```{r}
+#| label: exggplot
+#| fig-height: 4
+#| fig-align: center
+
+ggplot(data = Journals) +    # initialisation du graphique
+  aes(x = oclc,              # variable en abscisse
+      y = libprice,          # variable en ordonnée
+      colour = society) +    # points colorés selon les valeurs de "society"
+  geom_point(shape = 1,      # type de symbole
+             size = 1.5,     # taille des symboles
+             stroke = 1.5) + # épaisseur de la bordure des symboles
+  scale_x_continuous(limits = c(0, 1000)) + # limites de l'axe des x
+  scale_y_continuous(limits = c(0, 2500),   # limites de l'axe des y
+                     breaks = seq(from = 0, to = 2500, by = 500)) +  # graduations de l'axe des y
+  labs(title = "Exemple de création d'un graphique {ggplot2}",  # titre du graphique
+       subtitle = "Nuage de points du prix de l'abonnement 
+                   selon le nombre d'abonnements",  # sous-titre
+       x = "Nombre d'abonnements",  # titre pour l'axe des x
+       y = "Prix de l'abonnement",  # titre pour l'axe des y
+       caption = "Les points sont colorés selon l'appartenance à une société") # légende
+```
+
+</div>
+
+###    Sauvegarde des graphiques créés avec [[{ggplot2}]{.pkg}](https://ggplot2.tidyverse.org/){target="_blank"}
+
+- Utilisation de la fonction `ggsave()` du package [[{ggplot2}]{.pkg}](https://ggplot2.tidyverse.org/){target="_blank"} à la fin de la création du graphique pour l'enregistrer
+
+```r
+# Sauvegarde du graphique
+ggplot(...) +
+  ...
+ggsave(filename = name.extension,
+       device = NULL)
+```
+
+<br>
+
+:::::{.callout-tip title="Les formats d'enregistrement possibles"}
+
+::::{.columns}
+:::{.column width="47%"}
+- png
+- jpeg
+- tiff
+- bmp
+- svg
+:::
+
+:::{.column width="6%"}
+<!-- colonne vide pour espacer les 2 colonnes de texte -->
+:::
+
+:::{.column width="47%"}
+- eps
+- ps
+- pdf
+- tex
+:::
+::::
+
+:::::
+
+<br>
+
+:::{.callout-note appearance="simple"}
+- Le format du graphique peut être précisé dans le paramètre `device`  
+Si `device = NULL`, le type de graphique est déterminé automatiquement en fonction de l'extension du nom du fichier
+- La taille (`width` et `height`), ainsi que la résolution (`dpi`) peuvent être paramétrées
+:::
+
+
+###    Vous n'êtes pas à l'aise pour réaliser un graphique [[{ggplot2}]{.pkg}](https://ggplot2.tidyverse.org/){target="_blank"} ?
+
+Une interface "clic bouton", avec la possibilité de récupérer les lignes de code, peut vous aider
+`r fontawesome::fa("r-project", prefer_type = "solid", fill = "#A626A4")`  [[{esquisse}]{.pkg}](https://github.com/dreamRs/esquisse){target="_blank"}
+
+- Commande pour lancer [[{esquisse}]{.pkg}](https://github.com/dreamRs/esquisse){target="_blank"}
+```r
+esquisse::esquisser()
+```
+
+::::{.columns}
+:::{.column width="47%"}
+![](img/screenshot_esquisse1.png){fig-align="center" fig-alt="Esquisse - import data."}
+:::
+
+:::{.column width="6%"}
+<!-- colonne vide pour espacer les 2 colonnes de texte -->
+:::
+
+:::{.column width="47%"}
+![](img/screenshot_esquisse2.png){fig-align="center" fig-alt="Esquisse - menus."}
+:::
+::::
+
+###    Un site pour aider à trouver la représentation la plus appropriée aux données
+
+:::{.content-visible unless-format="pdf"}
+```{=html}
+<p align="center"><iframe scrolling= "yes" width = "1000" height = "800" allowfullscreen="TRUE" src="https://www.data-to-viz.com/"></iframe></p>
+<p align="right"><small>Site : <a href=https://www.data-to-viz.com/>from Data to Viz</a></small></p>
+```
+:::
+
+:::{.content-visible when-format="pdf"}
+***Voir le site [from Data to Viz](https://www.data-to-viz.com/){target="_blank"}***
+:::
+
+
+<!-- EXERCICE 2. -->
+##     `r fontawesome::fa("keyboard")` À VOUS DE JOUER ! {background-color="#222251" .purplewhite-text}
+:::{#exr-seance2}
+**Construire des graphiques avec `{ggplot2}` à partir du jeu de données `communes`**
+
+Compléter le script **`01_Exercices_VisuR.R`** du projet **VisuR_exercices** pour créer les graphiques suivants :
+
+1. un diagramme en barres pour visualiser la distribution de la variable 'region'  
+*Pour ce graphique on choisit de colorer les barres en bleu*
+2. un histogramme pour visualiser la distribution de la variable de surface_urbaine pour l'année 2020  
+*Choisir un nombre ou une largeur de classes pertinents pour pouvoir interpréter le graphique*  
+3. un boxplot du taux de chômage selon l'année  
+*Pour ce graphique, on choisit de colorer les boîtes en fonction de l'année*
+4. Sauvegarder ce graphique dans le dossier adéquat, en `png`
+
+`r fontawesome::fa("circle-exclamation", fill = "#FFFFFF")` **Les graphiques doivent comporter toutes les informations utiles (étiquettes) pour faciliter leur compréhension**
 :::
 
 #      Bibliographie {.theme-seance}
@@ -1302,40 +1957,40 @@ knitr::write_bib(c(# séance 1
                    , "tidyr", "magrittr", "readxl", "haven", "openxlsx2"
                    , "writexl", "xlsx", "foreign"
                    # séance 2
+                   , "RColorBrewer", "paletteer", "cols4all", "esquisse"
                    # séances 3 & 4
                    )
                  , "packagesR_2026.bib")
 ```
 
-
 ###    Références citées {.unlisted .unnumbered .smaller}
 <!-- https://github.com/pandoc-ext/multibib -->
-::: {#refs-main}
+:::{#refs-main}
 <!-- Réfs citées dans le texte insérées dans cette section -->
 :::
 
 
-:::: {.content-visible when-format="revealjs"}
+::::{.content-visible when-format="revealjs"}
 ###    Packages {.unlisted .unnumbered .smaller .scroll-container style="overflow-y: scroll;"}
-::: {#refs-packages}
+:::{#refs-packages}
 <!-- Réfs du fichier packagesR_2026.bib insérées dans cette section, sans être citées dans le texte -->
 
 ---
 nocite: |
-  @ggplot22016, @lintr2025, @lubridate2011, @R-dplyr, @R-Ecdat, @R-forcats, @R-foreign, @R-ggplot2, @R-haven, @R-lintr, @R-lubridate, @R-magrittr, @R-openxlsx2, @R-purrr, @R-questionr, @R-readr, @R-readxl, @R-remotes, @R-strcode, @R-stringr, @R-styler, @R-tibble, @R-tidyr, @R-tidyverse, @R-writexl, @R-xlsx, @tidyverse2019
+  @ggplot22016, @lintr2025, @lubridate2011, @R-dplyr, @R-Ecdat, @R-forcats, @R-foreign, @R-ggplot2, @R-haven, @R-lintr, @R-lubridate, @R-magrittr, @R-openxlsx2, @R-purrr, @R-questionr, @R-readr, @R-readxl, @R-remotes, @R-strcode, @R-stringr, @R-styler, @R-tibble, @R-tidyr, @R-tidyverse, @R-writexl, @R-xlsx, @tidyverse2019, @R-RColorBrewer, @R-paletteer, @cols4all2023, R-cols4all, @R-esquisse
 ---
 
 :::
 ::::
 
-:::: {.content-visible unless-format="revealjs"}
+::::{.content-visible unless-format="revealjs"}
 ###    Packages {.unlisted .unnumbered}
-::: {#refs-packages}
+:::{#refs-packages}
 <!-- Réfs du fichier packagesR_2026.bib insérées dans cette section, sans être citées dans le texte -->
 
 ---
 nocite: |
-  @ggplot22016, @lintr2025, @lubridate2011, @R-dplyr, @R-Ecdat, @R-forcats, @R-foreign, @R-ggplot2, @R-haven, @R-lintr, @R-lubridate, @R-magrittr, @R-openxlsx2, @R-purrr, @R-questionr, @R-readr, @R-readxl, @R-remotes, @R-strcode, @R-stringr, @R-styler, @R-tibble, @R-tidyr, @R-tidyverse, @R-writexl, @R-xlsx, @tidyverse2019
+  @ggplot22016, @lintr2025, @lubridate2011, @R-dplyr, @R-Ecdat, @R-forcats, @R-foreign, @R-ggplot2, @R-haven, @R-lintr, @R-lubridate, @R-magrittr, @R-openxlsx2, @R-purrr, @R-questionr, @R-readr, @R-readxl, @R-remotes, @R-strcode, @R-stringr, @R-styler, @R-tibble, @R-tidyr, @R-tidyverse, @R-writexl, @R-xlsx, @tidyverse2019, @R-RColorBrewer, @R-paletteer, @cols4all2023, R-cols4all, @R-esquisse
   
 ---
 
