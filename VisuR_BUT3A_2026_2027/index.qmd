@@ -5,15 +5,15 @@ author:
   name: Sandrine LYSER
   email: sandrine.lyser@inrae.fr
 author-meta: "Sandrine LYSER"
-subtitle: "Dernière mise à jour : 02 oct. 2026"
+subtitle: "Dernière mise à jour : 05 oct. 2026"
 date-meta: "oct.-nov. 2026"
-date-update: 2026-10-02
+date-update: 2026-10-05
 footer: "Visualisation avec R | BUT 3A Sciences des données | Année universitaire 2026-2027"
 title-slide-attributes: 
   data-footer: "-- Diffusé sous licence CC BY-NC-SA 4.0 --"
 # TODO : Mettre 
 # \thispagestyle{firstpage}
-# \pagebreak 
+# \pagebreak
 # avant la section Introduction uniquement pour le format PDF
 ---
 
@@ -403,10 +403,10 @@ Les projets [RStudio]{.softw} sont utiles pour
 
 :::{.callout-note title="Chemins absolus/relatifs"}
 - Le chemin absolu est exprimé par rapport au disque dur, à l'ordinateur  
-_Exemple_ : `C:/Users/...`
+*Exemple* : `C:/Users/...`
 
 - Le chemin relatif est exprimé par rapport au projet  
-_Exemple_ : `data/mon_fichier.csv`
+*Exemple* : `data/mon_fichier.csv`
 
 `r fontawesome::fa("lightbulb", fill = "#A626A4")` **Le répertoire par défaut du projet est le dossier où est enregistré le projet sur votre machine** 
 :::
@@ -530,11 +530,11 @@ Cliquez sur `New Project > New Directory > New Project` et complétez les inform
 
 :::{.callout-tip appearance="simple"}
 - Pour les **variables**, utiliser un **nom**  
-_Exemple_ : `temperature_max`
+*Exemple* : `temperature_max`
 - Pour les **fonctions**, utiliser un **verbe**  
-_Exemple_ : `create.map` serait une fonction qui permettrait de créer une carte
+*Exemple* : `create.map` serait une fonction qui permettrait de créer une carte
 - Pour **distinguer variables d'origine / variables recodées**, on peut utiliser un préfixe ou un suffixe  
-_Exemple_ : `age` est la variable d'origine et `age_recod` est la variable recodée
+*Exemple* : `age` est la variable d'origine et `age_recod` est la variable recodée
 :::
 
 ---
@@ -573,7 +573,7 @@ Il existe différentes conventions
 :::{.callout-tip title="Comment nommer ses scripts ?"}
 - Une "bonne" pratique consiste à utiliser la structure `numero_nom_millesime.extension`  
 - Le nom ne doit contenir ni caractères spéciaux (``-.,;:\/$^`) ni caractères accentués  
-_Exemple_ : `01_import_donnees_20250606.R` ; `02_nettoyage_donnees_20250610.R` ; `03_analyses_univariees_20250701.R`
+*Exemple* : `01_import_donnees_20250606.R` ; `02_nettoyage_donnees_20250610.R` ; `03_analyses_univariees_20250701.R`
 :::
 
 :::{.callout-note title="Ressources sur le processus d'analyse et de communication des données reproductibles"}
@@ -662,7 +662,7 @@ filter(Journals, field == "Econometrics")
 **Avantages**
 
 - Évite les conflits si plusieurs packages ont une fonction avec le même nom (mais des paramètres différents)  
-_Exemple_ : la fonction `filter()` existe dans les packages [{stats}]{.pkg} et [{dplyr}]{.pkg}
+*Exemple* : la fonction `filter()` existe dans les packages [{stats}]{.pkg} et [{dplyr}]{.pkg}
 - Identifie le package d'où provient une fonction
 - Ne charge pas la totalité d'un package pour n'utiliser qu'une seule de ses fonctions
 :::
@@ -760,10 +760,8 @@ citation("ggplot2")
 :::
 
 ##     {background-color="#222251" .unlisted .unnumbered .purple-text}
-:::::{#sol-seance1_1}
+:::{#sol-seance1_1}
 
-::::{.columns}
-:::{.column width = "47%"}
 **Proposition de structuration du projet**
 ```md
 VisuR_exercices/
@@ -778,12 +776,7 @@ VisuR_exercices/
 ├── README.md
 └── VisuR_exercices.Rproj
 ```
-:::
 
-:::{.column width = "6%"}
-:::
-
-:::{.column width = "47%"}
 **Script 01_Exercices_VisuR.R**
 ```{r}
 #| label: exr11
@@ -807,9 +800,6 @@ library(dplyr)    # v1.2.1
 
 ```
 :::
-::::
-
-:::::
 
 ##     L'univers du `tidyverse` {.theme-section1}
 
@@ -1270,12 +1260,12 @@ Journals |>
 
 ```r
 Journals |> 
-  mutate(cl_annciennete = case_when(anciennete < 30 ~ "Moins de 30 ans",
-                                    anciennete >= 30  & anciennete < 50 ~ "30 à 49 ans",
-                                    anciennete >= 50 & anciennete < 100 ~ "50 à 99 ans",
-                                    anciennete >= 100 & age < 150 ~ "100 à 149 ans", 
-                                    anciennete >= 150 ~ "150 ans et plus",
-                                    TRUE ~ "ERREUR")) -> Journals
+  mutate(cl_anciennete = case_when(anciennete < 30 ~ "Moins de 30 ans",
+                                   anciennete >= 30  & anciennete < 50 ~ "30 à 49 ans",
+                                   anciennete >= 50 & anciennete < 100 ~ "50 à 99 ans",
+                                   anciennete >= 100 & age < 150 ~ "100 à 149 ans", 
+                                   anciennete >= 150 ~ "150 ans et plus",
+                                   TRUE ~ "ERREUR")) -> Journals
 ```
 
 ---
@@ -1629,7 +1619,7 @@ ggplot(data = Journals) +
 
 :::
 
-_Exemple_
+*Exemple*
 ```{r}
 #| label: statsummary
 #| fig-align: center
@@ -1939,6 +1929,728 @@ Compléter le script **`01_Exercices_VisuR.R`** du projet **VisuR_exercices** po
 
 `r fontawesome::fa("circle-exclamation", fill = "#FFFFFF")` **Les graphiques doivent comporter toutes les informations utiles (étiquettes) pour faciliter leur compréhension**
 :::
+
+
+
+##     {background-color="#222251" .unlisted .unnumbered .purple-text}
+
+:::{#sol-seance2}
+**Script 01_Exercices_VisuR.R**
+```{r}
+#| label: exr2
+#| eval: false
+#| code-fold: true
+
+#   ____________________________________________________________________________
+#   Exercice sur les graphiques ggplot2                                     ####
+
+# 01. Diagramme en barres - variable 'region'
+ggplot(data = communes) +      # initialisation du graphique
+  aes(x = region) +            # variable à représenter
+  geom_bar(fill = "blue") +    # type de graphique = barplot ; couleur des barres
+  # Ajout du titre, des étiquettes des axes et de la source des données
+  labs(title = "Distribution de la variable 'region'",
+       x = "Région",
+       y = "Effectifs",
+       caption = "Source : données fictives 'communes'")
+
+# Le graphique n'est pas très lisible
+# On peut tracer le graphique avec des barres horizontales, en remplaçant x par y dans aes() :
+ggplot(data = communes) +      
+  aes(y = region) +            
+  geom_bar(fill = "blue")
+
+# 02. Histogramme - variable 'surface_urbaine'
+# a. On regarde la distribution de la variable
+communes |> 
+  select(surface_urbaine) |> 
+  summary()
+# b. On trace l'histogramme, avec des classes d'amplitude 1000
+ggplot(data = communes |> 
+                filter(annee == 2020)) +   # initialisation du graphique
+  aes(x = surface_urbaine) +               # variable à représenter
+  geom_histogram(binwidth = 1000) +        # type de graphique = histo ; amplitude des classes
+  # Ajout du titre, des étiquettes des axes et de la source des données
+  labs(title = "Distribution de la variable 'surface_urbaine'",
+       x = "Superficie (ha)",
+       y = "Effectifs",
+       caption = "Source : données fictives 'communes'")
+
+# 03. Boxplot - variable 'taux_chomage' x 'annee'
+ggplot(data = communes |>                     # initialisation du graphique
+         mutate(annee = as.factor(annee))) +  # transformation de 'annee' en facteur, pour avoir une boîte par modalité
+  aes(x = annee,                              # variable en abscisse
+      y = taux_chomage,                       # variable en ordonnée
+      fill = annee) +                         # variable pour assigner une couleur aux boîtes 
+  geom_boxplot() +                            # type de graphique = boxplot
+  # Ajout du titre, des étiquettes des axes et de la source des données
+  labs(title = "Distribution du taux de chômage selon l'année",
+       x = "Année",
+       y = "Taux de chômage (%)",
+       caption = "Source : données fictives 'communes'")
+# 04. Sauvegarde du graphique
+ggsave("plots/boxplot_CHOMAGExAN.png")  # dossier / nom du graphique.extension
+```
+:::
+
+#      Séance 3 - Visualisations avancées et approfondissement {ggplot2} {.theme-seance}
+
+##     Préparation des données pour les graphiques {.theme-section1}
+
+###    Résumer et grouper les données avec le package [[{dplyr}]{.pkg}](https://dplyr.tidyverse.org/){target="_blank"}
+
+####   `summarise()` : créer un tableau contenant des statistiques agrégées (moyenne, somme, minimum, maximum, etc.), pour une ou plusieurs variables 
+
+:::{.columns}
+:::{.column width="47%"}
+- Une variable et un indicateur
+
+<div class="small-code">
+```{r}
+#| label: summarise1var
+
+# Valeur la plus faible de 'libprice'
+Journals |> 
+  summarise(min(libprice))
+```
+
+- Plusieurs variables et un indicateur
+```{r}
+#| label: summariseContains
+
+# Valeur médiane de chaque variable numérique 
+# dont le nom contient le caractère "p"
+Journals |> 
+  select(where(is.numeric)) |> 
+  summarise(across(contains("p"), median))
+```
+
+```{r}
+#| label: summariseWhere
+
+# Moyenne de chaque variable numérique du jeu de données `Journals`
+Journals |> 
+  summarise(across(where(is.numeric), 
+                   ~ mean(.x, na.rm = TRUE)))
+```
+
+</div>
+:::
+
+:::{.column width="6%"}
+<!-- colonne vide pour espacer les 2 colonnes de texte -->
+:::
+
+:::{.column width="47%"}
+
+<div class="small-code">
+
+- Une variable et plusieurs indicateurs
+```{r}
+#| label: summarise1varMult
+
+# Calcul de plusieurs indicateurs pour 'libprice'
+Journals |> 
+  summarise(moyenne = mean(libprice, na.rm = TRUE), 
+            ecartType = sd(libprice),
+            mediane = median(libprice, na.rm = TRUE))
+```
+
+- Plusieurs variables et plusieurs indicateurs
+```{r}
+#| label: summariseAcross
+
+# Calcul de plusieurs indicateurs pour 'libprice' et 'oclc' 
+Journals |>
+  summarise(across(c(libprice, oclc),
+                   list(moyenne = mean,
+                        ecartType = sd)))
+```
+
+</div>
+
+:::{.callout-note appearance="simple"}
+Avec `summarise(across())`, les noms des nouvelles variables sont créés en concaténant les noms des variables initiales et les noms des fonctions indiqués dans `list()`, séparés par un `_`
+:::
+:::
+::::
+
+---
+
+::: {.callout-tip title="Exemples de fonctions couramment utilisées dans la fonction `summarise()`"}
+- `n()` : nombre de lignes
+- `min(x, na.rm = TRUE)` : minimum
+- `max(x, na.rm = TRUE)` : maximum
+- `sum()` : somme
+- `mean(x, na.rm = TRUE)` : moyenne
+- `sd(x, na.rm = TRUE)` : écart-type
+- `median(x, na.rm = TRUE)` : médiane
+- `quantile(x, na.rm = TRUE)` : quantiles
+- `IQR(x, na.rm = TRUE)` : intervalle interquartiles
+- `n_distinct()` : nombre de valeurs distinctes
+:::
+
+---
+
+####   `group_by()` : définir des groupes à partir des modalités d'une variable catégorielle du jeu de données
+
+::::{.columns}
+:::{.column width="47%"}
+`r fontawesome::fa("angles-right", fill = "#A626A4")` Une fois les groupes définis, on peut appliquer des opérations sur ces groupes (`mutate()`, `filter()`, `summarise()`, etc.)
+
+<div class="small-code">
+```{r}
+#| label: groupby
+
+# Comparaison des citations selon 'society'
+Journals |>
+  # Groupes selon les modalités de 'society' (no/yes)
+  group_by(society) |>
+  # Calcul de la moyenne par groupe
+  # --> réduit chaque groupe à une ligne (= moyenne)
+  summarise(citestot.mean = mean(citestot, 
+                                 na.rm = TRUE))
+```
+
+</div>
+:::
+
+:::{.column width="6%"}
+<!-- colonne vide pour espacer les 2 colonnes de texte -->
+:::
+
+:::{.column width="47%"}
+`r fontawesome::fa("angles-right", fill = "#A626A4")` Très utile pour des graphiques par groupes
+
+<div class="small-code">
+```{r}
+#| label: groupbyplot
+#| fig-height: 4
+#| fig-align: center
+
+# Calcul de l'indicateur par groupe 
+Journals |>
+  group_by(society) |>
+  summarise(citestot.mean = mean(citestot, 
+                                 na.rm = TRUE)) |> 
+# Graphique
+  ggplot() + 
+  aes(x = society, y = citestot.mean) + 
+  geom_col(fill = "lightblue")
+```
+
+</div>
+:::
+::::
+
+---
+
+:::{.callout-tip appearance="simple"}
+- On peut grouper selon plusieurs variables
+```{r}
+#| label: groupbymult
+#| 
+# Calcul de la moyenne de 'citestot'
+# en fonction des variables 
+# - 'society'
+# - 'field' (uniquement les modalités Econometrics et Finance)
+Journals |> 
+  # Sélection des 2 domaines
+  filter(field %in% c("Econometrics", "Finance")) |> 
+  # Groupes
+  group_by(society, field) |> 
+  # Moyenne pour chacun des 4 groupes (2 x 2)
+  summarise(citestot.mean = mean(citestot, na.rm = TRUE)) 
+```
+
+<br />
+
+- Pour annuler la structuration en groupes, on utilise la fonction `ungroup()`
+:::
+
+###   Manipulations avec le package [[{tidyr}]{.pkg}](https://tidyr.tidyverse.org/){target="_blank"}
+
+
+####   Le concept de données `tidy`
+
+::::{.columns}
+:::{.column width="47%"}
+- **Un jeu de données `tidy` ("rangé")  est un jeu de données où**  
+  + chaque variable est dans une colonne  
+  + chaque observation est dans une ligne  
+  + chaque valeur est dans une cellule
+  
+:::
+
+:::{.column width="6%"}
+<!-- colonne vide pour espacer les 2 colonnes de texte -->
+:::
+
+:::{.column width="47%"}
+![](img/screenshot_TidyData.png){fig-align="center" fig-alt="Données tidy."}
+<center><small>Source : @Wickham2018</small></center>
+:::
+::::
+
+:::::{.columns}
+::::{.column width="47%"}
+- Les jeux de données ne respectent pas toujours ces règles  
+  + en-têtes de colonnes ne sont pas des noms mais des valeurs  
+  + plusieurs variables stockées dans une colonne  
+  + variables stockées dans les lignes et les colonnes  
+  + plusieurs types d'observations stockés dans le même tableau, etc.
+  
+::::
+
+::::{.column width="6%"}
+<!-- colonne vide pour espacer les 2 colonnes de texte -->
+::::
+
+::::{.column width="47%"}
+`r fontawesome::fa("angles-right", fill = "#A626A4")` **On peut ranger les données avec les verbes de [[{tidyr}]{.pkg}](https://tidyr.tidyverse.org/){target="_blank"}**  
+- `pivot_longer()` : du format large au format long  
+- `pivot_wider()` : du format long au format large
+
+<br />
+
+::: {.callout-tip appearance="simple"}
+Les fonctions du package [[{tidyr}]{.pkg}](https://tidyr.tidyverse.org/){target="_blank"} sont disponibles dans la [_cheatsheet_](https://rstudio.github.io/cheatsheets/html/tidyr.html){target="_blank"} du package
+:::
+::::
+:::::
+
+---
+
+:::{.callout-note title="Format large, format long : quelle différence ?"}
+- **Format large** : une variable = une colonne  
+
+| pays   | 2019       | 2020       | 2021       |  
+|:-------|:-----------|:-----------|:-----------|
+| France | 67 144 101 | 67 287 241 | 67 407 241 | 
+: Format large (données de population)
+
+<br />
+
+- **Format long** : une ligne = une observation d'une variable
+
+| pays   | année | valeur     |
+|:-------|:------|:-----------|
+| France | 2019  | 67 144 101 |
+| France | 2020  | 67 287 241 |
+| France | 2021  | 67 407 241 |
+: Format long
+
+:::
+
+---
+
+####   `pivot_longer()` : passer du format large à long
+
+Fonction qui convertit plusieurs colonnes en deux nouvelles colonnes : une pour les noms des variables ; une pour leurs valeurs correspondantes
+
+`r fontawesome::fa("angles-right", fill = "#A626A4")` **Réduit le nombre de colonnes mais augmente celui des lignes**, rendant ainsi le jeu de données plus "long"
+
+<div class="small-code">
+```{r output.lines=9}
+#| label: pivotlonger
+
+Journals_long <- Journals |>
+  mutate(ID = seq(1:nrow(Journals))) |> # ajout d'une variable ID (1 n° = 1 journal)
+  select(ID, title, libprice, pages, charpp) |> # sélection des variables pour une meilleure lisibilité de cet exemple
+  pivot_longer(cols = c(libprice, pages, charpp), # colonnes à pivoter
+               names_to = "variable", # nom de la colonne du format long qui contiendra les anciens noms de colonnes du format large
+               values_to = "valeur")  # nom de la colonne du format long qui contiendra les anciennes valeurs du format large
+
+Journals_long
+```
+
+</div>
+<br />
+
+`r fontawesome::fa("lightbulb", fill = "#A626A4")` **Particulièrement utile pour restructurer les données pour les analyses statistiques ou représentations graphiques qui nécessitent un format long**
+
+---
+
+#####  Exemple d'utilisation dans un graphique
+
+```{r}
+#| label: pivotwiderplot
+#| fig-align: center
+#| fig-height: 6
+
+ggplot(data = Journals_long) +
+  aes(x = variable, y = valeur, fill = variable) +
+  geom_boxplot() +
+  labs(title = "Distribution des variables",
+       x = "Variable",
+       y = "Valeur")
+```
+
+---
+
+####   `pivot_wider()` : passer du format long à large
+
+Fonction qui transforme les données du format long au format large (_wide_)
+
+<div class="small-code">
+```{r}
+#| label: pivotwider
+
+Journals_long |>
+  pivot_wider(names_from = variable, # colonne du format long dont les valeurs deviendront des noms de colonnes du format large
+              values_from = valeur) # colonne du format long dont les valeurs rempliront les cellules du format large
+```
+
+</div>
+<br />
+
+##     Personnalisation des graphiques {.theme-section1}
+
+###    La couche *coord* du package [[{ggplot2}]{.pkg}](https://ggplot2.tidyverse.org/){target="_blank"}
+
+:::: {.columns}
+::: {.column width="45%"}
+- Permet de choisir le système de coordonnées dans lequel sont projetées les données
+- Par défaut, il s'agit du système cartésien, mais on trouve d'autres systèmes :
+
+  + `coord_equal()` : pour avoir la même échelle pour l'axe des abscisses et des ordonnées  (cartésiens)
+  + `coord_flip()`: pour inverser l'axe des abscisses et des ordonnées
+  + `coord_cartesian()` : pour fixer des limites
+  + `coord_radial()` : pour les graphiques circulaires
+  + `coord_map()` : pour différentes projections cartographiques
+
+:::
+
+::: {.column width="10%"}
+<!-- colonne vide pour espacer les 2 colonnes de texte -->
+:::
+
+::: {.column width="45%"}
+**Exemple d'utilisation de `coord_flip()`**
+
+```{r}
+#| label: coord
+#| eval: true
+#| include: true
+#| message: false
+#| warning: false
+#| echo: true
+#| fig-align: center
+
+# Inversion abscisses / ordonnées
+# pour faciliter la lecture
+ggplot(data = Journals) +
+  aes(x = field) +
+  geom_bar() +
+  coord_flip()
+```
+
+:::
+::::
+
+###    La couche _facets_ du package [[{ggplot2}]{.pkg}](https://ggplot2.tidyverse.org/){target="_blank"}
+
+- **Le _faceting_ permet de comparer graphiquement plusieurs sous-groupes sans surcharger un graphique**
+
+- Le principe consiste à diviser la fenêtre graphique en plusieurs "panneaux" (_facets_), qui correspondent chacun à un groupe
+
+- **Avantages**
+  + comparaison visuelle facilitée : mêmes axes, mêmes échelles, légende cohérente entre les _facets_
+  + meilleure lisibilité quand il y a beaucoup de groupes
+  
+- Deux fonctions principales : `facet_wrap()` et `facet_grid()`
+
+---
+
+####   `facet_wrap()` : une variable, plusieurs _facets_
+
+**Crée un graphique pour chaque modalité d'une variable catégorielle, en les disposant _les uns à côté des autres_ avec une répartition automatique dans la fenêtre graphique**
+
+`r fontawesome::fa("circle-info", fill = "#A626A4")` On peut contrôler la disposition des _facets_ avec `ncol` (nombre de colonnes), `nrow` (nombre de lignes) ou encore `dir` ("`h`" pour une présentation horizontale, "`v`" pour une présentation "verticale")
+
+```{r}
+#| label: facetwrap
+#| fig-align: center
+#| fig-height: 4
+
+# Nuages de points du prix de l'abonnement selon le nombre d'abonnements
+# en fonction des modalités 'society'
+ggplot(data = Journals) +
+  aes(x = oclc,
+      y = libprice) +
+  geom_point() +
+  facet_wrap(vars(society))  # variable de groupe
+```
+
+---
+
+####   `facet_grid()` : deux variables, une grille
+
+**Crée un graphique en _facettant_ par deux variables : une pour les lignes, une pour les colonnes**
+
+`r fontawesome::fa("circle-info", fill = "#A626A4")` Chaque combinaison de modalités a un _facet_, même s'il ne contient pas de données
+
+```{r}
+#| label: facetgrid2var
+#| fig-align: center
+#| fig-height: 4
+
+# Nuages de points du prix de l'abonnement selon le nombre d'abonnements
+# en fonction des modalités 'society' et 'field' (croisées)
+Journals |> 
+    filter(field == "Demography" | field == "Finance" | 
+             field == "Econometrics") |> # sélection de modalités pour une meilleure lisibilité de cet exemple
+    ggplot() +
+    aes(x = oclc,
+        y = libprice) +
+    geom_point() +
+    facet_grid(society ~ field) # lignes ~ colonnes
+```
+
+---
+
+:::{.callout-tip appearance="minimal"}
+Dans `facet_grid()`, on peut également désigner précisément la variable à mettre en ligne avec `rows` et celle à mettre en colonne avec `cols`, avec la fonction `vars()`
+
+`r fontawesome::fa("angles-right", fill = "#A626A4")` Les commandes suivantes produisent donc le même graphique que précédemment
+
+```{r}
+#| label: facetgridvars
+#| fig-align: center
+#| fig-height: 3
+#| output-location: column
+
+Journals |> 
+    filter(field == "Demography" | field == "Finance" | 
+             field == "Econometrics") |> # sélection de modalité pour une meilleure lisibilité de cet exemple
+    ggplot() +
+    aes(x = oclc,
+        y = libprice) +
+    geom_point() +
+    facet_grid(rows = vars(society), # variable des lignes
+               cols = vars(field))   # variable des colonnes
+```
+
+`r fontawesome::fa("circle-info", fill = "#A626A4")` Si on ne met qu'une seule variable dans `facet_grid()`, le graphique est équivalent à celui produit par `facet_wrap()`
+
+
+```{r}
+#| label: facetgrid1var
+#| fig-align: center
+#| fig-height: 3
+#| output-location: column
+Journals |> 
+    filter(field == "Demography" | field == "Finance" | 
+               field == "Econometrics") |> # sélection de modalité pour une meilleure lisibilité de cet exemple
+    ggplot() +
+    aes(x = oclc,
+        y = libprice) +
+    geom_point() +
+    facet_grid(cols = vars(society))
+```
+
+On peut utiliser `facet_grid(cols = vars(society))` si on souhaite une disposition en lignes
+:::
+
+###    La couche _theme_ du package [[{ggplot2}]{.pkg}](https://ggplot2.tidyverse.org/){target="_blank"}
+
+**Elle permet de personnaliser l'apparence d'un graphique en modifiant les éléments visuels qui ne sont pas directement liés aux données**
+
+- titres
+- étiquettes
+- polices
+- arrière-plan
+- grilles
+- légendes
+- tailles
+- etc.
+
+On utilise pour cela la fonction principale `theme()`  
+On utilise des sous-fonctions de type `element_*()`, pour ajuster les éléments particuliers du graphique
+
+---
+
+####   Utiliser un thème prédéfini
+
+:::: {.columns}
+::: {.column width="47%"}
+- **Les différents thèmes qui existent**
+
+![](img/ggplot2_themes.png){width="95%" fig-align="center" fig-alt="Thèmes ggplot."}
+:::
+
+::: {.column width="6%"}
+<!-- colonne vide pour espacer les 2 colonnes de texte -->
+:::
+
+::: {.column width="47%"}
+- **Exemple d'utilisation**
+
+<div class="small-code">
+```{r}
+#| label: theme
+#| fig-align: center
+#| fig-height: 3
+
+# Nuage de points avec le theme Dark
+ggplot(data = Journals) +
+  aes(x = oclc, y = libprice,
+      colour = society) +
+  geom_point() +
+  theme_dark()
+```
+
+</div>
+
+:::
+::::
+
+::: {.callout-tip appearance="simple"}
+On peut définir le thème pour toute la durée de la session avec `theme_set()`
+
+```{r}
+#| label: themeset
+#| eval: false
+
+# Thème Dark pour tous les plots
+theme_set(theme_dark())
+
+ggplot() +
+  ...
+```
+
+`r fontawesome::fa("angles-right", fill = "#A626A4")` Les graphiques seront tous réalisés avec le thème indiqué dans `theme_set()`
+:::
+
+---
+
+####   Éditer un thème existant
+
+Il est possible de modifier un thème existant, en utilisant la fonction `theme_update()` du package [[{ggplot2}]{.pkg}](https://ggplot2.tidyverse.org/){target="_blank"}
+
+```{r}
+#| label: themeupdate
+# Personnalisation du thème
+theme_update(panel.grid.major = element_line(color = "grey80"), # couleur de la grille principale
+             panel.grid.minor = element_line(colour = "black",  # couleur de la grille secondaire
+                                             linewidth = 1),    # épaisseur de la grille secondaire
+             panel.background = element_rect(fill = "white"),   # couleur de fond
+             text = element_text(family = "sans", size = 14),   # taille du texte
+             plot.title = element_text(color = "#275662"        # couleur du titre
+                                       , face = "bold"),        # police en gras
+             axis.title.x = element_text(color = "purple"),     # couleur du label de l'axe des abscisses
+             axis.title.y = element_text(size = 20,             # taille
+                                         color = "blue"))       # et couleur du label de l'axe des ordonnées
+```
+
+```{r}
+#| label: plotthemeupdate
+#| fig-align: center
+#| fig-height: 3
+#| output-location: column
+
+# Réalisation du graphique avec ces modifications
+ggplot(data = Journals) +
+    aes(x = oclc,
+        y = libprice,
+        colour = society) +
+    geom_point() +
+  ggtitle("Un test de modification du thème")
+
+```
+
+`r fontawesome::fa("triangle-exclamation", fill = "#A626A4")` **Theme_update() : change le thème global**  
+`r fontawesome::fa("angles-right", fill = "#A626A4")` Tous les graphiques créés après utiliseront ces paramètres par défaut
+
+---
+
+####   Vous ne savez pas comment modifier les paramètres d'un thème ? 
+
+L'interface "clic bouton" de `r fontawesome::fa("r-project", prefer_type = "solid", fill = "#A626A4")` [[{ggThemeAssist}]{.pkg}](https://github.com/calligross/ggthemeassist){target="_blank"} peut vous aider
+
+::::{.columns}
+:::{.column width="47%"}
+`r fontawesome::fa("circle-question", fill = "#A626A4")` **Comment ça marche ?**  
+
+1. Sélectionner le code du graphique  
+2. Lancer la commande `ggThemeAssistGadget()` ou utiliser le menu _Addins_ et sélectionner `ggplot2 Theme Assistant`   
+3. Modifier les paramètres (taille des titres, angle des étiquettes, position de la légende, couleurs de fond, etc.), à l'aide des rubriques dans les différents onglets  
+4. Cliquer sur '_Done_' pour valider : le code `theme(...)` correspondant aux modifications est inséré automatiquement dans le script
+:::
+
+::: {.column width="6%"}
+<!-- colonne vide pour espacer les 2 colonnes de texte -->
+:::
+
+::: {.column width="47%"}
+```r
+# Création du graphique
+# en lui donnant un nom sans "_" (erreur sinon)
+plotolclibprice <- ggplot(data = Journals) +
+  aes(x = oclc,
+      y = libprice,
+      colour = society) +
+  geom_point() 
+
+# Modification du thème pour ce graphique
+ggThemeAssistGadget(plotolclibprice)
+```
+
+![](img/screenshot_ggthemeassist.png){width="60%" fig-align="center" fig-alt="Interface de ggThemeAssist."}
+:::
+::::
+
+---
+
+####   Créer et utiliser son propre thème
+
+Utile pour personnaliser l'apparence des graphiques, en ajustant divers éléments : titres, étiquettes, polices, arrière-plan, quadrillages et légendes
+
+*_Exemple_*
+```{r}
+#| label: themecustom
+#| output-location: column
+
+# Création du thème
+theme(axis.title.x = element_text(size = 20,
+                                  face = "bold"),
+      strip.background = element_rect(colour = "red",
+                                      fill = "white"),
+      legend.position = "bottom") -> themeperso
+
+# Utilisation du thème
+ggplot(data = Journals) +
+  aes(x = oclc, y = libprice, colour = society) +
+  geom_point()  +
+  facet_wrap(vars(society)) +
+  themeperso
+```
+
+::: {.callout-tip appearance="minimal"}
+`r fontawesome::fa("globe", fill = "#A626A4")` Se reporter à la section [_theme_](https://ggplot2-book.org/themes){target="_blank"} de @ggplot22016 pour plus de détails
+:::
+
+<!-- EXERCICE 3. -->
+##     `r fontawesome::fa("keyboard")` À VOUS DE JOUER ! {background-color="#222251" .purplewhite-text}
+:::: {#exr-seance3}
+Pour cet exercice, on se place toujours dans le projet **`VisuR_exercices`**. On explore avec {`ggplot2`}, les abonnements (prix et nombre) des revues dont l'initiale du domaine est "i"
+
+01. Créer un nouveau script **[R]** pour cette analyse graphique
+02. Sélectionner uniquement les données nécessaires pour l'exercice (variables et observations)
+03. Étudier la distribution de chacune des variables liées à l'abonnement, par une _boxplot_ sur un même graphique, en utilisant les facettes
+04. Transformer les variables numériques en variables catégorielles, en faisant des classes sur les quantiles
+05. Construire un diagramme en barres pour ces deux nouvelles variables, selon le domaine  
++ 'libprice' : les barres doivent avoir une couleur différente selon catégorie de prix
++ 'oclc' : les barres seront de couleur verte
+
+:::{.callout-note appearance="minimal"}
+`r fontawesome::fa("triangle-exclamation", fill = "#FFFFFF")` Pour une bonne lisibilité, tous les graphiques devront être personnalisés avec  
+a) un titre et des labels sur les axes  
+b) un thème clair  
+c) une palette de couleurs harmonieuse  
+d) une taille des libellés augmentée
+:::
+::::
 
 #      Bibliographie {.theme-seance}
 
