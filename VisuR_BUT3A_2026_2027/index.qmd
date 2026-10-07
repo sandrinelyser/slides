@@ -13,7 +13,7 @@ title-slide-attributes:
   data-footer: "-- Diffusé sous licence CC BY-NC-SA 4.0 --"
 # TODO : Mettre 
 # \thispagestyle{firstpage}
-# \pagebreak
+# \pagebreak 
 # avant la section Introduction uniquement pour le format PDF
 ---
 
@@ -403,10 +403,10 @@ Les projets [RStudio]{.softw} sont utiles pour
 
 :::{.callout-note title="Chemins absolus/relatifs"}
 - Le chemin absolu est exprimé par rapport au disque dur, à l'ordinateur  
-*Exemple* : `C:/Users/...`
+_Exemple_ : `C:/Users/...`
 
 - Le chemin relatif est exprimé par rapport au projet  
-*Exemple* : `data/mon_fichier.csv`
+_Exemple_ : `data/mon_fichier.csv`
 
 `r fontawesome::fa("lightbulb", fill = "#A626A4")` **Le répertoire par défaut du projet est le dossier où est enregistré le projet sur votre machine** 
 :::
@@ -530,11 +530,11 @@ Cliquez sur `New Project > New Directory > New Project` et complétez les inform
 
 :::{.callout-tip appearance="simple"}
 - Pour les **variables**, utiliser un **nom**  
-*Exemple* : `temperature_max`
+_Exemple_ : `temperature_max`
 - Pour les **fonctions**, utiliser un **verbe**  
-*Exemple* : `create.map` serait une fonction qui permettrait de créer une carte
+_Exemple_ : `create.map` serait une fonction qui permettrait de créer une carte
 - Pour **distinguer variables d'origine / variables recodées**, on peut utiliser un préfixe ou un suffixe  
-*Exemple* : `age` est la variable d'origine et `age_recod` est la variable recodée
+_Exemple_ : `age` est la variable d'origine et `age_recod` est la variable recodée
 :::
 
 ---
@@ -573,7 +573,7 @@ Il existe différentes conventions
 :::{.callout-tip title="Comment nommer ses scripts ?"}
 - Une "bonne" pratique consiste à utiliser la structure `numero_nom_millesime.extension`  
 - Le nom ne doit contenir ni caractères spéciaux (``-.,;:\/$^`) ni caractères accentués  
-*Exemple* : `01_import_donnees_20250606.R` ; `02_nettoyage_donnees_20250610.R` ; `03_analyses_univariees_20250701.R`
+_Exemple_ : `01_import_donnees_20250606.R` ; `02_nettoyage_donnees_20250610.R` ; `03_analyses_univariees_20250701.R`
 :::
 
 :::{.callout-note title="Ressources sur le processus d'analyse et de communication des données reproductibles"}
@@ -662,7 +662,7 @@ filter(Journals, field == "Econometrics")
 **Avantages**
 
 - Évite les conflits si plusieurs packages ont une fonction avec le même nom (mais des paramètres différents)  
-*Exemple* : la fonction `filter()` existe dans les packages [{stats}]{.pkg} et [{dplyr}]{.pkg}
+_Exemple_ : la fonction `filter()` existe dans les packages [{stats}]{.pkg} et [{dplyr}]{.pkg}
 - Identifie le package d'où provient une fonction
 - Ne charge pas la totalité d'un package pour n'utiliser qu'une seule de ses fonctions
 :::
@@ -760,8 +760,10 @@ citation("ggplot2")
 :::
 
 ##     {background-color="#222251" .unlisted .unnumbered .purple-text}
-:::{#sol-seance1_1}
+:::::{#sol-seance1_1}
 
+::::{.columns}
+:::{.column width = "47%"}
 **Proposition de structuration du projet**
 ```md
 VisuR_exercices/
@@ -776,7 +778,12 @@ VisuR_exercices/
 ├── README.md
 └── VisuR_exercices.Rproj
 ```
+:::
 
+:::{.column width = "6%"}
+:::
+
+:::{.column width = "47%"}
 **Script 01_Exercices_VisuR.R**
 ```{r}
 #| label: exr11
@@ -800,6 +807,9 @@ library(dplyr)    # v1.2.1
 
 ```
 :::
+::::
+
+:::::
 
 ##     L'univers du `tidyverse` {.theme-section1}
 
@@ -1044,7 +1054,8 @@ En utilisant les opérateurs logiques
 
 # Revues de Démographie dont l'abonnement coûte moins de 100$
 Journals |> 
-  dplyr::filter(field == "Demography" & libprice < 100)
+  dplyr::filter(field == "Demography" & 
+                  libprice < 100)
 ```
 :::
 ::::
@@ -1261,7 +1272,7 @@ Journals |>
 ```r
 Journals |> 
   mutate(cl_anciennete = case_when(anciennete < 30 ~ "Moins de 30 ans",
-                                   anciennete >= 30  & anciennete < 50 ~ "30 à 49 ans",
+                                  anciennete >= 30  & anciennete < 50 ~ "30 à 49 ans",
                                    anciennete >= 50 & anciennete < 100 ~ "50 à 99 ans",
                                    anciennete >= 100 & age < 150 ~ "100 à 149 ans", 
                                    anciennete >= 150 ~ "150 ans et plus",
@@ -1402,7 +1413,7 @@ communes |>
 ##     Visualisations graphiques avec {ggplot2} {.theme-section1}
 
 ###    Le package [[{ggplot2}]{.pkg}](https://ggplot2.tidyverse.org/){target="_blank"}
-Ce package produit des graphiques en utilisant une grammaire particulière (*grammar of graphics*)
+Ce package produit des graphiques en utilisant une grammaire particulière (*_grammar of graphics_*)
 
 ::::::{.content-visible unless-format="pdf"}
 
@@ -1578,7 +1589,7 @@ _Exemples_
 #| fig-align: center
 #| output-location: column
 
-# Points colorés selon les valeurs de "society"
+# Points colorés selon les valeurs de 'society'
 ggplot(data = Journals) +
   aes(x = oclc, y = libprice,
       colour = society) +
@@ -1591,7 +1602,7 @@ ggplot(data = Journals) +
 #| fig-height: 3
 #| output-location: column
 
-# Points de couleur verte"
+# Points de couleur verte
 ggplot(data = Journals) +
   aes(x = oclc, y = libprice) + 
   geom_point(color = "#275662")
@@ -1619,7 +1630,7 @@ ggplot(data = Journals) +
 
 :::
 
-*Exemple*
+_Exemple_
 ```{r}
 #| label: statsummary
 #| fig-align: center
@@ -1709,7 +1720,7 @@ La fonction `labs()` offre plusieurs options de personnalisation des titres et l
 :::
 
 :::{.column width="45%"}
-![Les symboles de points](img/pchsymbols.png){width="48%" fig-alt="Symboles de points."}
+![Les symboles de points (_shape_)](img/pchsymbols.png){width="48%" fig-alt="Symboles de points."}
 
 ![Les couleurs (package [[{RColorBrewer}]{.pkg})](https://cran.r-project.org/web/packages/RColorBrewer/RColorBrewer.pdf){target="_blank"}](img/Rplotbrewer.png){width="80%" fig-alt="Package RColorBrewer."}
 :::
@@ -1743,13 +1754,13 @@ La fonction `labs()` offre plusieurs options de personnalisation des titres et l
 #| fig-align: center
 #| fig-height: 4.5
 
-# Histogramme du nombre total de citations ("citestot")
+# Histogramme du nombre total de citations ('citestot')
 ggplot(data = Journals) +
   aes(x = citestot) +
-  geom_histogram(bins = 10,  # nb de barres (30 par défaut)
+  geom_histogram(bins = 10,         # nombre de barres (30 par défaut)
                  fill = "skyblue",  # remplissage des barres
                  color = "black") + # couleur de la bordure
-  # Ajout du titre et des labels
+  # ajout du titre et des labels
   labs(title = "Histogramme du nombre total de citations",
        x = "citestot",
        y = "Effectif")
@@ -1764,12 +1775,12 @@ ggplot(data = Journals) +
 #| fig-align: center
 #| fig-height: 4.5
 
-# Boxplot du nombre total de citations ("citestot")
-# selon l'appartenance à une société ("society")
+# Boxplot du nombre total de citations ('citestot')
+# selon l'appartenance à une société ('society')
 ggplot(data = Journals) +
   aes(x = society, y = citestot) +
   geom_boxplot(fill = "purple") +   # couleur des boîtes
-  # Ajout du titre et des labels
+  # ajout du titre et des labels
   labs(title = "Boxplot du nombre de citations
                 selon l'appartenance à une société",
        x = "society",
@@ -1786,11 +1797,11 @@ ggplot(data = Journals) +
 #| fig-height: 4.5
 
 # Barplot du nombre de revues
-# selon l'appartenance à une société ("society")
+# selon l'appartenance à une société ('society')
 ggplot(data = Journals) +
   aes(x = society) +
   geom_bar(fill = "#00a3a6") +   # couleur des barres
-# Ajout du titre et des labels
+  # ajout du titre et des labels
   labs(title = "Barplot du nombre de revues 
                 selon l'appartenance à une société",
        x = "society",
@@ -1809,7 +1820,7 @@ ggplot(data = Journals) +
 ggplot(data = Journals) +    # initialisation du graphique
   aes(x = oclc,              # variable en abscisse
       y = libprice,          # variable en ordonnée
-      colour = society) +    # points colorés selon les valeurs de "society"
+      colour = society) +    # points colorés selon les valeurs de 'society'
   geom_point(shape = 1,      # type de symbole
              size = 1.5,     # taille des symboles
              stroke = 1.5) + # épaisseur de la bordure des symboles
@@ -1930,8 +1941,6 @@ Compléter le script **`01_Exercices_VisuR.R`** du projet **VisuR_exercices** po
 `r fontawesome::fa("circle-exclamation", fill = "#FFFFFF")` **Les graphiques doivent comporter toutes les informations utiles (étiquettes) pour faciliter leur compréhension**
 :::
 
-
-
 ##     {background-color="#222251" .unlisted .unnumbered .purple-text}
 
 :::{#sol-seance2}
@@ -2003,7 +2012,7 @@ ggsave("plots/boxplot_CHOMAGExAN.png")  # dossier / nom du graphique.extension
 
 :::{.columns}
 :::{.column width="47%"}
-- Une variable et un indicateur
+#####  Une variable et un indicateur
 
 <div class="small-code">
 ```{r}
@@ -2014,7 +2023,7 @@ Journals |>
   summarise(min(libprice))
 ```
 
-- Plusieurs variables et un indicateur
+#####  Plusieurs variables et un indicateur
 ```{r}
 #| label: summariseContains
 
@@ -2028,7 +2037,7 @@ Journals |>
 ```{r}
 #| label: summariseWhere
 
-# Moyenne de chaque variable numérique du jeu de données `Journals`
+# Moyenne de chaque variable numérique de `Journals`
 Journals |> 
   summarise(across(where(is.numeric), 
                    ~ mean(.x, na.rm = TRUE)))
@@ -2045,7 +2054,7 @@ Journals |>
 
 <div class="small-code">
 
-- Une variable et plusieurs indicateurs
+#####  Une variable et plusieurs indicateurs
 ```{r}
 #| label: summarise1varMult
 
@@ -2056,7 +2065,7 @@ Journals |>
             mediane = median(libprice, na.rm = TRUE))
 ```
 
-- Plusieurs variables et plusieurs indicateurs
+#####  Plusieurs variables et plusieurs indicateurs
 ```{r}
 #| label: summariseAcross
 
@@ -2446,10 +2455,10 @@ Journals |>
     aes(x = oclc,
         y = libprice) +
     geom_point() +
-    facet_grid(cols = vars(society))
+    facet_grid(cols = vars(society)) # graphiques côte à côte
 ```
 
-On peut utiliser `facet_grid(cols = vars(society))` si on souhaite une disposition en lignes
+On peut utiliser `facet_grid(rows = vars(society))` si on souhaite une disposition en lignes
 :::
 
 ###    La couche _theme_ du package [[{ggplot2}]{.pkg}](https://ggplot2.tidyverse.org/){target="_blank"}
@@ -2632,25 +2641,20 @@ ggplot(data = Journals) +
 
 <!-- EXERCICE 3. -->
 ##     `r fontawesome::fa("keyboard")` À VOUS DE JOUER ! {background-color="#222251" .purplewhite-text}
-:::: {#exr-seance3}
-Pour cet exercice, on se place toujours dans le projet **`VisuR_exercices`**. On explore avec {`ggplot2`}, les abonnements (prix et nombre) des revues dont l'initiale du domaine est "i"
+::: {#exr-seance3}
+Pour cet exercice, on se place toujours dans le projet **`VisuR_exercices`**, et on crée un nouveau script pour les explorations graphiques avancées avec {`ggplot2`}  
+On va s'intéresser au taux de chômage, aux revenus et aux émissions totales de CO2, par région, pour toutes les années
 
-01. Créer un nouveau script **[R]** pour cette analyse graphique
-02. Sélectionner uniquement les données nécessaires pour l'exercice (variables et observations)
-03. Étudier la distribution de chacune des variables liées à l'abonnement, par une _boxplot_ sur un même graphique, en utilisant les facettes
-04. Transformer les variables numériques en variables catégorielles, en faisant des classes sur les quantiles
-05. Construire un diagramme en barres pour ces deux nouvelles variables, selon le domaine  
-+ 'libprice' : les barres doivent avoir une couleur différente selon catégorie de prix
-+ 'oclc' : les barres seront de couleur verte
+1. Créer un nouveau script **[R]** pour ces analyses graphiques avancées
+2. Sélectionner les données nécessaires pour l'exercice et les stocker dans l'objet `communes_ex4`
+3. Construire les _boxplot_ du taux de chômage par région, toutes années confondues, avec un titre, la source (en bas) et le `theme_bw()`
+4. On s'intéresse à la relation entre revenus et émissions de CO2/hab pour les régions Nouvelle-Aquitaine, Occitanie, Bretagne, Pays de la Loire et Grand Est  
 
-:::{.callout-note appearance="minimal"}
-`r fontawesome::fa("triangle-exclamation", fill = "#FFFFFF")` Pour une bonne lisibilité, tous les graphiques devront être personnalisés avec  
-a) un titre et des labels sur les axes  
-b) un thème clair  
-c) une palette de couleurs harmonieuse  
-d) une taille des libellés augmentée
+   - créer le nuage de points `revenu_median` x `emis_co2_total`
+   - utiliser les facettes pour avoir une facette par `annee`
+   - les points ont des couleurs différentes selon la région
+
 :::
-::::
 
 #      Bibliographie {.theme-seance}
 
@@ -2669,6 +2673,7 @@ knitr::write_bib(c(# séance 1
                    # séance 2
                    , "RColorBrewer", "paletteer", "cols4all", "esquisse"
                    # séances 3 & 4
+                   , "ggThemeAssist"
                    )
                  , "packagesR_2026.bib")
 ```
@@ -2687,7 +2692,7 @@ knitr::write_bib(c(# séance 1
 
 ---
 nocite: |
-  @ggplot22016, @lintr2025, @lubridate2011, @R-dplyr, @R-Ecdat, @R-forcats, @R-foreign, @R-ggplot2, @R-haven, @R-lintr, @R-lubridate, @R-magrittr, @R-openxlsx2, @R-purrr, @R-questionr, @R-readr, @R-readxl, @R-remotes, @R-strcode, @R-stringr, @R-styler, @R-tibble, @R-tidyr, @R-tidyverse, @R-writexl, @R-xlsx, @tidyverse2019, @R-RColorBrewer, @R-paletteer, @cols4all2023, R-cols4all, @R-esquisse
+  @ggplot22016, @lintr2025, @lubridate2011, @R-dplyr, @R-Ecdat, @R-forcats, @R-foreign, @R-ggplot2, @R-haven, @R-lintr, @R-lubridate, @R-magrittr, @R-openxlsx2, @R-purrr, @R-questionr, @R-readr, @R-readxl, @R-remotes, @R-strcode, @R-stringr, @R-styler, @R-tibble, @R-tidyr, @R-tidyverse, @R-writexl, @R-xlsx, @tidyverse2019, @R-RColorBrewer, @R-paletteer, @cols4all2023, R-cols4all, @R-esquisse, @R-ggThemeAssist
 ---
 
 :::
@@ -2700,7 +2705,7 @@ nocite: |
 
 ---
 nocite: |
-  @ggplot22016, @lintr2025, @lubridate2011, @R-dplyr, @R-Ecdat, @R-forcats, @R-foreign, @R-ggplot2, @R-haven, @R-lintr, @R-lubridate, @R-magrittr, @R-openxlsx2, @R-purrr, @R-questionr, @R-readr, @R-readxl, @R-remotes, @R-strcode, @R-stringr, @R-styler, @R-tibble, @R-tidyr, @R-tidyverse, @R-writexl, @R-xlsx, @tidyverse2019, @R-RColorBrewer, @R-paletteer, @cols4all2023, R-cols4all, @R-esquisse
+  @ggplot22016, @lintr2025, @lubridate2011, @R-dplyr, @R-Ecdat, @R-forcats, @R-foreign, @R-ggplot2, @R-haven, @R-lintr, @R-lubridate, @R-magrittr, @R-openxlsx2, @R-purrr, @R-questionr, @R-readr, @R-readxl, @R-remotes, @R-strcode, @R-stringr, @R-styler, @R-tibble, @R-tidyr, @R-tidyverse, @R-writexl, @R-xlsx, @tidyverse2019, @R-RColorBrewer, @R-paletteer, @cols4all2023, R-cols4all, @R-esquisse, @R-ggThemeAssist
   
 ---
 

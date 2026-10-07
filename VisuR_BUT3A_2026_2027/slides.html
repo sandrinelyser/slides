@@ -1020,7 +1020,10 @@ Une entrée BibTeX pour les utilisateurs LaTeX est
 <section id="section" class="title-slide slide level2 unlisted unnumbered purple-text center" data-background-color="#222251">
 <h2></h2>
 <div id="sol-seance1_1" class="proof solution">
-<p><span class="proof-title"><em>Solution 1</em>. </span><strong>Proposition de structuration du projet</strong></p>
+<p><span class="proof-title"><em>Solution 1</em>. </span></p>
+<div class="columns">
+<div class="column" style="width:47%;">
+<p><strong>Proposition de structuration du projet</strong></p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource md number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="" aria-label="1"></a>VisuR_exercices/</span>
 <span id="cb11-2"><a href="" aria-label="2"></a>├── data/</span>
 <span id="cb11-3"><a href="" aria-label="3"></a>│   ├── sources/</span>
@@ -1032,6 +1035,9 @@ Une entrée BibTeX pour les utilisateurs LaTeX est
 <span id="cb11-9"><a href="" aria-label="9"></a>├── results/</span>
 <span id="cb11-10"><a href="" aria-label="10"></a>├── README.md</span>
 <span id="cb11-11"><a href="" aria-label="11"></a>└── VisuR_exercices.Rproj</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
+</div><div class="column" style="width:6%;">
+
+</div><div class="column" style="width:47%;">
 <p><strong>Script 01_Exercices_VisuR.R</strong></p>
 <div class="cell">
 <details class="code-fold">
@@ -1052,6 +1058,7 @@ Une entrée BibTeX pour les utilisateurs LaTeX est
 <span id="cb12-14"><a href="" aria-label="14"></a><span class="fu">library</span>(dplyr)    <span class="co"># v1.2.1</span></span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
+</div></div>
 </div>
 </section>
 
@@ -1468,7 +1475,8 @@ Une entrée BibTeX pour les utilisateurs LaTeX est
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="" aria-label="1"></a><span class="co"># Revues de Démographie dont l'abonnement coûte moins de 100$</span></span>
 <span id="cb21-2"><a href="" aria-label="2"></a>Journals <span class="sc">|&gt;</span> </span>
-<span id="cb21-3"><a href="" aria-label="3"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(field <span class="sc">==</span> <span class="st">"Demography"</span> <span class="sc">&amp;</span> libprice <span class="sc">&lt;</span> <span class="dv">100</span>)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb21-3"><a href="" aria-label="3"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(field <span class="sc">==</span> <span class="st">"Demography"</span> <span class="sc">&amp;</span> </span>
+<span id="cb21-4"><a href="" aria-label="4"></a>                  libprice <span class="sc">&lt;</span> <span class="dv">100</span>)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                              title                pub society libprice pages
 116 Population &amp; Development Review Population Council      no       36   910
@@ -1777,7 +1785,7 @@ Le format de sortie est différent :
 <h6 id="la-fonction-case_when">La fonction <code>case_when()</code></h6>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="" aria-label="1"></a>Journals <span class="sc">|&gt;</span> </span>
 <span id="cb40-2"><a href="" aria-label="2"></a>  <span class="fu">mutate</span>(<span class="at">cl_anciennete =</span> <span class="fu">case_when</span>(anciennete <span class="sc">&lt;</span> <span class="dv">30</span> <span class="sc">~</span> <span class="st">"Moins de 30 ans"</span>,</span>
-<span id="cb40-3"><a href="" aria-label="3"></a>                                   anciennete <span class="sc">&gt;=</span> <span class="dv">30</span>  <span class="sc">&amp;</span> anciennete <span class="sc">&lt;</span> <span class="dv">50</span> <span class="sc">~</span> <span class="st">"30 à 49 ans"</span>,</span>
+<span id="cb40-3"><a href="" aria-label="3"></a>                                  anciennete <span class="sc">&gt;=</span> <span class="dv">30</span>  <span class="sc">&amp;</span> anciennete <span class="sc">&lt;</span> <span class="dv">50</span> <span class="sc">~</span> <span class="st">"30 à 49 ans"</span>,</span>
 <span id="cb40-4"><a href="" aria-label="4"></a>                                   anciennete <span class="sc">&gt;=</span> <span class="dv">50</span> <span class="sc">&amp;</span> anciennete <span class="sc">&lt;</span> <span class="dv">100</span> <span class="sc">~</span> <span class="st">"50 à 99 ans"</span>,</span>
 <span id="cb40-5"><a href="" aria-label="5"></a>                                   anciennete <span class="sc">&gt;=</span> <span class="dv">100</span> <span class="sc">&amp;</span> age <span class="sc">&lt;</span> <span class="dv">150</span> <span class="sc">~</span> <span class="st">"100 à 149 ans"</span>, </span>
 <span id="cb40-6"><a href="" aria-label="6"></a>                                   anciennete <span class="sc">&gt;=</span> <span class="dv">150</span> <span class="sc">~</span> <span class="st">"150 ans et plus"</span>,</span>
@@ -1924,7 +1932,7 @@ Le format de sortie est différent :
 </section>
 <section id="le-package-ggplot2" class="slide level3">
 <h3>Le package <a href="https://ggplot2.tidyverse.org/" target="_blank"><span class="pkg">{ggplot2}</span></a></h3>
-<p>Ce package produit des graphiques en utilisant une grammaire particulière (<em>grammar of graphics</em>)</p>
+<p>Ce package produit des graphiques en utilisant une grammaire particulière (<em><em>grammar of graphics</em></em>)</p>
 <div class="columns">
 <div class="column" style="width:47%;">
 <ul>
@@ -2177,7 +2185,7 @@ On précise quelles variables contrôlent les propriétés visuelles du graphiqu
 <p><em>Exemples</em></p>
 <div class="cell columns column-output-location" data-layout-align="center">
 <div class="column">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="" aria-label="1"></a><span class="co"># Points colorés selon les valeurs de "society"</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="" aria-label="1"></a><span class="co"># Points colorés selon les valeurs de 'society'</span></span>
 <span id="cb52-2"><a href="" aria-label="2"></a><span class="fu">ggplot</span>(<span class="at">data =</span> Journals) <span class="sc">+</span></span>
 <span id="cb52-3"><a href="" aria-label="3"></a>  <span class="fu">aes</span>(<span class="at">x =</span> oclc, <span class="at">y =</span> libprice,</span>
 <span id="cb52-4"><a href="" aria-label="4"></a>      <span class="at">colour =</span> society) <span class="sc">+</span></span>
@@ -2193,7 +2201,7 @@ On précise quelles variables contrôlent les propriétés visuelles du graphiqu
 </div></div>
 <div class="cell columns column-output-location" data-layout-align="center">
 <div class="column">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="" aria-label="1"></a><span class="co"># Points de couleur verte"</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="" aria-label="1"></a><span class="co"># Points de couleur verte</span></span>
 <span id="cb53-2"><a href="" aria-label="2"></a><span class="fu">ggplot</span>(<span class="at">data =</span> Journals) <span class="sc">+</span></span>
 <span id="cb53-3"><a href="" aria-label="3"></a>  <span class="fu">aes</span>(<span class="at">x =</span> oclc, <span class="at">y =</span> libprice) <span class="sc">+</span> </span>
 <span id="cb53-4"><a href="" aria-label="4"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"#275662"</span>)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
@@ -2396,8 +2404,8 @@ La fonction <code>labs()</code> offre plusieurs options de personnalisation des 
 </div><div class="column" style="width:45%;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<figcaption>Les symboles de points</figcaption>
-<p><a href="img/pchsymbols.png" class="lightbox" data-gallery="quarto-lightbox-gallery-19" title="Les symboles de points"><img data-src="img/pchsymbols.png" style="width:48.0%" alt="Symboles de points."></a></p>
+<figcaption>Les symboles de points (<em>shape</em>)</figcaption>
+<p><a href="img/pchsymbols.png" class="lightbox" data-gallery="quarto-lightbox-gallery-19" title="Les symboles de points (shape)"><img data-src="img/pchsymbols.png" style="width:48.0%" alt="Symboles de points."></a></p>
 </figure>
 </div>
 <div class="quarto-figure quarto-figure-center">
@@ -2440,13 +2448,13 @@ La fonction <code>labs()</code> offre plusieurs options de personnalisation des 
 <h3>Exemples de graphiques de base avec <a href="https://ggplot2.tidyverse.org/" target="_blank"><span class="pkg">{ggplot2}</span></a></h3>
 <h4 id="histogramme">Histogramme</h4>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="" aria-label="1"></a><span class="co"># Histogramme du nombre total de citations ("citestot")</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="" aria-label="1"></a><span class="co"># Histogramme du nombre total de citations ('citestot')</span></span>
 <span id="cb57-2"><a href="" aria-label="2"></a><span class="fu">ggplot</span>(<span class="at">data =</span> Journals) <span class="sc">+</span></span>
 <span id="cb57-3"><a href="" aria-label="3"></a>  <span class="fu">aes</span>(<span class="at">x =</span> citestot) <span class="sc">+</span></span>
-<span id="cb57-4"><a href="" aria-label="4"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">10</span>,  <span class="co"># nb de barres (30 par défaut)</span></span>
+<span id="cb57-4"><a href="" aria-label="4"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">10</span>,         <span class="co"># nombre de barres (30 par défaut)</span></span>
 <span id="cb57-5"><a href="" aria-label="5"></a>                 <span class="at">fill =</span> <span class="st">"skyblue"</span>,  <span class="co"># remplissage des barres</span></span>
 <span id="cb57-6"><a href="" aria-label="6"></a>                 <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span> <span class="co"># couleur de la bordure</span></span>
-<span id="cb57-7"><a href="" aria-label="7"></a>  <span class="co"># Ajout du titre et des labels</span></span>
+<span id="cb57-7"><a href="" aria-label="7"></a>  <span class="co"># ajout du titre et des labels</span></span>
 <span id="cb57-8"><a href="" aria-label="8"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Histogramme du nombre total de citations"</span>,</span>
 <span id="cb57-9"><a href="" aria-label="9"></a>       <span class="at">x =</span> <span class="st">"citestot"</span>,</span>
 <span id="cb57-10"><a href="" aria-label="10"></a>       <span class="at">y =</span> <span class="st">"Effectif"</span>)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
@@ -2463,12 +2471,12 @@ La fonction <code>labs()</code> offre plusieurs options de personnalisation des 
 
 <h4 id="boxplot">Boxplot</h4>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="" aria-label="1"></a><span class="co"># Boxplot du nombre total de citations ("citestot")</span></span>
-<span id="cb58-2"><a href="" aria-label="2"></a><span class="co"># selon l'appartenance à une société ("society")</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="" aria-label="1"></a><span class="co"># Boxplot du nombre total de citations ('citestot')</span></span>
+<span id="cb58-2"><a href="" aria-label="2"></a><span class="co"># selon l'appartenance à une société ('society')</span></span>
 <span id="cb58-3"><a href="" aria-label="3"></a><span class="fu">ggplot</span>(<span class="at">data =</span> Journals) <span class="sc">+</span></span>
 <span id="cb58-4"><a href="" aria-label="4"></a>  <span class="fu">aes</span>(<span class="at">x =</span> society, <span class="at">y =</span> citestot) <span class="sc">+</span></span>
 <span id="cb58-5"><a href="" aria-label="5"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"purple"</span>) <span class="sc">+</span>   <span class="co"># couleur des boîtes</span></span>
-<span id="cb58-6"><a href="" aria-label="6"></a>  <span class="co"># Ajout du titre et des labels</span></span>
+<span id="cb58-6"><a href="" aria-label="6"></a>  <span class="co"># ajout du titre et des labels</span></span>
 <span id="cb58-7"><a href="" aria-label="7"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Boxplot du nombre de citations</span></span>
 <span id="cb58-8"><a href="" aria-label="8"></a><span class="st">                selon l'appartenance à une société"</span>,</span>
 <span id="cb58-9"><a href="" aria-label="9"></a>       <span class="at">x =</span> <span class="st">"society"</span>,</span>
@@ -2487,11 +2495,11 @@ La fonction <code>labs()</code> offre plusieurs options de personnalisation des 
 <h4 id="diagramme-en-barres">Diagramme en barres</h4>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="" aria-label="1"></a><span class="co"># Barplot du nombre de revues</span></span>
-<span id="cb59-2"><a href="" aria-label="2"></a><span class="co"># selon l'appartenance à une société ("society")</span></span>
+<span id="cb59-2"><a href="" aria-label="2"></a><span class="co"># selon l'appartenance à une société ('society')</span></span>
 <span id="cb59-3"><a href="" aria-label="3"></a><span class="fu">ggplot</span>(<span class="at">data =</span> Journals) <span class="sc">+</span></span>
 <span id="cb59-4"><a href="" aria-label="4"></a>  <span class="fu">aes</span>(<span class="at">x =</span> society) <span class="sc">+</span></span>
 <span id="cb59-5"><a href="" aria-label="5"></a>  <span class="fu">geom_bar</span>(<span class="at">fill =</span> <span class="st">"#00a3a6"</span>) <span class="sc">+</span>   <span class="co"># couleur des barres</span></span>
-<span id="cb59-6"><a href="" aria-label="6"></a><span class="co"># Ajout du titre et des labels</span></span>
+<span id="cb59-6"><a href="" aria-label="6"></a>  <span class="co"># ajout du titre et des labels</span></span>
 <span id="cb59-7"><a href="" aria-label="7"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Barplot du nombre de revues </span></span>
 <span id="cb59-8"><a href="" aria-label="8"></a><span class="st">                selon l'appartenance à une société"</span>,</span>
 <span id="cb59-9"><a href="" aria-label="9"></a>       <span class="at">x =</span> <span class="st">"society"</span>,</span>
@@ -2512,7 +2520,7 @@ La fonction <code>labs()</code> offre plusieurs options de personnalisation des 
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="" aria-label="1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> Journals) <span class="sc">+</span>    <span class="co"># initialisation du graphique</span></span>
 <span id="cb60-2"><a href="" aria-label="2"></a>  <span class="fu">aes</span>(<span class="at">x =</span> oclc,              <span class="co"># variable en abscisse</span></span>
 <span id="cb60-3"><a href="" aria-label="3"></a>      <span class="at">y =</span> libprice,          <span class="co"># variable en ordonnée</span></span>
-<span id="cb60-4"><a href="" aria-label="4"></a>      <span class="at">colour =</span> society) <span class="sc">+</span>    <span class="co"># points colorés selon les valeurs de "society"</span></span>
+<span id="cb60-4"><a href="" aria-label="4"></a>      <span class="at">colour =</span> society) <span class="sc">+</span>    <span class="co"># points colorés selon les valeurs de 'society'</span></span>
 <span id="cb60-5"><a href="" aria-label="5"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">1</span>,      <span class="co"># type de symbole</span></span>
 <span id="cb60-6"><a href="" aria-label="6"></a>             <span class="at">size =</span> <span class="fl">1.5</span>,     <span class="co"># taille des symboles</span></span>
 <span id="cb60-7"><a href="" aria-label="7"></a>             <span class="at">stroke =</span> <span class="fl">1.5</span>) <span class="sc">+</span> <span class="co"># épaisseur de la bordure des symboles</span></span>
@@ -2720,9 +2728,7 @@ Si <code>device = NULL</code>, le type de graphique est déterminé automatiquem
 <h4 id="summarise-créer-un-tableau-contenant-des-statistiques-agrégées-moyenne-somme-minimum-maximum-etc.-pour-une-ou-plusieurs-variables"><code>summarise()</code> : créer un tableau contenant des statistiques agrégées (moyenne, somme, minimum, maximum, etc.), pour une ou plusieurs variables</h4>
 <div class="columns">
 <div class="column" style="width:47%;">
-<ul>
-<li>Une variable et un indicateur</li>
-</ul>
+<h5 id="une-variable-et-un-indicateur">Une variable et un indicateur</h5>
 <div class="small-code">
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb64"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="" aria-label="1"></a><span class="co"># Valeur la plus faible de 'libprice'</span></span>
@@ -2733,9 +2739,7 @@ Si <code>device = NULL</code>, le type de graphique est déterminé automatiquem
 1            20</code></pre>
 </div>
 </div>
-<ul>
-<li>Plusieurs variables et un indicateur</li>
-</ul>
+<h5 id="plusieurs-variables-et-un-indicateur">Plusieurs variables et un indicateur</h5>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb66"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="" aria-label="1"></a><span class="co"># Valeur médiane de chaque variable numérique </span></span>
 <span id="cb66-2"><a href="" aria-label="2"></a><span class="co"># dont le nom contient le caractère "p"</span></span>
@@ -2748,7 +2752,7 @@ Si <code>device = NULL</code>, le type de graphique est déterminé automatiquem
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb68"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="" aria-label="1"></a><span class="co"># Moyenne de chaque variable numérique du jeu de données `Journals`</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb68"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="" aria-label="1"></a><span class="co"># Moyenne de chaque variable numérique de `Journals`</span></span>
 <span id="cb68-2"><a href="" aria-label="2"></a>Journals <span class="sc">|&gt;</span> </span>
 <span id="cb68-3"><a href="" aria-label="3"></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), </span>
 <span id="cb68-4"><a href="" aria-label="4"></a>                   <span class="sc">~</span> <span class="fu">mean</span>(.x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)))</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
@@ -2762,9 +2766,7 @@ Si <code>device = NULL</code>, le type de graphique est déterminé automatiquem
 <!-- colonne vide pour espacer les 2 colonnes de texte -->
 </div><div class="column" style="width:47%;">
 <div class="small-code">
-<ul>
-<li>Une variable et plusieurs indicateurs</li>
-</ul>
+<h5 id="une-variable-et-plusieurs-indicateurs">Une variable et plusieurs indicateurs</h5>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb70"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="" aria-label="1"></a><span class="co"># Calcul de plusieurs indicateurs pour 'libprice'</span></span>
 <span id="cb70-2"><a href="" aria-label="2"></a>Journals <span class="sc">|&gt;</span> </span>
@@ -2776,9 +2778,7 @@ Si <code>device = NULL</code>, le type de graphique est déterminé automatiquem
 1 417.7222  385.8346     282</code></pre>
 </div>
 </div>
-<ul>
-<li>Plusieurs variables et plusieurs indicateurs</li>
-</ul>
+<h5 id="plusieurs-variables-et-plusieurs-indicateurs">Plusieurs variables et plusieurs indicateurs</h5>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb72"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="" aria-label="1"></a><span class="co"># Calcul de plusieurs indicateurs pour 'libprice' et 'oclc' </span></span>
 <span id="cb72-2"><a href="" aria-label="2"></a>Journals <span class="sc">|&gt;</span></span>
@@ -3269,7 +3269,7 @@ Si <code>device = NULL</code>, le type de graphique est déterminé automatiquem
 <span id="cb88-5"><a href="" aria-label="5"></a>    <span class="fu">aes</span>(<span class="at">x =</span> oclc,</span>
 <span id="cb88-6"><a href="" aria-label="6"></a>        <span class="at">y =</span> libprice) <span class="sc">+</span></span>
 <span id="cb88-7"><a href="" aria-label="7"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb88-8"><a href="" aria-label="8"></a>    <span class="fu">facet_grid</span>(<span class="at">cols =</span> <span class="fu">vars</span>(society))</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb88-8"><a href="" aria-label="8"></a>    <span class="fu">facet_grid</span>(<span class="at">cols =</span> <span class="fu">vars</span>(society)) <span class="co"># graphiques côte à côte</span></span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -3279,7 +3279,7 @@ Si <code>device = NULL</code>, le type de graphique est déterminé automatiquem
 </div>
 </div>
 </div></div>
-<p>On peut utiliser <code>facet_grid(cols = vars(society))</code> si on souhaite une disposition en lignes</p>
+<p>On peut utiliser <code>facet_grid(rows = vars(society))</code> si on souhaite une disposition en lignes</p>
 </div>
 </div>
 </div>
@@ -3472,30 +3472,19 @@ On utilise des sous-fonctions de type <code>element_*()</code>, pour ajuster les
 <section id="à-vous-de-jouer-3" class="title-slide slide level2 purplewhite-text center scrollable" data-background-color="#222251">
 <h2><svg aria-hidden="true" role="img" viewbox="0 0 576 512" style="height:1em;width:1.12em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M64 112c-8.8 0-16 7.2-16 16V384c0 8.8 7.2 16 16 16H512c8.8 0 16-7.2 16-16V128c0-8.8-7.2-16-16-16H64zM0 128C0 92.7 28.7 64 64 64H512c35.3 0 64 28.7 64 64V384c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128zM176 320H400c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16H176c-8.8 0-16-7.2-16-16V336c0-8.8 7.2-16 16-16zm-72-72c0-8.8 7.2-16 16-16h16c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16H120c-8.8 0-16-7.2-16-16V248zm16-96h16c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16H120c-8.8 0-16-7.2-16-16V168c0-8.8 7.2-16 16-16zm64 96c0-8.8 7.2-16 16-16h16c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16H200c-8.8 0-16-7.2-16-16V248zm16-96h16c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16H200c-8.8 0-16-7.2-16-16V168c0-8.8 7.2-16 16-16zm64 96c0-8.8 7.2-16 16-16h16c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16H280c-8.8 0-16-7.2-16-16V248zm16-96h16c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16H280c-8.8 0-16-7.2-16-16V168c0-8.8 7.2-16 16-16zm64 96c0-8.8 7.2-16 16-16h16c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16H360c-8.8 0-16-7.2-16-16V248zm16-96h16c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16H360c-8.8 0-16-7.2-16-16V168c0-8.8 7.2-16 16-16zm64 96c0-8.8 7.2-16 16-16h16c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16H440c-8.8 0-16-7.2-16-16V248zm16-96h16c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16H440c-8.8 0-16-7.2-16-16V168c0-8.8 7.2-16 16-16z"></path></svg> À VOUS DE JOUER !</h2>
 <div id="exr-seance3" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercice 4</strong></span> Pour cet exercice, on se place toujours dans le projet <strong><code>VisuR_exercices</code></strong>. On explore avec {<code>ggplot2</code>}, les abonnements (prix et nombre) des revues dont l’initiale du domaine est “i”</p>
+<p><span class="theorem-title"><strong>Exercice 4</strong></span> Pour cet exercice, on se place toujours dans le projet <strong><code>VisuR_exercices</code></strong>, et on crée un nouveau script pour les explorations graphiques avancées avec {<code>ggplot2</code>}<br>
+On va s’intéresser au taux de chômage, aux revenus et aux émissions totales de CO2, par région, pour toutes les années</p>
 <ol type="1">
-<li>Créer un nouveau script <strong>[R]</strong> pour cette analyse graphique</li>
-<li>Sélectionner uniquement les données nécessaires pour l’exercice (variables et observations)</li>
-<li>Étudier la distribution de chacune des variables liées à l’abonnement, par une <em>boxplot</em> sur un même graphique, en utilisant les facettes</li>
-<li>Transformer les variables numériques en variables catégorielles, en faisant des classes sur les quantiles</li>
-<li>Construire un diagramme en barres pour ces deux nouvelles variables, selon le domaine<br>
-</li>
-</ol>
+<li><p>Créer un nouveau script <strong>[R]</strong> pour ces analyses graphiques avancées</p></li>
+<li><p>Sélectionner les données nécessaires pour l’exercice et les stocker dans l’objet <code>communes_ex4</code></p></li>
+<li><p>Construire les <em>boxplot</em> du taux de chômage par région, toutes années confondues, avec un titre, la source (en bas) et le <code>theme_bw()</code></p></li>
+<li><p>On s’intéresse à la relation entre revenus et émissions de CO2/hab pour les régions Nouvelle-Aquitaine, Occitanie, Bretagne, Pays de la Loire et Grand Est</p>
 <ul>
-<li>‘libprice’ : les barres doivent avoir une couleur différente selon catégorie de prix</li>
-<li>‘oclc’ : les barres seront de couleur verte</li>
-</ul>
-<div class="callout callout-note no-icon callout-style-simple">
-<div class="callout-body">
-<div class="callout-content">
-<p><svg aria-hidden="true" role="img" viewbox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#FFFFFF;overflow:visible;position:relative;"><path d="M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7 .2 40.1S486.3 480 472 480H40c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8 .2-40.1l216-368C228.7 39.5 241.8 32 256 32zm0 128c-13.3 0-24 10.7-24 24V296c0 13.3 10.7 24 24 24s24-10.7 24-24V184c0-13.3-10.7-24-24-24zm32 224a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"></path></svg> Pour une bonne lisibilité, tous les graphiques devront être personnalisés avec<br>
-a) un titre et des labels sur les axes<br>
-b) un thème clair<br>
-c) une palette de couleurs harmonieuse<br>
-d) une taille des libellés augmentée</p>
-</div>
-</div>
-</div>
+<li>créer le nuage de points <code>revenu_median</code> x <code>emis_co2_total</code></li>
+<li>utiliser les facettes pour avoir une facette par <code>annee</code></li>
+<li>les points ont des couleurs différentes selon la région</li>
+</ul></li>
+</ol>
 </div>
 </section>
 </section>
