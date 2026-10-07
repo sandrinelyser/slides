@@ -805,7 +805,7 @@ library(dplyr)    # v1.2.1
 
 ###    Présentation générale et installation
 
-- **Ensemble de packages reprenant des opérations courantes de [R]{.softw}, qui partagent une même philosophie et syntaxe pour travailler ensemble et faciliter, la manuipulation, l'analyse et la visualisation des données**  
+- **Ensemble de packages reprenant des opérations courantes de [R]{.softw}, qui partagent une même philosophie et syntaxe pour travailler ensemble et faciliter, la manipulation, l'analyse et la visualisation des données**  
 - L'accent est mis sur la lisibilité et la chaîne d'opérations, via l'opérateur _pipe_ `|>`  
 `r fontawesome::fa("angles-right", fill = "#A626A4")` code dans l'ordre logique des étapes, moins d'objets intermédiaires et de parenthèses imbriquées que dans la syntaxe [R]{.softw} de base  
 
