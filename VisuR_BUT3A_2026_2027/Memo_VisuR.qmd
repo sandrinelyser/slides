@@ -1,0 +1,139 @@
+---
+title: "Mémo - Visualisation avec ![Rlogo](/img/Rlogo.png){.center width=10%}"
+pagetitle: Visualisation avec R
+author:
+  name: Sandrine LYSER
+  email: sandrine.lyser@inrae.fr
+author-meta: "Sandrine LYSER"
+subtitle: "Dernière mise à jour : 07 oct. 2026"
+date-meta: "oct.-nov. 2026"
+date-update: 2026-10-07
+footer: "Visualisation avec R | BUT 3A Sciences des données | Année universitaire 2026-2027"
+title-slide-attributes: 
+  data-footer: "-- Diffusé sous licence CC BY-NC-SA 4.0 --"
+format: 
+  html:
+    output-file: Memo_VisuR.html
+  pdf:
+    output-file: Memo_VisuR.pdf
+# Dernière mise à jour le : 07 oct. 2026
+# TODO : Mettre 
+# \thispagestyle{firstpage}
+# \pagebreak
+# avant la section Introduction uniquement pour le format PDF
+---
+\thispagestyle{firstpage}
+\pagebreak
+
+#  Écosystème R et RStudio
+
+- [R]{.softw} : langage de programmation pour la statistique et la visualisation  
+- [RStudio]{.softw} : environnement de développement (IDE) pour [R]{.softw}  
+- Packages : extensions installées depuis CRAN  
+  + Installation : `install.packages("nom_package")`  
+  + Chargement : `library(nom_package)`  
+- Aide :
+  + `?fonction` ou `help(fonction)`
+  + Vignettes : `vignette("nom_vignette", package = "nom_package")`
+
+#  Travailler avec les projets RStudio
+
+- Créer un projet pour chaque étude  
+- Structure recommandée
+```text
+mon_projet/
+├──  data/
+├──  scripts/
+├──  outputs/
+└──  docs/
+```
+
+- Utiliser des chemins relatifs  
+  + `read_csv("data/mon_fichier.csv")`  
+  + `ggsave("outputs/mon_plot.png")`
+
+#  Tidyverse – Ensemble de packages pour la science des données
+
+- Packages principaux  
+  + [{readr}]{.pkg} : import de fichiers (csv, etc.)
+  + [{dplyr}]{.pkg} : manipulation des données  
+    * `select()`, `filter()`, `mutate()`, `summarise()`, `group_by()`
+  + [{tidyr}]{.pkg} : "rangement" des données
+    * `pivot_longer()`, `pivot_wider()`
+
+- Pipe : enchaîner les opérations sur les données
+```r
+donnees |> 
+  filter(condition_sur_les_observations) |> 
+  mutate(nouvelle_variable = ...) |> 
+  group_by(groupe) |> 
+  summarise(moy = mean(var, na.rm = TRUE))
+```
+
+#  ggplot2 – Graphiques améliorés 
+
+## Grammaire des graphiques
+
+- Structure de base : superposition de plusieurs couches, avec l'opérateur `+`
+```r
+ggplot(data = dataframe) + 
+  aes(x = var_abscisses, 
+      y = var_ordonnées, 
+      color = var_couleur) +
+  geom_point() +
+  labs(title = "Titre du graphique", 
+  x = "Label de l'axe des abscisses", 
+  y = "Label de l'axe des ordonnées") +
+  theme_minimal()
+```
+
+- Éléments-clés  
+  + data : jeu de données  
+  + aes() : variables contrôlant les propriétés visuelles du graphique (x, y, color, fill, size, etc.)  
+  + geom_*() : type de graphique  
+    * `geom_point()`, `geom_line()`, `geom_bar()`, `geom_col()`, `geom_histogram()`, `geom_boxplot()`  
+  + stat_*() : statistiques (_exemple_ : `stat_summary()`)  
+  + scales : `scale_color_*()`, `scale_fill_*()`, `scale_x_*()`, `scale_y_*()`  
+  + themes : `theme_minimal()`, `theme_bw()`, theme()
+  + labels : `labs(title = ..., subtitle = ..., caption = ..., x = ..., y = ...)`
+
+## Facettes, annotations, export
+
+- Facettes  
+```r
++ facet_wrap(vars(variable))
++ facet_grid(variable_ligne ~ variable_colonne)
+```
+
+- Export  
+```r
+ggsave("outputs/mon_plot.png", 
+        plot = dernier_plot, 
+        width = 6, 
+        height = 4, 
+        dpi = 300)
+```
+
+#  Reproductibilité - Bonnes pratiques
+
+- Projet [RStudio]{.softw} utilisé systématiquement  
+- Scripts clairs et commentés  
+- Noms de fichiers et variables explicites, en utilisant les conventions de nommage  
+- Données brutes jamais modifiées directement  
+- Graphiques exportés avec des noms clairs  
+
+#  Ressources
+
+:::{#refs-main}
+nocite: |
+  @Wickham2018, @Orozco2020
+:::
+
+:::{#refs-packages}
+nocite: |
+  @ggplot22016
+:::
+
+- `tidyverse` : <https://www.tidyverse.org>
+- `esquisse` : <https://github.com/dreamRs/esquisse>
+- `ggThemeAssist` : <https://github.com/calligross/ggthemeassist>
