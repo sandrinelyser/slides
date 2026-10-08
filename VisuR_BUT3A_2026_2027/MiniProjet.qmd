@@ -1,0 +1,126 @@
+---
+title: "Visualisation avec ![Rlogo](./img/Rlogo.png){.center width=10%}. \n Mini projet"
+pagetitle: Visualisation avec R
+lang: fr  
+author:
+  name: Sandrine LYSER
+email: sandrine.lyser@inrae.fr
+author-meta: "Sandrine LYSER"
+subtitle: "Dernière mise à jour : 07 oct. 2026"
+date-meta: "oct.-nov. 2026"
+date-update: 2026-10-08
+footer: "Visualisation avec R | BUT 3A Sciences des données | Année universitaire 2026-2027"
+title-slide-attributes: 
+  data-footer: "-- Diffusé sous licence CC BY-NC-SA 4.0 --"
+format: 
+   html: 
+      output-file: MiniProjet.html
+   pdf:
+      output-file: MiniProjet.pdf
+# TODO : Mettre 
+# \thispagestyle{firstpage}
+# \pagebreak 
+# avant la section Introduction uniquement pour le format PDF
+# Dernière mise à jour le : 08 oct. 2026
+---
+
+<!-- Chargement des packages utilisés dans les diapos -->
+```{r}
+#| label: initR
+#| eval: true
+#| include: false
+#| message: false
+#| echo: false
+
+library(tidyverse)    # v2.0.0
+library(knitr)        # v1.51
+library(kableExtra)   # v1.4.1 ; pour scroll_box
+
+#  Fonction pour n'afficher que quelques lignes de l'output des chunks
+## Source : https://forum.posit.co/t/showing-only-the-first-few-lines-of-the-results-of-a-code-chunk/6963
+hook_output <- knit_hooks$get("output")
+knit_hooks$set(output = function(x, options) {
+   lines <- options$output.lines
+   if (is.null(lines)) {
+     return(hook_output(x, options))  # pass to default hook
+   }
+   x <- unlist(strsplit(x, "\n"))
+   more <- "..."
+   if (length(lines) == 1) {        # first n lines
+     if (length(x) > lines) {
+       # truncate the output, but add ....
+       x <- c(head(x, lines), more)
+     }
+   } else {
+     x <- c(more, x[lines], more)
+   }
+   # paste these lines together
+   x <- paste(c(x, ""), collapse = "\n")
+   hook_output(x, options)
+})
+```
+
+#  Mini projet : de l'import à la figure
+
+## Objectifs
+- Savoir importer et nettoyer un jeu de données réel en utilisant les packages du `tidyverse`
+- Produire 4 graphiques variés avec [{ggplot2}]{.pkg}
+- Raconter une "histoire" à partir des données
+
+## Données
+
+Jeu de données issu de l'enquête VICO, portant sur "Les conditions de vie et les relations sociales, avant, pendant et après les confinements" (Vague 1, VICO 2020).
+
+Il contient 2000 individus tirés aléatoirement et 20 variables.
+
+L'enquête "Les conditions de vie et les relations sociales, avant, pendant et après les confinements" (VICO) est une enquête longitudinale par questionnaires et entretiens sur les dynamiques des conséquences sociales de la crise sanitaire et du confinement, et en particulier sur leurs effets sur les évolutions des relations sociales, des formes de solidarité et de leurs variations en fonction des caractéristiques socio‐démographiques et des ressources socioéconomiques.
+
+- Jeu de données au format csv : `vico2020.csv`
+- **Dictionnaire des variables**
+  + ID : Identifiant individuel unique  
+  + SEXE : Sexe de l'individu  
+  + AGE : Age (en 2020, recodage d'après l'année de naissance)  
+  + SITCONJ : Vie en couple (recodage en 2 catégories)  
+  + RESNB : VOUS Y COMPRIS, combien de personnes résidaient habituellement dans votre logement, avant le début du confinement ?  
+  + RESISOL : Disposiez-vous dans votre logement habituel, avant le confinement, d'une pièce ou d'un endroit où vous pouviez
+vous isoler, être au calme ?
+  + LOGAUTRE : Depuis le début du confinement, avez-vous quitté votre logement habituel pour un autre logement ?  
+  + MASQUE : Actuellement, et en dehors du travail, vous arrive-t-il de prendre certaines des dispositions suivantes pour vous protéger de la contamination ?  
+  + TEMPS : Depuis le début du confinement, avez-vous le sentiment de manquer de temps libre ?  
+  + INQUIET : Depuis le début du confinement, y a-t-il eu des moments où vous vous êtes senti(e) ?
+  + VOISINS : Depuis le début du confinement, est-ce qu'il vous est déjà arrivé ?
+  + CONTROL : Depuis le début du confinement, vous est-il arrivé d'être contrôlé(e) par la police ou la gendarmerie ?  
+  + AMIS : Depuis le début du confinement, dans l'ensemble, êtes vous plus ou moins en contact avec vos amis ou ceux de votre conjoint qu'à l'habitude (par téléphone, par messages ou face à face) ?  
+  + FAMILLE : Depuis le début du confinement, dans l'ensemble, êtes-vous plus ou moins en contact avec les membres de votre famille ou ceux de votre conjoint qu'à l'habitude (par téléphone, par messages ou face à face) ?  
+  + POL : En matière de politique, on classe habituellement les Français(es) sur une échelle qui va de la gauche à la droite. Vous personnellement, où vous classeriez-vous sur cette échelle ?   
+  + DIPLONIV : Quel est le niveau de diplôme le plus élevé que vous avez obtenu ?  
+  + SITPROF_rec : Situation professionnelle (recodage en 7 catégories)  
+  + PCS_rec6 : Catégorie socioprofessionnelle (recodage en 6 catégories)  
+  + REV : En prenant en compte tous les types de revenus de tous les membres de votre ménage, quel est actuellement le montant mensuel des ressources de l'ensemble du ménage ? (en euros)
+  + POIDS_init : Coefficient de pondération individuel
+
+Source : https://vico.hypotheses.org/donnees (Dernier accès le 2026-10-07)
+
+##  Travail demandé
+
+1. Créer un projet [RStudio]{.softw} nommé `exploration_data`, avec l'organisation suivante  
+  - data/ : dossier contenant les fichiers de données (csv, xlsx, etc.).
+  - scripts/ : dossier contenant les scripts [R]{.softw} de nettoyage, d'analyse, etc.  
+  - outputs/ : dossier contenant les graphiques exportés  
+  - docs/ : dossier contenant divers documents liés à cette étude  
+  
+2. Nettoyer et préparer les données  
+Documenter dans un script `01_nettoyage.R`, les étapes suivantes :  
+  - import des données  
+  - suppression ses variables avec une information insuffisante pour pouvoir être analysée  
+  - nettoyage ses noms des variables pour qu'ils soient tous dans la convention de nommage _underscore_separated_  
+  - création d'une variable pour avoir l'âge selon les classes généralement utilisées par l'Insee : 0 à 19 ans ; 20 à 39 ans ; 40 à 59 ans ;  60 à 74 ans	; 75 ans et plus  
+  
+3. Analyse exploratoire
+Dans un script `02_analyse.R`, produire deux graphiques avec [{ggplot2}]{.pkg} pour : 
+  - faire l'analyse de la distribution d'une variable
+  - faire une comparaison (en utilisant les facettes) 
+  
+Utiliser un thème que vous personnaliserez vous-même (vous pouvez partir d'un thème existant et modifier les éléments de votre choix)  
+ 
+Les graphiques devront être exportés au format image

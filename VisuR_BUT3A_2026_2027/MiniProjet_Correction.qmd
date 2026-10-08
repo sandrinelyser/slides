@@ -1,0 +1,287 @@
+---
+title: "Visualisation avec ![Rlogo](./img/Rlogo.png){.center width=10%}. \n Mini projet - Éléments de correction"
+pagetitle: Visualisation avec R
+lang: fr  
+author:
+  name: Sandrine LYSER
+email: sandrine.lyser@inrae.fr
+author-meta: "Sandrine LYSER"
+subtitle: "Dernière mise à jour : 07 oct. 2026"
+date-meta: "oct.-nov. 2026"
+date-update: 2026-10-08
+footer: "Visualisation avec R | BUT 3A Sciences des données | Année universitaire 2026-2027"
+title-slide-attributes: 
+  data-footer: "-- Diffusé sous licence CC BY-NC-SA 4.0 --"
+format: 
+   html: 
+      output-file: MiniProjet_Correction.html
+   pdf:
+      output-file: MiniProjet_Correction.pdf
+# TODO : Mettre 
+# \thispagestyle{firstpage}
+# \pagebreak 
+# avant la section Introduction uniquement pour le format PDF
+# Dernière mise à jour le : 08 oct. 2026
+---
+
+<!-- Chargement des packages utilisés dans les diapos -->
+```{r}
+#| label: initR
+#| eval: true
+#| echo: false
+
+library(tidyverse)    # v2.0.0
+library(knitr)        # v1.51
+library(kableExtra)   # v1.4.1 ; pour scroll_box
+
+#  Fonction pour n'afficher que quelques lignes de l'output des chunks
+## Source : https://forum.posit.co/t/showing-only-the-first-few-lines-of-the-results-of-a-code-chunk/6963
+hook_output <- knit_hooks$get("output")
+knit_hooks$set(output = function(x, options) {
+   lines <- options$output.lines
+   if (is.null(lines)) {
+     return(hook_output(x, options))  # pass to default hook
+   }
+   x <- unlist(strsplit(x, "\n"))
+   more <- "..."
+   if (length(lines) == 1) {        # first n lines
+     if (length(x) > lines) {
+       # truncate the output, but add ....
+       x <- c(head(x, lines), more)
+     }
+   } else {
+     x <- c(more, x[lines], more)
+   }
+   # paste these lines together
+   x <- paste(c(x, ""), collapse = "\n")
+   hook_output(x, options)
+})
+```
+
+#  Création du projet
+
+Le projet `exploration_data` est organisé de la façon suivante.
+Cette organisation est le contenu du fichier README.md
+
+```text
+exploration_data/
+├── data/
+│   └── vico2020.csv
+├── scripts/
+│   ├── 01_nettoyage.R
+│   └── 02_analyse.R
+├── outputs/
+│   ├── fig01_distribution_age.png
+│   ├── fig02_relation_age_revenus.png
+│   ├── fig03_comparaison_temps_sexe.png
+│   └── fig04_contacts_situation.png
+├── docs/
+│   └──README.md
+└── exploration_data.Rproj
+```
+
+Le dossier
+
+- data/ contient les données source (fichier vico2020.csv)  
+- scripts/ est vide à la création du projet mais contiendra les deux scripts demandés pour cet exercice, qui apparaissent donc dans le schéma  
+- outputs/ est vide à l'initialisation du projet mais contiendra ensuite les différents graphiques produits dans l'analyse et qui sont listés ici  
+- docs/ peut contenir la documentation du projet, le dictionnaire des variables, les consignes ou un compte rendu
+  
+#   Nettoyer et préparer les données - le script `01_nettoyage.R`
+```{r}
+#| label: scrip01
+
+#   ____________________________________________________________________________
+#   Script: Import et nettoyage/préparation des données vico2020
+#   Author: Sandrine.Lyser
+#   Créé le : 2026-10-07
+#   Dernière modification : 2026-10-07
+#   Text defaut encoding : UTF-8 
+#   R version 4.6.0 (2026-04-24 ucrt) -- "Because it was There"
+#   ____________________________________________________________________________
+
+#   ____________________________________________________________________________
+#   Packages                                                                ####
+library(readr)     # v 2.2.0
+library(dplyr)     # v 1.2.1
+library(questionr) # v 0.8.2
+
+#   ____________________________________________________________________________
+#   Import des données                                                      ####
+
+# Les données sont au format csv. Les colonnes sont séparées par un ";". Le séparateur des décimales est la ",". On peut utiliser la fonction read_csv2() du package readr qui est paramétrée avec ces séparateurs
+
+readr::read_csv2("data/vico2020.csv") -> vico2020_src
+
+#   ____________________________________________________________________________
+#   Aperçu de la structure des données                                      ####
+
+str(vico2020_src)
+
+#   Le jeu de données contient 2000 observations et 20 variables.
+#   Les variables MASQUE, INQUIET et VOISINS ne sont pas suffisamment renseignées pour pouvoir être analysées car elles ne contiennent que deux modalités "Non sélectionné" et "Oui" et n'auront donc pas d'utilité dans l'analyse.
+#   Ces variables sont supprimées du jeu de données.
+
+#   ____________________________________________________________________________
+#   Nettoyage des données                                                   ####
+
+##  ............................................................................
+##  Suppression de variables insuffisamment renseignées                     ####
+vico2020_src |> 
+  select(-c(MASQUE, INQUIET, VOISINS)) -> vico2020
+
+##  ............................................................................
+##  Harmonisation du nom des variables (convention 'underscore_separated')  ####
+vico2020 |> 
+  rename(SIT_CONJ = SITCONJ, 
+         RES_NB = RESNB, 
+         RES_ISOL = RESISOL, 
+         LOG_AUTRE = LOGAUTRE, 
+         DIPLO_NIV = DIPLONIV) -> vico2020
+
+#   On peut vérifier les modifications en affichant le nom des variables de vico2020
+vico2020 |> 
+  names()
+
+##  ............................................................................
+##  Création de la variable AGE_CL pour les classes d'âge                   ####
+vico2020 |> 
+  mutate(AGE_CL = case_when(AGE <= 19 ~ "0-19 ans",
+                            AGE >= 20 & AGE <= 39 ~ "20-39 ans", 
+                            AGE >= 40 & AGE <= 59 ~ "40-59 ans", 
+                            AGE >= 60 & AGE <= 74 ~ "60-74 ans", 
+                            AGE >= 75 ~ "75 ans et plus", 
+                            TRUE ~ "ERREUR")) |> 
+  # repositionnement de la variable AGE_CL après AGE
+  relocate(AGE_CL, .after = AGE) -> vico2020
+
+#   On peut vérifier la création de cette variable
+#   - en affichant ses modalités
+vico2020 |> 
+  distinct(AGE_CL)
+#   - en affichant sa distribution, avec la fonction freq du package questionr par ex.
+vico2020 |> 
+  select(AGE_CL) |> 
+  questionr::freq(total = TRUE)
+```
+
+#   Analyse exploratoire - le script ``02_analyse.R`
+
+```{r}
+#| label: scrip02
+#| fig-width: 6
+#| fig-height: 4
+
+#   ____________________________________________________________________________
+#   Script: Analyse exploratoire des données vico2020
+#   Author: Sandrine.Lyser
+#   Créé le : 2026-10-07
+#   Dernière modification : 2026-10-07
+#   Text defaut encoding : UTF-8 
+#   R version 4.6.0 (2026-04-24 ucrt) -- "Because it was There"
+#   ____________________________________________________________________________
+
+#   ____________________________________________________________________________
+#   Packages                                                                ####
+library(ggplot2) # v 4.0.3
+library(ggstats) # v 0.13.0 #pour "prop" dans les graphiques
+
+#   ____________________________________________________________________________
+#   Création d'un thème personnalisé pour les graphiques ggplot2            ####
+theme_vico <- function(){
+  # On part du thème "gray" avec une taille de police de 14
+  theme_gray(base_size = 14) +
+    # Mise en forme du titre : police en gras, de taille 16 et de couleur verte
+    theme(plot.title = element_text(face = "bold", 
+                                    size = unit(16, "pt"), 
+                                    color = "#2E3A1B"), 
+    # Mise en forme de la légende : en gris, italique et de taille 10, et aligné à droite
+          plot.caption = element_text(color = "grey40", 
+                                      face = "italic", 
+                                      size = unit(10, "pt"), 
+                                      hjust = 1), 
+    # Mise en forme des labels des axes : en gras
+          axis.title = element_text(face = "bold"), 
+    # Emplacement de la légende : sous le graphique
+          legend.position = "bottom", 
+    # Grille principale :  ligne en pointillés, de couleur gris clair
+          panel.grid.major = element_line(color = "grey80",
+                                          linetype = "dashed"))
+    }
+
+#   ____________________________________________________________________________
+#   Graphiques                                                              ####
+
+##  ............................................................................
+##  Graphique 1 : distribution de la variable AGE                            ####
+ggplot(data = vico2020) +
+  # variable représentée
+  aes(x = AGE) + 
+  # type de graphique
+  geom_histogram(bins = 5, 
+                 color = "white", 
+                 fill = "#2E3A1B") +
+  # informations sur les données
+  labs(title = "Distribution de l'âge",
+       x = "Âge en 2020",
+       caption = "Source : enquête VICO 2020") +
+  # application du thème personnalisé
+  theme_vico()
+# Export du graphique au format image
+ggsave(filename = "outputs/histo_AGE.png")
+
+##  ............................................................................
+##  Graphique 2 : vie en couple selon les classes d'âge                     ####
+ggplot(data = vico2020) +
+  # variable représentée
+  aes(x = SIT_CONJ) + 
+  # type de graphique
+  geom_bar(color = "white", 
+           fill = "#2E3A1B") +
+  # comparaison selon les classes d'âge (il n'y a pas de 75 ans et plus)
+  # 4 graphiques disposés en colonnes
+  facet_grid(cols = vars(AGE_CL)) + 
+  # informations sur les données
+  labs(title = "Vie en couple selon les classes d'âge",
+       x = "Vie en couple",
+       caption = "Source : enquête VICO 2020") +
+  # application du thème personnalisé
+  theme_vico()
+# Export du graphique au format image
+ggsave(filename = "outputs/barplot_SIT_CONJ_facet_AGE_CL.png")
+
+
+#   Il serait possible d'améliorer ce graphique pour le rendre interprétable
+#   - en supprimant les non-réponses à SIT_CONJ
+#   - en représentant les proportions plutôt que les effectifs
+ggplot(data = vico2020 |> 
+           # filtre pour supprimer les réponses manquantes à SIT_CONJ
+           filter(!is.na(SIT_CONJ))) +
+  # variable représentée
+  aes(x = SIT_CONJ, 
+      # calcul des proportions, par classes d'âge
+      by = AGE_CL, 
+      y = ggplot2::after_stat(prop), 
+      # couleur de remplissage des barres selon SIT_CONJ
+      fill = SIT_CONJ) + 
+  # type de graphique
+  geom_bar(stat = "prop", # afficher les proportions
+           color = "white") +
+  # comparaison selon les classes d'âge (il n'y a pas de 75 ans et plus)
+  # 4 graphiques disposés en colonnes
+  facet_grid(cols = vars(AGE_CL)) +
+  # affichage de l'axe des ordonnées en pourcentages
+  scale_y_continuous(labels = scales::percent, 
+                     limits = c(0, 1)) + # échelle : 0 à 100
+  # couleurs des barres : vert pour 'Oui' et rouge pour 'Non'
+  scale_fill_manual(values = c("Oui" = "lightgreen", 
+                               "Non" = "red")) + 
+  # informations sur les données
+  labs(title = "Vie en couple selon les classes d'âge",
+       x = "Vie en couple",
+       y = "Pourcentages", 
+       caption = "Source : enquête VICO 2020") +
+  # application du thème personnalisé
+  theme_vico() +
+  theme(legend.position = "none") # suppression de la légende
+```
