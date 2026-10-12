@@ -5,9 +5,9 @@ author:
   name: Sandrine LYSER
   email: sandrine.lyser@inrae.fr
 author-meta: "Sandrine LYSER"
-subtitle: "Dernière mise à jour : 05 oct. 2026"
+subtitle: "Dernière mise à jour : 12 oct. 2026"
 date-meta: "oct.-nov. 2026"
-date-update: 2026-10-05
+date-update: 2026-10-12
 footer: "Visualisation avec R | BUT 3A Sciences des données | Année universitaire 2026-2027"
 title-slide-attributes: 
   data-footer: "-- Diffusé sous licence CC BY-NC-SA 4.0 --"
@@ -2655,6 +2655,61 @@ On va s'intéresser au taux de chômage, aux revenus et aux émissions totales d
    - les points ont des couleurs différentes selon la région
 
 :::
+
+##     {background-color="#222251" .unlisted .unnumbered .purple-text}
+
+:::{#sol-seance3}
+**Script 02_ggplots_Exercices_VisuR.R**
+```{r}
+#| label: exr3
+#| eval: false
+#| code-fold: true
+
+#   ____________________________________________________________________________
+#   Exercice sur les graphiques avancés avec ggplot2                        ####
+
+#   01. Nom du script : 02_ggplots_Exercices_VisuR.R
+
+##  ............................................................................
+##  Packages                                                                ####
+
+library(ggplot2)    # v4.0.3
+
+##  ............................................................................
+##  02. Sélection des données                                               ####
+communes_ex4 <- communes |> 
+  select(CODGEO, commune,                                             # variables d'identification des observations
+          region, annee, taux_chomage, revenu_median, emis_co2_total) # variables pour l'exercice
+
+##  ............................................................................
+##  03. Boxplot du taux de chômage par année toutes régions confondues  ####
+ggplot(communes_ex4) +                           # initialisation du graphique
+  aes(x = region, y = taux_chomage) +            # données à représenter
+  geom_boxplot(fill = "darkgreen") +             # type de graphique : boxplot
+  labs(title = "Taux de chômage par région (années 2018, 2020 et 2022 confondues)",
+       caption = "Source : données fictives") +
+  theme_bw() +                         # thème
+  theme(axis.text.x = element_text(angle = 90))  # rotation des libellés pour une meilleure lisibilité
+
+##  ............................................................................
+##  04. Relation entre revenus et émissions de CO2 selon l'année            ####
+
+# Sélection des données
+communes_ex4 |> 
+  filter(region %in% c("Nouvelle-Aquitaine", "Occitanie", "Bretagne", "Pays de la Loire", "Grand Est")) |> 
+# Plot
+  ggplot() +                                              # initialisation du graphique
+  aes(x = revenu_median, emis_co2_hab, color = region) +  #  données à représenter
+  geom_point() +                                          # type de graphique : nuage de points
+  facet_wrap(vars(annee)) +                               # facettes par année
+    labs(title = "Émissions de CO2 en fonction du revenu médian",
+         caption = "Source : données fictives",
+         x = "Revenu médian",
+         y = "Émissions de CO2 (t eq. CO2/hab/an)")
+  theme(legend.position = "bottom")                       # personnalisation : légende sous le graphique
+```
+:::
+
 
 #      Bibliographie {.theme-seance}
 

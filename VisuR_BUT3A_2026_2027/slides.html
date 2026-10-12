@@ -230,7 +230,7 @@
 
 <section id="title-slide" data-footer="– Diffusé sous licence CC BY-NC-SA 4.0 –" class="quarto-title-block center">
   <h1 class="title">Visualisation avec <img data-src="./img/Rlogo.png" class="center" style="width:10.0%" alt="Rlogo"></h1>
-  <p class="subtitle">Dernière mise à jour : 05 oct. 2026</p>
+  <p class="subtitle">Dernière mise à jour : 12 oct. 2026</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -3485,6 +3485,60 @@ On va s’intéresser au taux de chômage, aux revenus et aux émissions totales
 <li>les points ont des couleurs différentes selon la région</li>
 </ul></li>
 </ol>
+</div>
+</section>
+
+<section id="section-3" class="title-slide slide level2 unlisted unnumbered purple-text center" data-background-color="#222251">
+<h2></h2>
+<div id="sol-seance3" class="proof solution">
+<p><span class="proof-title"><em>Solution 4</em>. </span><strong>Script 02_ggplots_Exercices_VisuR.R</strong></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb95"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb95-1"><a href="" aria-label="1"></a><span class="co">#   ____________________________________________________________________________</span></span>
+<span id="cb95-2"><a href="" aria-label="2"></a><span class="co">#   Exercice sur les graphiques avancés avec ggplot2                        ####</span></span>
+<span id="cb95-3"><a href="" aria-label="3"></a></span>
+<span id="cb95-4"><a href="" aria-label="4"></a><span class="co">#   01. Nom du script : 02_ggplots_Exercices_VisuR.R</span></span>
+<span id="cb95-5"><a href="" aria-label="5"></a></span>
+<span id="cb95-6"><a href="" aria-label="6"></a><span class="do">##  ............................................................................</span></span>
+<span id="cb95-7"><a href="" aria-label="7"></a><span class="do">##  Packages                                                                ####</span></span>
+<span id="cb95-8"><a href="" aria-label="8"></a></span>
+<span id="cb95-9"><a href="" aria-label="9"></a><span class="fu">library</span>(ggplot2)    <span class="co"># v4.0.3</span></span>
+<span id="cb95-10"><a href="" aria-label="10"></a></span>
+<span id="cb95-11"><a href="" aria-label="11"></a><span class="do">##  ............................................................................</span></span>
+<span id="cb95-12"><a href="" aria-label="12"></a><span class="do">##  02. Sélection des données                                               ####</span></span>
+<span id="cb95-13"><a href="" aria-label="13"></a>communes_ex4 <span class="ot">&lt;-</span> communes <span class="sc">|&gt;</span> </span>
+<span id="cb95-14"><a href="" aria-label="14"></a>  <span class="fu">select</span>(CODGEO, commune,                                             <span class="co"># variables d'identification des observations</span></span>
+<span id="cb95-15"><a href="" aria-label="15"></a>          region, annee, taux_chomage, revenu_median, emis_co2_total) <span class="co"># variables pour l'exercice</span></span>
+<span id="cb95-16"><a href="" aria-label="16"></a></span>
+<span id="cb95-17"><a href="" aria-label="17"></a><span class="do">##  ............................................................................</span></span>
+<span id="cb95-18"><a href="" aria-label="18"></a><span class="do">##  03. Boxplot du taux de chômage par année toutes régions confondues  ####</span></span>
+<span id="cb95-19"><a href="" aria-label="19"></a><span class="fu">ggplot</span>(communes_ex4) <span class="sc">+</span>                           <span class="co"># initialisation du graphique</span></span>
+<span id="cb95-20"><a href="" aria-label="20"></a>  <span class="fu">aes</span>(<span class="at">x =</span> region, <span class="at">y =</span> taux_chomage) <span class="sc">+</span>            <span class="co"># données à représenter</span></span>
+<span id="cb95-21"><a href="" aria-label="21"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"darkgreen"</span>) <span class="sc">+</span>             <span class="co"># type de graphique : boxplot</span></span>
+<span id="cb95-22"><a href="" aria-label="22"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Taux de chômage par région (années 2018, 2020 et 2022 confondues)"</span>,</span>
+<span id="cb95-23"><a href="" aria-label="23"></a>       <span class="at">caption =</span> <span class="st">"Source : données fictives"</span>) <span class="sc">+</span></span>
+<span id="cb95-24"><a href="" aria-label="24"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span>                         <span class="co"># thème</span></span>
+<span id="cb95-25"><a href="" aria-label="25"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>))  <span class="co"># rotation des libellés pour une meilleure lisibilité</span></span>
+<span id="cb95-26"><a href="" aria-label="26"></a></span>
+<span id="cb95-27"><a href="" aria-label="27"></a><span class="do">##  ............................................................................</span></span>
+<span id="cb95-28"><a href="" aria-label="28"></a><span class="do">##  04. Relation entre revenus et émissions de CO2 selon l'année            ####</span></span>
+<span id="cb95-29"><a href="" aria-label="29"></a></span>
+<span id="cb95-30"><a href="" aria-label="30"></a><span class="co"># Sélection des données</span></span>
+<span id="cb95-31"><a href="" aria-label="31"></a>communes_ex4 <span class="sc">|&gt;</span> </span>
+<span id="cb95-32"><a href="" aria-label="32"></a>  <span class="fu">filter</span>(region <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Nouvelle-Aquitaine"</span>, <span class="st">"Occitanie"</span>, <span class="st">"Bretagne"</span>, <span class="st">"Pays de la Loire"</span>, <span class="st">"Grand Est"</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb95-33"><a href="" aria-label="33"></a><span class="co"># Plot</span></span>
+<span id="cb95-34"><a href="" aria-label="34"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span>                                              <span class="co"># initialisation du graphique</span></span>
+<span id="cb95-35"><a href="" aria-label="35"></a>  <span class="fu">aes</span>(<span class="at">x =</span> revenu_median, emis_co2_hab, <span class="at">color =</span> region) <span class="sc">+</span>  <span class="co">#  données à représenter</span></span>
+<span id="cb95-36"><a href="" aria-label="36"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span>                                          <span class="co"># type de graphique : nuage de points</span></span>
+<span id="cb95-37"><a href="" aria-label="37"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(annee)) <span class="sc">+</span>                               <span class="co"># facettes par année</span></span>
+<span id="cb95-38"><a href="" aria-label="38"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Émissions de CO2 en fonction du revenu médian"</span>,</span>
+<span id="cb95-39"><a href="" aria-label="39"></a>         <span class="at">caption =</span> <span class="st">"Source : données fictives"</span>,</span>
+<span id="cb95-40"><a href="" aria-label="40"></a>         <span class="at">x =</span> <span class="st">"Revenu médian"</span>,</span>
+<span id="cb95-41"><a href="" aria-label="41"></a>         <span class="at">y =</span> <span class="st">"Émissions de CO2 (t eq. CO2/hab/an)"</span>)</span>
+<span id="cb95-42"><a href="" aria-label="42"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)                       <span class="co"># personnalisation : légende sous le graphique</span></span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
 </div>
 </section>
 </section>
