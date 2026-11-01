@@ -1,0 +1,505 @@
+---
+title: "Visualisation avec ![Rlogo](/img/Rlogo.png){.center width=10%}. Évaluation finale"
+pagetitle: Visualisation avec R
+author:
+  name: Sandrine LYSER
+  email: sandrine.lyser@inrae.fr
+author-meta: "Sandrine LYSER"
+subtitle: "Dernière mise à jour : 23 oct. 2026"
+date-meta: "oct.-nov. 2026"
+date-update: 2026-10-23
+footer: "Visualisation avec R | BUT 3A Sciences des données | Année universitaire 2026-2027"
+title-slide-attributes: 
+  data-footer: "-- Diffusé sous licence CC BY-NC-SA 4.0 --"
+format: 
+  pdf:
+    output-file: SujetEvaluation_VisuR.pdf
+    toc: false
+# Dernière mise à jour le : 23 oct. 2026
+---
+
+<!-- Chargement des packages et des données -->
+```{r}
+#| label: initR
+#| echo: false
+
+rm(list = ls())
+
+#   ____________________________________________________________________________
+#   R version                                                               ####
+#   R version 4.6.0 (2026-04-24 ucrt) -- "Because it was There"
+
+#   ____________________________________________________________________________
+#   Packages                                                                ####
+library(tidyverse)    # v2.0.0
+library(knitr)        # v1.51
+library(kableExtra)   # v1.4.1 ; pour scroll_box
+
+# Fichiers de données INCA3
+readr::read_delim(file = "data/description-indiv.csv"
+                , delim = ";"
+                , locale = locale(decimal_mark = ".")) -> description_indiv
+readr::read_delim(file = "data/habitudes-indiv.csv"
+                , delim = ";"
+                , locale = locale(decimal_mark = ".")) -> habitudes_indiv
+
+#  Données pour l'évaluation
+## Sélection des variables de description_indiv
+description_indiv |> 
+  select(NOMEN, NOIND, region_adm_12cl, agglo_5cl, sex_PS, tage_PS
+         , etude_4cl_interv, situ_prof_5cl_interv, PCS_8cl_interv, revenu
+         , nbpers, taille_m, poids_m, imc, maladie_allergie_alim, veget_viande
+         , veget_prodmer, veget_prodlait, veget_oeuf, veget_miel, regime_passe
+         , regime_nb_2dernann, regime_type, poids_perception, fume) |> 
+## Jointure avec la sélection des variables de habitudes_indiv
+  left_join(habitudes_indiv |> 
+              select(NOIND
+                     , etiquette_freq, etiquette_ingredients
+                     , etiquette_contenu_nutri, etiquette_portions
+                     , etiquette_message_nutri, etiquette_effets_benefiques
+                     , source_medecins, source_personnels_pharma
+                     , source_publicite, source_famille, source_amis
+                     , source_internet, source_emballages
+                     , jardin_potager, jardin_entretien
+                     , autoproduction_aliments, autoproduction_oeufs_freq
+                     , autoproduction_volailles_freq
+                     , consommation_bio, consommation_bio_type
+                     , conso_oeufs_bio_tjr_svt, conso_lait_bio_tjr_svt
+                     , conso_volailles_bio_tjr_svt, conso_viandes_bio_tjr_svt
+                     , conso_poissons_bio_tjr_svt, conso_fruits_bio_tjr_svt
+                     , conso_pdt_bio_tjr_svt, conso_legumes_bio_tjr_svt
+                     , conso_legumes_secs_bio_tjr_svt, conso_cereales_bio_tjr_svt
+                     , conso_pain_bio_tjr_svt, conso_barbecue)
+            , by = "NOIND") |> 
+## Filtre sur l'âge des individus : uniquement les majeurs tage_PS == 7 ; 8 ; 9
+  filter(tage_PS >= 7) -> inca3
+
+# #  Recodage des données : code --> libellé
+inca3 |>
+   # Variables utilisées dans les Exercices 1 à 4
+   mutate(sex_PS = case_when(sex_PS == 1 ~ "Homme"
+                             , sex_PS == 2 ~ "Femme"
+                             , is.na(sex_PS) ~ NA_character_
+                             , .default = NA_character_)
+          , etude_4cl_interv = case_when(etude_4cl_interv == 1 ~ "Primaire+collège"
+                                         , etude_4cl_interv == 2 ~ "Lycée"
+                                         , etude_4cl_interv == 3 ~ "Bac +1/3"
+                                         , etude_4cl_interv == 4 ~ "Bac +4 et plus"
+                                         , etude_4cl_interv == 5 ~ "Non renseigné"
+                                         , is.na(etude_4cl_interv) ~ NA_character_
+                                         , .default = NA_character_)
+          , etiquette_freq = case_when(etiquette_freq == 1 ~ "Toujours"
+                                       , etiquette_freq == 2 ~ "Souvent"
+                                       , etiquette_freq == 3 ~ "Rarement"
+                                       , etiquette_freq == 4 ~ "Jamais"
+                                       , etiquette_freq == 5 ~ "Ne sait pas"
+                                       , is.na(etiquette_freq) ~ NA_character_
+                                       , .default = NA_character_)
+          , source_medecins = case_when(source_medecins == 1 ~ "Oui"
+                                        , source_medecins == 2 ~ "Non"
+                                        , source_medecins == 3 ~ "Ne sait pas"
+                                        , is.na(source_medecins) ~ NA_character_
+                                        , .default = NA_character_)
+          , source_publicite = case_when(source_publicite == 1 ~ "Oui"
+                                         , source_publicite == 2 ~ "Non"
+                                         , source_publicite == 3 ~ "Ne sait pas"
+                                         , is.na(source_publicite) ~ NA_character_
+                                         , .default = NA_character_)
+          , source_famille = case_when(source_famille == 1 ~ "Oui"
+                                       , source_famille == 2 ~ "Non"
+                                       , source_famille == 3 ~ "Ne sait pas"
+                                       , is.na(source_famille) ~ NA_character_
+                                       , .default = NA_character_)
+          , source_internet = case_when(source_internet == 1 ~ "Oui"
+                                        , source_internet == 2 ~ "Non"
+                                        , source_internet == 3 ~ "Ne sait pas"
+                                        , is.na(source_internet) ~ NA_character_
+                                        , .default = NA_character_)
+          , consommation_bio = case_when(consommation_bio == 0 ~ "Non"
+                                         , consommation_bio == 1 ~ "Oui"
+                                         , is.na(consommation_bio) ~ NA_character_
+                                         , .default = NA_character_)
+          # Autres variables du jeu de données
+          , region_adm_12cl = case_when(region_adm_12cl == 1 ~ "Ile-de-France"
+                                        , region_adm_12cl == 2 ~ "Normandie"
+                                        , region_adm_12cl == 3 ~ "Centre-Val de Loire"
+                                        , region_adm_12cl == 4 ~ "Pays de la Loire"
+                                        , region_adm_12cl == 5 ~ "Bretagne"
+                                        , region_adm_12cl == 6 ~ "Hauts-de-France"
+                                        , region_adm_12cl == 7 ~ "Grand Est"
+                                        , region_adm_12cl == 8 ~ "Bourgogne-Franche-Comté"
+                                        , region_adm_12cl == 9 ~ "Auvergne-Rhône-Alpes"
+                                        , region_adm_12cl == 10 ~ "Provence-Alpes-Côte d'Azur"
+                                        , region_adm_12cl == 11 ~ "Occitanie-Pyrénées-Méditerranée"
+                                        , region_adm_12cl == 12 ~ "Nouvelle-Aquitaine"
+                                        , is.na(region_adm_12cl) ~ NA_character_
+                                        , .default = NA_character_)
+          , agglo_5cl = case_when(agglo_5cl == 1 ~ "Rural"
+                                  , agglo_5cl == 2 ~ "2 000-19 999 hab."
+                                  , agglo_5cl == 3 ~ "20 000-99 999 hab."
+                                  , agglo_5cl == 4 ~ ">=100 000 hab."
+                                  , agglo_5cl == 5 ~ "Agglo Paris"
+                                  , is.na(agglo_5cl) ~ NA_character_
+                                  , .default = NA_character_)
+          , tage_PS = case_when(tage_PS == 7 ~ "18-44 ans"
+                                , tage_PS == 8 ~ "45-64 ans"
+                                , tage_PS == 9 ~ "65-79 ans"
+                                , is.na(tage_PS) ~ NA_character_
+                                , .default = NA_character_)
+          , situ_prof_5cl_interv = case_when(situ_prof_5cl_interv == 1 ~ "Occupe un emploi"
+                                             , situ_prof_5cl_interv == 2 ~ "Chômeur"
+                                             , situ_prof_5cl_interv == 3 ~ "Etudiant"
+                                             , situ_prof_5cl_interv == 4 ~ "Retraité"
+                                             , situ_prof_5cl_interv == 5 ~ "Au foyer, autre inactif"
+                                             , is.na(situ_prof_5cl_interv) ~ NA_character_
+                                             , .default = NA_character_)
+          , PCS_8cl_interv = case_when(PCS_8cl_interv == 1 ~ "Employés"
+                                       , PCS_8cl_interv == 2 ~ "Ouvriers"
+                                       , PCS_8cl_interv == 3 ~ "Agriculteurs"
+                                       , PCS_8cl_interv == 4 ~ "Artisans, comerçants et chefs d'entreprise"
+                                       , PCS_8cl_interv == 5 ~ "Professions intermédiaires"
+                                       , PCS_8cl_interv == 6 ~ "Cadre, profession libérale"
+                                       , PCS_8cl_interv == 7 ~ "Retraités, anciens actifs"
+                                       , PCS_8cl_interv == 8 ~ "Autres inactifs"
+                                       , PCS_8cl_interv == 9 ~ "Refus"
+                                       , PCS_8cl_interv == 10 ~ "Ne sait pas"
+                                       , is.na(PCS_8cl_interv) ~ NA_character_
+                                       , .default = NA_character_)
+          , revenu = case_when(revenu == 1 ~ "<380 €/mois"
+                               , revenu == 2 ~ "[380-530[ €/mois"
+                               , revenu == 3 ~ "[530-690[ €/mois"
+                               , revenu == 4 ~ "[690-840[ €/mois"
+                               , revenu == 5 ~ "[840-990[ €/mois"
+                               , revenu == 6 ~ "[990-1 300[ €/mois"
+                               , revenu == 7 ~ "[1 300-1 600[ €/mois"
+                               , revenu == 8 ~ "[1 600-1 900[ €/mois"
+                               , revenu == 9 ~ "[1 900-2 200[ €/mois"
+                               , revenu == 10 ~ "[2 200-2 500[ €/mois"
+                               , revenu == 11 ~ "[2 500-3 100[ €/mois"
+                               , revenu == 12 ~ "[3 100-4 600[ €/mois"
+                               , revenu == 13 ~ ">=4 600 €/mois"
+                               , revenu == 14 ~ "Ne sait pas"
+                               , revenu == 15 ~ "Refus"
+                               , is.na(revenu) ~ NA_character_
+                               , .default = NA_character_)
+          , maladie_allergie_alim = case_when(maladie_allergie_alim == 0 ~ "Non"
+                                              , maladie_allergie_alim == 1 ~ "Oui"
+                                              , is.na(maladie_allergie_alim) ~ NA_character_
+                                              , .default = NA_character_)
+          , veget_viande = case_when(veget_viande == 0 ~ "Non"
+                                     , veget_viande == 1 ~ "Oui"
+                                     , is.na(veget_viande) ~ NA_character_
+                                     , .default = NA_character_)
+          , veget_prodmer = case_when(veget_prodmer == 0 ~ "Non"
+                                      , veget_prodmer == 1 ~ "Oui"
+                                      , is.na(veget_prodmer) ~ NA_character_
+                                      , .default = NA_character_)
+          , veget_prodlait = case_when(veget_prodlait == 0 ~ "Non"
+                                       , veget_prodlait == 1 ~ "Oui"
+                                       , is.na(veget_prodlait) ~ NA_character_
+                                       , .default = NA_character_)
+          , veget_oeuf = case_when(veget_oeuf == 0 ~ "Non"
+                                   , veget_oeuf == 1 ~ "Oui"
+                                   , is.na(veget_oeuf) ~ NA_character_
+                                   , .default = NA_character_)
+          , veget_miel = case_when(veget_miel == 0 ~ "Non"
+                                   , veget_miel == 1 ~ "Oui"
+                                   , is.na(veget_miel) ~ NA_character_
+                                   , .default = NA_character_)
+          , regime_passe = case_when(regime_passe == 1 ~ "Oui"
+                                     , regime_passe == 2 ~ "Non"
+                                     , regime_passe == 3 ~ "Ne sait pas"
+                                     , is.na(regime_passe) ~ NA_character_
+                                     , .default = NA_character_)
+          , regime_nb_2dernann = case_when(regime_nb_2dernann == 1 ~ "1"
+                                           , regime_nb_2dernann == 2 ~ "2"
+                                           , regime_nb_2dernann == 3 ~ "3"
+                                           , regime_nb_2dernann == 4 ~ "4"
+                                           , regime_nb_2dernann == 5 ~ "Plus de 4"
+                                           , regime_nb_2dernann == 6 ~ "Ne sait pas"
+                                           , regime_nb_2dernann == 7 ~"Refus"
+                                           , is.na(regime_nb_2dernann) ~ NA_character_
+                                           , .default = NA_character_)
+          , regime_type = case_when(regime_type == 1 ~ "Oui, plus de 3 fois"
+                                    , regime_type == 2 ~ "Oui, 2 à 3 fois"
+                                    , regime_type == 3 ~ "Oui, 1 seule fois"
+                                    , regime_type == 4 ~ "Non, jamais"
+                                    , regime_type == 5 ~ "Ne sait pas"
+                                    , is.na(regime_type) ~ NA_character_
+                                    , .default = NA_character_)
+          , poids_perception = case_when(poids_perception == 1 ~ "Pense qu'il est d'un poidsnormal"
+                                         , poids_perception == 2 ~ "Pense qu'il est trop gros"
+                                         , poids_perception == 3 ~ "Pense qu'il est trop maigre"
+                                         , poids_perception == 4 ~ "Ne sait pas"
+                                         , is.na(poids_perception) ~ NA_character_
+                                         , .default = NA_character_)   
+          , fume = case_when(fume == 1 ~ "Oui, quotidiennement"
+                             , fume == 2 ~ "Oui, occasionnellement"
+                             , fume == 3 ~ "Non, mais a déjà fumé"
+                             , fume == 4 ~ "Non, jamais fumé"
+                             , is.na(fume) ~ NA_character_
+                             , .default = NA_character_)
+          , etiquette_ingredients = case_when(etiquette_ingredients == 1 ~ "Influence toujours l'achat"
+                                              , etiquette_ingredients == 2 ~ "Influence parfois l'achat"
+                                              , etiquette_ingredients == 3 ~ "N'influence jamais l'achat"
+                                              , etiquette_ingredients == 4 ~ "Ne lit jamais cette partie"
+                                              , is.na(etiquette_ingredients) ~ NA_character_
+                                              , .default = NA_character_)
+          , etiquette_contenu_nutri = case_when(etiquette_contenu_nutri == 1 ~ "Influence toujours l'achat"
+                                                , etiquette_contenu_nutri == 2 ~ "Influence parfois l'achat"
+                                                , etiquette_contenu_nutri == 3 ~ "N'influence jamais l'achat"
+                                                , etiquette_contenu_nutri == 4 ~ "Ne lit jamais cette partie"
+                                                , is.na(etiquette_contenu_nutri) ~ NA_character_
+                                                , .default = NA_character_)
+          , etiquette_portions = case_when(etiquette_portions == 1 ~ "Influence toujours l'achat"
+                                           , etiquette_portions == 2 ~ "Influence parfois l'achat"
+                                           , etiquette_portions == 3 ~ "N'influence jamais l'achat"
+                                           , etiquette_portions == 4 ~ "Ne lit jamais cette partie"
+                                           , is.na(etiquette_portions) ~ NA_character_
+                                           , .default = NA_character_)
+          , etiquette_message_nutri = case_when(etiquette_message_nutri == 1 ~ "Influence toujours l'achat"
+                                                , etiquette_message_nutri == 2 ~ "Influence parfois l'achat"
+                                                , etiquette_message_nutri == 3 ~ "N'influence jamais l'achat"                                                             
+                                                , etiquette_message_nutri == 4 ~ "Ne lit jamais cette partie"
+                                                , is.na(etiquette_message_nutri) ~ NA_character_
+                                                , .default = NA_character_)
+          , etiquette_effets_benefiques = case_when(etiquette_effets_benefiques == 1 ~ "Influence toujours l'achat"
+                                                    , etiquette_effets_benefiques == 2 ~ "Influence parfois l'achat"
+                                                    , etiquette_effets_benefiques == 3 ~ "N'influence jamais l'achat"
+                                                    , etiquette_effets_benefiques == 4 ~ "Ne lit jamais cette partie"
+                                                    , is.na(etiquette_effets_benefiques) ~ NA_character_
+                                                    , .default = NA_character_)
+          , source_personnels_pharma = case_when(source_personnels_pharma == 1 ~ "Oui"
+                                                 , source_personnels_pharma == 2 ~ "Non"
+                                                 , source_personnels_pharma == 3 ~ "Ne sait pas"
+                                                 , is.na(source_personnels_pharma) ~ NA_character_
+                                                 , .default = NA_character_)
+          , source_amis = case_when(source_amis == 1 ~ "Oui"
+                                    , source_amis == 2 ~ "Non"
+                                    , source_amis == 3 ~ "Ne sait pas"
+                                    , is.na(source_amis) ~ NA_character_
+                                    , .default = NA_character_)
+          , source_emballages = case_when(source_emballages == 1 ~ "Oui"
+                                          , source_emballages == 2 ~ "Non"
+                                          , source_emballages == 3 ~ "Ne sait pas"
+                                          , is.na(source_emballages)~ NA_character_
+                                          , .default = NA_character_)
+          , jardin_potager = case_when(jardin_potager == 0 ~ "Non"
+                                       , jardin_potager== 1 ~ "Oui"
+                                       , is.na(jardin_potager) ~ NA_character_
+                                       , .default = NA_character_)
+          , jardin_entretien = case_when(jardin_entretien == 1 ~ "Oui"
+                                         , jardin_entretien == 2 ~ "Non"
+                                         , jardin_entretien == 3 ~ "Ne sait pas"
+                                         , jardin_entretien == 4 ~ "Refus"
+                                         , is.na(jardin_entretien) ~ NA_character_
+                                         , .default = NA_character_)
+          , autoproduction_aliments = case_when(autoproduction_aliments == 1 ~ "Oui"    
+                                                , autoproduction_aliments == 2 ~ "Non"
+                                                , autoproduction_aliments == 3 ~ "Ne sait pas"
+                                                , is.na(autoproduction_aliments) ~ NA_character_
+                                                , .default = NA_character_)
+          , autoproduction_oeufs_freq = case_when(autoproduction_oeufs_freq == 1 ~ "Jamais"
+                                                  , autoproduction_oeufs_freq == 2 ~ "Moins d'une fois par mois"
+                                                  , autoproduction_oeufs_freq == 3 ~ "1 à 3 fois par mois"
+                                                  , autoproduction_oeufs_freq == 4 ~ "1 fois par semaine"
+                                                  , autoproduction_oeufs_freq == 5 ~ "2 à 4 fois par semaine"
+                                                  , autoproduction_oeufs_freq == 6 ~ "5 à 6 fois par semaine"
+                                                  , autoproduction_oeufs_freq == 7 ~ "Tous les jours"
+                                                  , autoproduction_oeufs_freq == 8 ~ "Ne sait pas"
+                                                  , is.na(autoproduction_oeufs_freq) ~ NA_character_
+                                                  , .default = NA_character_)
+          , autoproduction_volailles_freq = case_when(autoproduction_volailles_freq == 1 ~ "Jamais"
+                                                      , autoproduction_volailles_freq == 2 ~ "Moins d'une fois par mois"
+                                                      , autoproduction_volailles_freq == 3 ~ "1 à 3 fois par mois"
+                                                      , autoproduction_volailles_freq == 4 ~ "1 fois par semaine"
+                                                      , autoproduction_volailles_freq == 5 ~ "2 à 4 fois par semaine"
+                                                      , autoproduction_volailles_freq == 6 ~ "5 à 6 fois par semaine"
+                                                      , autoproduction_volailles_freq == 7 ~ "Tous les jours"
+                                                      , autoproduction_volailles_freq == 8 ~ "Ne sait pas"
+                                                      , is.na(autoproduction_volailles_freq) ~ NA_character_
+                                                      , .default = NA_character_)  
+          , consommation_bio_type = case_when(consommation_bio_type == 0 ~ "Non consommateur"
+                                              , consommation_bio_type == 1 ~ "Consommateur peu diversifié" 
+                                              , consommation_bio_type == 2 ~ "Consommateur diversifié"
+                                              , is.na(consommation_bio_type) ~ NA_character_
+                                              , .default = NA_character_)
+          , conso_oeufs_bio_tjr_svt = case_when(conso_oeufs_bio_tjr_svt == 0 ~ "Non"
+                                                , conso_oeufs_bio_tjr_svt == 1 ~ "Oui"
+                                                , is.na(conso_oeufs_bio_tjr_svt) ~ NA_character_
+                                                , .default = NA_character_)
+          , conso_lait_bio_tjr_svt = case_when(conso_lait_bio_tjr_svt == 0 ~ "Non"
+                                               , conso_lait_bio_tjr_svt == 1 ~ "Oui"
+                                               , is.na(conso_lait_bio_tjr_svt) ~ NA_character_
+                                               , .default = NA_character_)
+          , conso_volailles_bio_tjr_svt = case_when(conso_volailles_bio_tjr_svt == 0 ~ "Non"
+                                                    , conso_volailles_bio_tjr_svt == 1 ~ "Oui"
+                                                    , is.na(conso_volailles_bio_tjr_svt) ~ NA_character_
+                                                    , .default = NA_character_)
+          , conso_viandes_bio_tjr_svt = case_when(conso_viandes_bio_tjr_svt == 0 ~ "Non"
+                                                  , conso_viandes_bio_tjr_svt == 1 ~ "Oui"
+                                                  , is.na(conso_viandes_bio_tjr_svt) ~ NA_character_
+                                                  , .default = NA_character_)
+          , conso_poissons_bio_tjr_svt = case_when(conso_poissons_bio_tjr_svt == 0 ~ "Non"
+                                                   , conso_poissons_bio_tjr_svt == 1 ~ "Oui"
+                                                   , is.na(conso_poissons_bio_tjr_svt) ~ NA_character_
+                                                   , .default = NA_character_)
+          , conso_fruits_bio_tjr_svt = case_when(conso_fruits_bio_tjr_svt == 0 ~ "Non"
+                                                 , conso_fruits_bio_tjr_svt == 1 ~ "Oui"
+                                                 , is.na(conso_fruits_bio_tjr_svt) ~ NA_character_
+                                                 , .default = NA_character_)
+          , conso_pdt_bio_tjr_svt = case_when(conso_pdt_bio_tjr_svt == 0 ~ "Non"
+                                              , conso_pdt_bio_tjr_svt == 1 ~ "Oui"
+                                              , is.na(conso_pdt_bio_tjr_svt) ~ NA_character_
+                                              , .default = NA_character_)
+          , conso_legumes_bio_tjr_svt = case_when(conso_legumes_bio_tjr_svt == 0 ~ "Non"
+                                                  , conso_legumes_bio_tjr_svt == 1 ~ "Oui"
+                                                  , is.na(conso_legumes_bio_tjr_svt) ~ NA_character_
+                                                  , .default = NA_character_)
+          , conso_legumes_secs_bio_tjr_svt = case_when(conso_legumes_secs_bio_tjr_svt == 0 ~ "Non"
+                                                       , conso_legumes_secs_bio_tjr_svt == 1 ~ "Oui"
+                                                       , is.na(conso_legumes_secs_bio_tjr_svt) ~  NA_character_
+                                                       , .default = NA_character_)
+          , conso_cereales_bio_tjr_svt = case_when(conso_cereales_bio_tjr_svt == 0 ~ "Non"
+                                                   , conso_cereales_bio_tjr_svt == 1 ~ "Oui"
+                                                   , is.na(conso_cereales_bio_tjr_svt) ~ NA_character_
+                                                   , .default = NA_character_)
+          , conso_pain_bio_tjr_svt = case_when(conso_pain_bio_tjr_svt == 0 ~ "Non"
+                                               , conso_pain_bio_tjr_svt == 1 ~ "Oui"
+                                               , is.na(conso_pain_bio_tjr_svt) ~ NA_character_
+                                               , .default = NA_character_)
+          , conso_barbecue = case_when(conso_barbecue == 1 ~ "Oui"
+                                       , conso_barbecue == 2 ~ "Non"
+                                       , conso_barbecue == 3 ~ "Ne sait pas"
+                                       , is.na(conso_barbecue) ~ NA_character_
+                                       , .default = NA_character_)) -> inca3_select
+
+# Export des données pour les étudiants
+# readr::write_excel_csv2(x = inca3_select
+#                        , file = "data/inca3.csv"
+#                        , delim = ";"
+#                        , na = "")
+         
+#  Fonction pour n'afficher que quelques lignes de l'output des chunks
+## Source : https://forum.posit.co/t/showing-only-the-first-few-lines-of-the-results-of-a-code-chunk/6963
+hook_output <- knit_hooks$get("output")
+knit_hooks$set(output = function(x, options) {
+   lines <- options$output.lines
+   if (is.null(lines)) {
+     return(hook_output(x, options))  # pass to default hook
+   }
+   x <- unlist(strsplit(x, "\n"))
+   more <- "..."
+   if (length(lines) == 1) {        # first n lines
+     if (length(x) > lines) {
+       # truncate the output, but add ....
+       x <- c(head(x, lines), more)
+     }
+   } else {
+     x <- c(more, x[lines], more)
+   }
+   # paste these lines together
+   x <- paste(c(x, ""), collapse = "\n")
+   hook_output(x, options)
+})
+```
+
+#   Contexte {.unnumbered}
+
+Vous disposez d'un extrait des données de l'étude INCA3, qui est l'étude Individuelle Nationale des Consommations Alimentaires, réalisée par l'ANSES.
+Il s'agit d'une étude transversale sur les consommations alimentaires et les comportements en matière d'alimentation (habitudes de consommation, pratiques d'achats, de préparation et de conservation des aliments) des individus vivant en France Métropolitaine. 
+Cette étude a été menée entre février 2014 et septembre 2015.
+
+Les données à votre disposition ne concernent que les 3 157 individus âgés de 18 à 79 ans. 
+
+Chaque ligne correspond à un individu, identifié par `NOIND`.
+
+Vous devez produire un script [R]{.sotfw}, contenant le code. Ce script devra s'inscrire dans un projet respectant les principes de reproductibilité.
+*(Note : Si vous préférez, vous pouvez écrire dans un script Quarto).*
+
+Vous déposerez votre script à la fin de l'évaluation, sur [l'espace Elearn dédié](https://elearn.univ-pau.fr/mod/assign/view.php?id=579241).
+
+
+#   Le jeu de données `inca3` {.unnumbered}
+
+Le fichier `inca3.csv` est à télécharger sur [Elearn](https://elearn.univ-pau.fr/mod/resource/view.php?id=649611).
+
+Il contient 57 variables. Le dictionnaire complet des variables est disponible sur [Elearn](https://elearn.univ-pau.fr/mod/resource/view.php?id=717066).
+
+Les variables utilisées pour les exercices 1 à 3 sont les suivantes :
+
+- **NOMEN** : Numéro de ménage
+- **NOIND** : Numéro d'individu
+- **sex_PS** : Sexe de la personne
+- **etude_4cl_interv** : Niveau d'étude en 4 classes
+- **nbpers** : Nombre de personnes vivant dans le ménage
+- **taille_m** : Taille mesurée (cm)
+- **poids_m** : Poids mesuré (kg)
+- **imc** : Indice de masse corporel (kg/m²)
+- **etiquette_freq** : Lit les étiquettes ou emballages des aliments achetés
+- **source_medecins** : Source d'information en alimentation : médecins
+- **source_publicite** : Source d'information en alimentation : publicité
+- **source_famille** : Source d'information en alimentation : famille
+- **source_internet** : Source d'information en alimentation : internet
+- **consommation_bio** : Consommateur d'aliments biologiques
+
+# Consignes générales {.unnumbered}
+
+- Placez vous dans le cadre d'un projet respectant les principes de reproductibilité
+- Utilisez les fonctions du `tidyverse` pour les manipulations de données
+- Utilisez les fonctions du package [{ggplot2}]{.pkg} pour vos graphiques
+- Supprimez les valeurs manquantes avant chaque visualisation 
+- Nommez clairement les axes, ajoutez un titre et une légende lorsque nécessaire
+
+# Exercice 1 – Manipulation des données [2 points] {.unnumbered}
+- **Question 1.** Importez le fichier `inca3.csv`, puis exécutez la commande qui vous permet de vérifier que le fichier importé contient le bon nombre de lignes et de colonnes
+
+- **Question 2.** Créez une variable `imc_categorie` à partir de `imc`, avec les catégories suivantes :
+
+   + Maigreur : IMC < 18,5
+   + Poids normal : 18,5 ≤ IMC < 25
+   + Surpoids : 25 ≤ IMC < 30
+   + Obésité : IMC ≥ 30
+   + Non renseigné : IMC manquant
+
+# Exercice 2 - Visualiser la distribution d'une variable [6 points] {.unnumbered}
+
+- **Question 1.** Vous devez réaliser un graphique permettant de représenter la répartition de la variable créée à la question précédente, l'IMC en catégories (`imc_categorie`), par un **diagramme en barres**
+
+   1. Filtrez les valeurs manquantes sur `imc_categorie`
+   2. Créez le graphique ggplot2
+   3. Ajouter un titre aux axes et au graphique et une légende si nécessaire
+   4. Personnaliser en utilisant un des thèmes prédéfinis
+   
+- **Question 2.** Vous devez réaliser un graphique permettant de représenter la distribution de la taille mesurée (`taille_m`) à l'aide d'un **histogramme**, en 10 classes.
+
+- **Question 3.** Représentez la répartition du nombre de personnes vivant dans le ménage (`nbpers`) à l'aide d'un **boxplot** (on pourra utiliser `scale_x_discrete(NULL)` pour enlever la graduation de l'axe des abscisses).
+
+# Exercice 3 – Visualiser une relation entre deux variables [5 points] {.unnumbered}
+
+- **Question 1.** Vous devez réaliser un graphique permettant d'étudier la relation entre la taille (`taille_m`) et le poids (`poids_m`), en différenciant les sexes (`sex_PS`)
+
+   1. Filtrer les valeurs manquantes sur `taille_m` et `poids_m`
+   2. Créer la visualisation graphique, à l'aide d'un nuage de points
+   4. Ajouter un titre aux axes et au graphique et une légende si nécessaire
+   5. Enregistrer le graphique au format PNG
+
+- **Question 2.** À l'aide de **facettes**, créez le graphique pour comparer la répartition de la consommation d'aliments biologiques (`consommation_bio`) selon le niveau d'études en 4 classes (`etude_4cl_interv`).
+Les barres auront une couleur différente selon les modalités de la consommation d'aliments biologiques.  
+Sans écrire les commandes permettant de le faire, indiquez une amélioration à apporter au graphique afin de le rendre plus lisible et plus fidèle à la structure des données. Justifiez brièvement cette amélioration.
+
+#   Exercice 4 – Création d'un graphique "à la carte" [7 points] {.unnumbered}
+
+À partir des variables disponibles dans le jeu de données, **produisez le graphique de votre choix**.
+
+Justifiez :  
+
+- La question ou la problématique que vous souhaitez explorer  
+*Exemple : lien entre la consommation de produits bio et le statut socio‑professionnel, profil des personnes suivant un régime végétarien, perception du poids vs. IMC, etc.*  
+- Le public visé (chercheurs en nutrition, décideurs publics, professionnels de santé, journalistes, grand public, etc.)  
+- Le type de visualisation choisi, en expliquant pourquoi il est pertinent par rapport à la question posée
+
+Enfin, écrivez en quelques lignes le message clé que l'on doit retenir de votre graphique.
+
+Vous êtes encouragé.e à personnaliser le graphique (couleurs, formes, tailles, étiquettes, thème, etc.) pour le rendre plus lisible, accessible et adapté au public visé. Les choix visuels doivent rester justifiés et ne pas fausser la lecture des données.
+

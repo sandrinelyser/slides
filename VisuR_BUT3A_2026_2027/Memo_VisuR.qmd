@@ -5,9 +5,9 @@ author:
   name: Sandrine LYSER
   email: sandrine.lyser@inrae.fr
 author-meta: "Sandrine LYSER"
-subtitle: "Dernière mise à jour : 07 oct. 2026"
+subtitle: "Dernière mise à jour : 20 oct. 2026"
 date-meta: "oct.-nov. 2026"
-date-update: 2026-10-07
+date-update: 2026-10-20
 footer: "Visualisation avec R | BUT 3A Sciences des données | Année universitaire 2026-2027"
 title-slide-attributes: 
   data-footer: "-- Diffusé sous licence CC BY-NC-SA 4.0 --"
@@ -16,7 +16,7 @@ format:
     output-file: Memo_VisuR.html
   pdf:
     output-file: Memo_VisuR.pdf
-# Dernière mise à jour le : 07 oct. 2026
+# Dernière mise à jour le : 20 oct. 2026
 # TODO : Mettre 
 # \thispagestyle{firstpage}
 # \pagebreak
@@ -137,3 +137,7 @@ nocite: |
 - `tidyverse` : <https://www.tidyverse.org>
 - `esquisse` : <https://github.com/dreamRs/esquisse>
 - `ggThemeAssist` : <https://github.com/calligross/ggthemeassist>
+
+**Ressources en ligne pour l'accessibilité des graphiques**  
+- Bien plus qu'un beau graphique : Créativité et accessibilité avec ggplot2 <https://www.cararthompson.com/talks/rencontresr-2026-beau-graphique/>  
+- Simuler le daltonisme en R pour tester vos figures <https://www.datanovia.com/fr/blog/simulate-colorblindness-in-r>
